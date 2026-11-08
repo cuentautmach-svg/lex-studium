@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lex Studium | Biblioteca jurídica y simulador</title>
+<meta name="description" content="Lex Studium: biblioteca de normativa ecuatoriana y simulador de estudio jurídico, de acceso libre y sin registro.">
+<meta name="theme-color" content="#121d33">
+<style>
+/* Lex Studium V10 — diseño profesional, sin dependencias externas */
+:root{
+  --bg:#f4f6fb;--paper:#ffffff;--paper-2:#f8faff;--ink:#17243b;
+  --muted:#64748b;--nav:#121d33;--nav-2:#1c2b49;--teal:#4e78ed;
+  --teal-soft:#eaf0ff;--clay:#9d6e56;--wine:#3c5ace;--gold:#f2bb68;
+  --gold-soft:#fff1d7;--blue:#385cde;--line:#e3e9f2;--ok:#188967;
+  --danger:#be4956;--shadow:0 18px 48px rgba(19,37,67,.055);
+  --shadow-soft:0 10px 28px rgba(16,30,58,.085);
+  --control:#fff;--soft:#f7f9fd;--badge-bg:#eff3fc;--note:#53647e;
+  --ui:Inter,"Segoe UI Variable","Segoe UI",Roboto,Arial,sans-serif;
+  --display:Inter,"Segoe UI Variable","Segoe UI",Roboto,Arial,sans-serif;
+  --radius:18px;
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0d1422;--paper:#162138;--paper-2:#182640;--ink:#eaf1ff;
+  --muted:#a2b3cc;--nav:#0a1120;--nav-2:#1b2b47;--teal:#86a4ff;
+  --teal-soft:#233556;--wine:#92a9ff;--line:#2b3b57;--blue:#a1b6ff;
+  --control:#1b2942;--soft:#1b2941;--badge-bg:#243653;--note:#b4c2d8;
+  --shadow:0 16px 42px rgba(0,0,0,.15);--shadow-soft:0 9px 30px rgba(0,0,0,.18);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ui);font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
+button{cursor:pointer}
+a{color:inherit}
+.hidden{display:none!important}
+:focus-visible{outline:3px solid #8da4ff;outline-offset:3px}
+::selection{background:#b9c8ff;color:#101d3a}
+.app{min-height:100vh}
+.sidebar{
+  position:fixed;top:0;left:0;bottom:0;width:248px;
+  padding:28px 17px 20px;display:flex;flex-direction:column;z-index:20;
+  background:linear-gradient(165deg,#16223b 0%,#111a2c 66%,#10182a 100%);
+  border-right:1px solid rgba(255,255,255,.055);color:#fff;
+}
+.brand{display:flex;align-items:center;gap:12px;padding:3px 10px 42px}
+.brandmark{flex:none;width:43px;height:43px;display:grid;place-items:center;
+  border:1px solid rgba(255,255,255,.2);background:#4669ec;color:#fff;
+  border-radius:13px;font:800 24px/1 var(--display);box-shadow:0 10px 24px rgba(53,81,202,.23)}
+.brandtext{font-size:18px;font-weight:800;letter-spacing:-.7px;line-height:1.1}
+.brandtext small{display:block;margin-top:6px;font-size:10px;letter-spacing:.03em;font-weight:500;color:#9baecc}
+.nav{display:grid;gap:7px}
+.nav:before{content:"ESPACIO DE ESTUDIO";font-size:10px;font-weight:800;letter-spacing:.12em;color:#7789a8;padding:0 14px 12px}
+.nav button{border:1px solid transparent;background:transparent;color:#aebbd0;display:flex;align-items:center;
+  width:100%;gap:13px;min-height:49px;padding:11px 14px;border-radius:12px;text-align:left;transition:background .2s,color .2s}
+.nav button:hover{background:rgba(255,255,255,.055);color:#fff}
+.nav button.active{background:#334ec0;color:white;border-color:rgba(255,255,255,.11);box-shadow:0 9px 20px rgba(17,27,93,.2)}
+.nav .ico{font-size:20px;width:24px;flex:none;text-align:center;line-height:1}
+.nav span:last-child{font-size:13px;font-weight:750}
+.nav button[data-page="comunidad"]:after{content:"PRONTO";font-size:8px;font-weight:850;color:#abbceb;background:rgba(255,255,255,.09);padding:4px 5px;border-radius:5px;margin-left:auto;letter-spacing:.04em}
+.nav button[data-page="comunidad"].active:after{color:white}
+.account-shortcut{display:none}
+.sidebar-spacer{flex:1}
+.sidebar::after{content:"Tu espacio para aprender, consultar y practicar Derecho.";display:block;color:#8d9db9;font-size:11px;line-height:1.7;padding:16px 12px 22px;margin-top:auto;border-bottom:1px solid rgba(255,255,255,.1)}
+.side-profile{display:flex;align-items:center;gap:10px;margin-top:15px;padding:11px;border-radius:12px;cursor:pointer;transition:background .2s}
+.side-profile:hover{background:rgba(255,255,255,.06)}
+.avatar-img,.avatar-fallback{width:37px;height:37px;flex:none;border-radius:11px;object-fit:cover;border:1px solid rgba(255,255,255,.19)}
+.avatar-fallback{background:#2c3d65;color:#d4e0ff;display:grid;place-items:center;font-size:14px;font-weight:800}
+.side-profile strong{display:block;color:#fff;font-size:12px;font-weight:750}
+.side-profile small{display:block;color:#8f9fbb;font-size:10px;margin-top:2px}
+.main{margin-left:248px;min-width:0;min-height:100vh;padding:27px clamp(23px,4vw,68px) 75px}
+.main>.page{max-width:1320px;margin:0 auto}
+.workspace-topbar{max-width:1320px;margin:0 auto 28px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.workspace-crumb{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:11px;font-weight:750;letter-spacing:.085em;text-transform:uppercase}
+.crumb-dot{width:7px;height:7px;background:#496dea;border-radius:50%;box-shadow:0 0 0 4px rgba(73,109,234,.12)}
+.workspace-tools{display:flex;align-items:center;gap:16px}
+.top-status{font-size:11px;color:var(--muted);white-space:nowrap}
+.top-status:before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#24ac86;vertical-align:middle;margin-right:7px}
+.theme-toggle{display:flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:9px 12px;border-radius:11px;font-size:12px;font-weight:750;box-shadow:0 2px 7px rgba(9,24,50,.025)}
+.theme-toggle:hover{border-color:#8099e8}
+.page{display:none}
+.page.active{display:block;animation:pageIn .28s ease-out both}
+@keyframes pageIn{from{opacity:.65;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+.stagger>*{animation:cardIn .3s ease-out both}
+@keyframes cardIn{from{opacity:.7;transform:translateY(6px)}to{opacity:1;transform:none}}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px}
+.card.flat{box-shadow:none}
+.eyebrow{font-size:10px;font-weight:800;letter-spacing:.17em;text-transform:uppercase;color:#bdd0ff}
+.btn{display:inline-flex;justify-content:center;align-items:center;gap:6px;min-height:40px;padding:10px 15px;border:1px solid transparent;border-radius:10px;font-size:12px;line-height:1.25;font-weight:750;transition:background .18s,transform .18s,border-color .18s;white-space:normal}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:#415fe1;color:#fff;box-shadow:0 5px 13px rgba(54,81,197,.16)}
+.btn-primary:hover{background:#2d4dcf}
+.btn-soft{background:var(--soft);border-color:var(--line);color:var(--ink)}
+.btn-soft:hover{background:var(--teal-soft)}
+.btn-outline{background:transparent;border-color:#c9d5ee;color:var(--blue)}
+.btn-outline:hover{background:var(--teal-soft)}
+.btn-gold{background:var(--gold);color:#162238}.btn-wine{background:#415fe1;color:#fff}.wide{width:100%}
+.control{background:var(--control);border:1px solid var(--line);color:var(--ink);border-radius:10px;width:100%;min-height:44px;padding:11px 14px;outline:none;transition:border-color .2s,box-shadow .2s;font-size:13px}
+.control::placeholder{color:#94a3b8}
+.control:focus{border-color:#5578ec;box-shadow:0 0 0 3px rgba(84,116,238,.13)}
+textarea.control{resize:vertical;line-height:1.65}
+.lbl,.filter-field label{display:block;font-size:11px;font-weight:750;color:var(--ink);margin:0 0 8px}
+.section-heading{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:20px}
+.section-heading h2,.section-heading h3{margin:0;font-size:20px;font-weight:800;letter-spacing:-.4px}
+.section-heading p{margin:6px 0 0;font-size:12px;color:var(--muted)}
+
+/* Biblioteca */
+.library-hero{min-height:279px;position:relative;overflow:hidden;border-radius:23px;
+  background:linear-gradient(120deg,#172643 0%,#1e3460 67%,#223f7d 100%);
+  color:#fff;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(250px,.6fr);gap:18px;
+  align-items:center;padding:39px clamp(28px,4vw,56px);margin-bottom:22px;
+  box-shadow:0 22px 52px rgba(25,43,92,.13)}
+.library-hero:before{content:"";position:absolute;inset:auto -120px -250px auto;width:500px;height:500px;border:1px solid rgba(255,255,255,.10);border-radius:50%;pointer-events:none}
+.library-hero:after{content:"";position:absolute;right:25%;top:-160px;width:360px;height:360px;border:1px solid rgba(255,255,255,.055);border-radius:50%;pointer-events:none}
+.hero-copy{position:relative;z-index:1;max-width:640px}
+.library-hero h2{font-size:clamp(31px,3.5vw,49px);font-weight:830;letter-spacing:-1.8px;line-height:1.1;max-width:680px;margin:17px 0 16px}
+.library-hero h2 em{font-style:normal;color:#98b6ff}
+.library-hero p{font-size:14px;line-height:1.7;color:#bdcae1;max-width:560px;margin:0}
+.hero-highlights{display:flex;flex-wrap:wrap;gap:16px;margin-top:24px;color:#d7e3ff;font-size:11px;font-weight:650}
+.hero-highlights span{display:inline-flex;align-items:center;gap:7px}
+.hero-highlights span:before{content:"✓";background:rgba(120,164,255,.24);border-radius:50%;width:18px;height:18px;display:grid;place-items:center;font-size:11px}
+.hero-side{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;min-height:195px}
+.hero-seal{width:180px;height:180px;border:1px solid rgba(255,255,255,.19);border-radius:30px;background:linear-gradient(150deg,rgba(255,255,255,.13),rgba(255,255,255,.035));display:grid;place-items:center;transform:rotate(-9deg);box-shadow:0 22px 46px rgba(8,14,34,.16)}
+.hero-seal svg{width:108px;height:108px;transform:rotate(9deg)}
+.library-count{position:absolute;right:-3px;bottom:2px;z-index:2;display:flex;align-items:center;gap:9px;border-radius:14px;background:#fff;color:#122040;box-shadow:0 13px 29px rgba(0,0,0,.18);padding:12px 16px}
+.library-count b{font-size:28px;font-weight:850;line-height:1;letter-spacing:-1.3px;color:#274fd1;order:-1}
+.library-count span{max-width:90px;display:block;font-size:10px;line-height:1.25;font-weight:750;color:#566789;text-transform:uppercase;letter-spacing:.07em}
+.catalog-card{padding:26px 27px 30px}
+.catalog-header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}
+.catalog-header h3{font-size:19px;letter-spacing:-.4px;font-weight:800;margin:0}
+.catalog-header p{margin:3px 0 0;color:var(--muted);font-size:12px}
+.catalog-chip{background:var(--teal-soft);border:1px solid var(--line);color:var(--blue);border-radius:9px;padding:7px 10px;font-size:11px;font-weight:750}
+.library-toolbar{display:grid;grid-template-columns:minmax(250px,1.55fr) minmax(140px,.8fr) minmax(140px,.8fr) minmax(130px,.65fr);gap:12px;margin-bottom:18px}
+.filter-field{min-width:0}
+.library-toolbar .control{font-size:12px;height:46px;background:var(--soft)}
+.search-field{position:relative}
+.search-field:before{content:"⌕";position:absolute;left:12px;bottom:8px;color:#8294af;font-size:28px;line-height:1;pointer-events:none}
+.search-field .control{padding-left:39px}
+.catalog-note{font-size:11px;line-height:1.65;color:var(--note);padding:13px 14px;border:1px solid var(--line);border-left:3px solid #7691ec;background:var(--soft);border-radius:8px;margin-bottom:24px}
+.law-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.law-card{background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:20px;min-width:0;min-height:292px;display:flex;flex-direction:column;box-shadow:0 2px 3px rgba(12,25,47,.018);transition:box-shadow .2s,border-color .2s,transform .2s}
+.law-card:hover{border-color:#afc1f2;box-shadow:var(--shadow-soft);transform:translateY(-3px)}
+.law-top{display:flex;align-items:flex-start;justify-content:space-between;gap:9px}
+.law-visual{height:48px;width:48px;display:grid;place-items:center;background:var(--teal-soft);border-radius:12px;flex:none}
+.law-visual svg{width:37px;height:37px}
+.law-top-actions{display:flex;align-items:center;gap:6px}
+.badge{font-size:9px;font-weight:800;letter-spacing:.055em;text-transform:uppercase;background:var(--badge-bg);color:var(--blue);padding:6px 9px;border-radius:7px;max-width:125px;text-align:center}
+.save-law{width:30px;height:30px;flex:none;display:grid;place-items:center;border-radius:9px;border:1px solid var(--line);background:var(--paper);color:#8998b5;font-size:18px}
+.save-law:hover,.save-law.saved{background:#fff3dc;border-color:#eedbb8;color:#b27516}
+.law-card h3{font-size:15px;line-height:1.38;letter-spacing:-.25px;font-weight:800;margin:20px 0 8px;color:var(--ink)}
+.law-card>p:not(.law-note){font-size:12px;line-height:1.57;color:var(--muted);margin:0;flex:0}
+.law-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:16px 0 0}
+.law-meta span{display:inline-block;font-size:10px;line-height:1.35;font-weight:650;background:var(--soft);color:var(--note);border:1px solid var(--line);padding:6px 8px;border-radius:6px}
+.law-meta span.edition{background:var(--teal-soft);color:var(--blue)}
+.law-note{font-size:10.5px!important;line-height:1.5!important;color:var(--note)!important;margin:12px 0 0!important;flex:1!important}
+.law-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:18px}
+.law-actions a{text-decoration:none;flex:1;min-width:104px;min-height:37px;padding:8px 10px;font-size:11px;text-align:center}
+.empty{padding:40px 20px;color:var(--muted);font-size:13px;text-align:center;grid-column:1/-1}
+
+/* Simulador */
+.practice-v6{max-width:1170px;margin:0 auto}
+.practice-heading{display:flex;justify-content:space-between;align-items:center;gap:22px;border-radius:22px;padding:33px 36px;background:linear-gradient(115deg,#172541,#243c72);color:#fff;margin-bottom:19px}
+.practice-kicker{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.15em;font-weight:850;color:#a5bcff;margin-bottom:12px}
+.practice-heading h2{font-size:clamp(25px,3vw,39px);letter-spacing:-1.15px;line-height:1.15;margin:0 0 12px;font-weight:850}
+.practice-heading p{font-size:13px;max-width:640px;line-height:1.75;color:#c8d3e9;margin:0}
+.practice-summary{flex:none;min-width:155px;background:rgba(255,255,255,.105);border:1px solid rgba(255,255,255,.13);border-radius:14px;padding:17px 20px;text-align:center}
+.practice-summary span,.practice-summary small{display:block;color:#cbd7ed;font-size:10px;line-height:1.55}
+.practice-summary b{display:block;font-size:31px;color:#fff;font-weight:850;letter-spacing:-1px;margin:4px 0}
+.practice-paper{border:1px solid var(--line);border-radius:18px;background:var(--paper);box-shadow:var(--shadow);overflow:hidden}
+.practice-step{display:grid;grid-template-columns:76px minmax(0,1fr);border-bottom:1px solid var(--line)}
+.step-index{font-size:16px;font-weight:850;color:#4c6ee9;background:var(--soft);display:flex;align-items:flex-start;justify-content:center;padding-top:34px;border-right:1px solid var(--line)}
+.step-body{padding:28px 32px 31px}
+.step-title{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:20px}
+.step-title h3{font-weight:800;font-size:17px;letter-spacing:-.35px;margin:0}
+.step-title p{font-size:11.5px;color:var(--muted);margin:0}
+.practice-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.practice-fields.four{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.wide-field{grid-column:1/-1}
+.step-body .lbl{margin:0 0 7px}
+.step-body .control{background:var(--soft)}
+.study-editor{min-height:230px!important;font-size:13px!important;line-height:1.65!important}
+.study-foot{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:10px;font-size:11px;color:var(--muted)}
+.quiet-link{background:none;border:0;padding:4px;color:var(--blue);font-size:11px;font-weight:800}
+.practice-submit{padding:24px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;background:var(--soft)}
+.practice-submit strong{display:block;font-size:14px;font-weight:800;margin-bottom:6px}
+.practice-submit span{font-size:11px;color:var(--muted);line-height:1.5;display:block;max-width:610px}
+.exam-button{min-height:48px;min-width:190px;white-space:nowrap}
+.exam-button span{color:#fff;margin-left:4px;font-size:15px}
+
+/* Comunidad */
+.coming-shell{max-width:950px;min-height:540px;margin:30px auto 0;border-radius:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:65px 35px;background:var(--paper);border:1px solid var(--line);box-shadow:var(--shadow);position:relative;overflow:hidden}
+.coming-shell:before{content:"";position:absolute;top:-200px;right:-190px;width:480px;height:480px;border:1px solid var(--line);border-radius:50%;pointer-events:none}
+.coming-overline{color:var(--blue);background:var(--teal-soft);border:1px solid var(--line);padding:7px 13px;border-radius:25px;font-size:10px;font-weight:850;letter-spacing:.08em;text-transform:uppercase}
+.coming-symbol{width:94px;height:94px;border-radius:25px;background:linear-gradient(135deg,#3755cc,#6d90f7);display:grid;place-items:center;color:#fff;font-size:55px;font-weight:700;box-shadow:0 14px 32px rgba(57,82,184,.19);margin:30px auto 20px}
+.coming-shell h2{font-size:clamp(28px,3.5vw,43px);font-weight:850;max-width:670px;line-height:1.16;letter-spacing:-1.3px;margin:0 0 15px}
+.coming-shell p{max-width:540px;font-size:14px;line-height:1.8;color:var(--muted);margin:0 auto 22px}
+.coming-state{display:flex;align-items:center;justify-content:center;gap:7px;margin-bottom:24px;font-size:12px;font-weight:800;color:var(--blue)}
+.coming-dot{width:8px;height:8px;background:#5276f0;border-radius:50%}
+
+/* Perfil local */
+.profile-wrap{max-width:1140px;margin:0 auto}
+.profile-hero{background:var(--paper);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:18px}
+.profile-cover{height:190px;background:linear-gradient(110deg,#1c2b4d,#375a9b 60%,#7297eb);background-size:cover;background-position:center;position:relative}
+.upload-cover{position:absolute;z-index:1;right:20px;top:20px}
+.profile-body{position:relative;padding:0 28px 28px}
+.profile-avatar-wrap{width:100px;height:100px;margin-top:-50px;position:relative}
+.profile-avatar,.profile-avatar-fallback{width:100px;height:100px;border-radius:22px;border:5px solid var(--paper);object-fit:cover;box-shadow:0 7px 19px rgba(0,0,0,.13)}
+.profile-avatar-fallback{background:#476ce9;color:#fff;display:grid;place-items:center;font-size:40px;font-weight:800}
+.upload-avatar{position:absolute;bottom:0;right:0;width:31px;height:31px;border-radius:9px;display:grid;place-items:center;background:#4567e1;color:#fff;border:2px solid var(--paper);cursor:pointer;font-weight:850}
+.profile-title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-top:16px}
+.profile-title h2{font-size:24px;font-weight:830;margin:0 0 5px}
+.profile-title p{margin:0;font-size:12px;color:var(--muted)}
+.profile-bio{margin:12px 0;color:var(--muted);font-size:12px;max-width:730px}
+.profile-stats{display:flex;gap:27px;flex-wrap:wrap;margin-top:20px}
+.profile-stat b{font-size:22px;font-weight:850;display:block;letter-spacing:-.7px}
+.profile-stat span{font-size:11px;color:var(--muted)}
+.profile-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:18px}
+.activity-list{display:grid;gap:10px}
+.activity{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--soft);border:1px solid var(--line);padding:11px 13px;border-radius:11px}
+.activity strong{font-size:12px;display:block}.activity span{display:block;color:var(--muted);font-size:10px;margin-top:3px}.score{background:var(--teal-soft);border-radius:8px;padding:7px;color:var(--blue);font-weight:850}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.full{grid-column:1/-1}
+.file-input{display:none}
+
+/* Evaluación independiente — no modifica su lógica */
+.exam-v6-shell{min-height:100vh;max-width:970px;margin:0 auto;background:var(--bg);padding:30px 22px 90px;color:var(--ink)}
+.exam-v6-top{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:23px}
+.exam-brand{font-size:20px;font-weight:850;letter-spacing:-.7px}.exam-brand span{font-size:11px;color:var(--muted);font-weight:600;margin-left:10px}
+.exam-v6-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;background:linear-gradient(115deg,#162642,#284677);color:#fff;border-radius:17px;padding:29px}
+.exam-v6-head>div:first-child>span{font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:#adc4ff;font-weight:750}
+.exam-v6-head h1{font-size:clamp(24px,3vw,36px);line-height:1.16;margin:9px 0;font-weight:830;letter-spacing:-.8px}
+.exam-v6-head p{font-size:12px;color:#c6d4ec;margin:0}
+.exam-v6-score{font-size:27px;font-weight:850;white-space:nowrap}
+.exam-v6-progress{height:6px;background:var(--line);border-radius:10px;margin:15px 0 21px;overflow:hidden}
+.exam-v6-progress span{display:block;height:100%;width:0;background:#5875e8;transition:width .2s}
+.exam-question{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:24px;margin:0 0 12px}
+.exam-qmeta{display:flex;gap:7px;margin-bottom:12px;flex-wrap:wrap}
+.exam-qmeta span{font-size:10px;color:var(--blue);font-weight:800;letter-spacing:.04em;background:var(--teal-soft);border-radius:7px;padding:6px 9px}
+.exam-qtitle{font-size:15px;font-weight:730;line-height:1.65;margin-bottom:15px;white-space:pre-wrap}
+.exam-option{display:flex;gap:11px;align-items:flex-start;padding:13px 15px;border:1px solid var(--line);border-radius:10px;margin-top:9px;background:var(--soft);font-size:13px;cursor:pointer;line-height:1.5}
+.exam-option:hover{border-color:#91aae9}.exam-option input{margin:3px 0 0;accent-color:#4e6fe4}
+.exam-open{min-height:110px}
+.exam-answer{display:none;margin-top:15px;padding:15px;border-radius:10px;background:var(--teal-soft);font-size:12px;line-height:1.7;color:var(--ink)}
+.exam-answer.show{display:block}.exam-question.right{border-color:#70c3a3}.exam-question.wrong{border-color:#d89aa1}
+.exam-v6-actions{display:flex;gap:8px;flex-wrap:wrap;position:sticky;bottom:12px;margin-top:20px;padding:13px;border-radius:12px;border:1px solid var(--line);background:var(--paper);box-shadow:var(--shadow)}
+
+@media(max-width:1200px){.law-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.library-toolbar{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:970px){
+ .sidebar{width:205px;padding:20px 12px 17px}.brand{padding:4px 7px 32px}.nav button{gap:9px;padding:9px 10px}
+ .main{margin-left:205px;padding:23px 20px 60px}
+ .library-hero{grid-template-columns:1fr minmax(130px,.35fr);padding:31px}
+ .hero-seal{width:135px;height:135px}.hero-seal svg{width:85px;height:85px}
+ .library-count{right:-4px;bottom:-11px}
+ .practice-fields.four{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .profile-grid{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+ .sidebar{position:sticky;top:0;left:0;bottom:auto;width:100%;height:auto;padding:11px 16px;display:flex;flex-direction:row;align-items:center;gap:13px;box-shadow:0 5px 18px rgba(7,16,39,.1)}
+ .brand{gap:8px;padding:0;flex:none}.brandmark{width:34px;height:34px;border-radius:9px;font-size:18px}.brandtext{font-size:14px;letter-spacing:-.5px}.brandtext small{display:none}
+ .nav{display:flex;align-items:center;gap:3px;min-width:0;flex:1;justify-content:flex-end}
+ .nav:before{display:none}
+ .nav button{width:auto;min-width:0;padding:8px;border-radius:9px;min-height:35px;gap:6px;flex:none}
+ .nav .ico{font-size:16px;width:17px}.nav button span:last-child{font-size:11px;font-weight:700}
+ .nav button[data-page="comunidad"]:after{display:none}
+ .sidebar::after,.sidebar-spacer,.side-profile{display:none}
+ .account-shortcut{display:grid;place-items:center;flex:none;margin:0;border:1px solid rgba(255,255,255,.16);background:#29395d;color:#fff;border-radius:9px;width:33px;height:33px;font-size:16px}
+ .main{margin:0;padding:18px 16px 55px}
+ .workspace-topbar{margin-bottom:15px}
+ .workspace-crumb{font-size:9px;letter-spacing:.055em}
+ .top-status{display:none}
+ .theme-toggle{font-size:11px;padding:7px 9px;min-height:33px}
+ .library-hero{grid-template-columns:1fr;min-height:unset;padding:28px 24px 32px;border-radius:18px}
+ .library-hero h2{font-size:34px;letter-spacing:-1.25px;margin:10px 0 11px}
+ .library-hero p{font-size:12.5px}.hero-highlights{margin-top:16px;gap:10px;font-size:10px}
+ .hero-side{display:none}
+ .library-count{position:static;justify-self:start;margin-top:17px;order:3;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.13);box-shadow:none}
+ .library-count b{color:#fff;font-size:22px}.library-count span{color:#cad8ff}
+ .catalog-card{padding:19px 16px 23px}.catalog-header{margin-bottom:16px}.catalog-header h3{font-size:17px}
+ .library-toolbar{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+ .search-field{grid-column:1/-1}.library-toolbar .control{font-size:12px}
+ .law-grid{grid-template-columns:1fr;gap:12px}
+ .law-card{min-height:0;padding:19px}.law-card h3{font-size:15px;margin:15px 0 8px}
+ .catalog-note{margin-bottom:18px}
+ .practice-heading{padding:27px 22px;display:block}.practice-heading h2{font-size:28px}
+ .practice-summary{display:flex;align-items:center;justify-content:space-between;text-align:left;margin-top:18px;padding:13px 15px;min-width:0}
+ .practice-summary b{font-size:24px;margin:0 5px}.practice-summary span{font-size:10px}
+ .practice-step{grid-template-columns:45px minmax(0,1fr)}.step-index{font-size:12px;padding-top:26px}.step-body{padding:23px 17px}
+ .step-title{display:block;margin-bottom:16px}.step-title h3{font-size:15px}.step-title p{font-size:11px;margin-top:5px}
+ .practice-fields{grid-template-columns:1fr;gap:12px}.practice-fields.four{grid-template-columns:1fr 1fr;gap:10px}
+ .practice-submit{padding:22px;display:block}.exam-button{margin-top:18px;width:100%}
+ .study-foot{align-items:flex-start;flex-wrap:wrap}
+ .coming-shell{margin:4px auto;padding:45px 23px;min-height:500px}.coming-shell h2{font-size:31px}
+ .profile-cover{height:150px}.profile-body{padding:0 19px 23px}.profile-title-row{display:block}.profile-title-row>.btn{margin-top:15px}.form-grid{grid-template-columns:1fr}
+ .exam-v6-shell{padding:15px 14px 55px}.exam-v6-head{display:block;padding:22px}.exam-v6-score{margin-top:14px}.exam-question{padding:18px}
+}
+@media(max-width:420px){
+ .sidebar{padding:10px 9px;gap:6px}.brandtext{display:none}.brandmark{width:30px;height:30px}
+ .nav button{padding:7px 6px;gap:4px}.nav button span:last-child{font-size:10px}.nav .ico{font-size:15px;width:15px}
+ .account-shortcut{width:30px;height:30px;font-size:14px}
+ .main{padding:14px 12px 50px}
+ .workspace-crumb{font-size:9px}.theme-toggle{padding:7px 8px}.theme-toggle #themeText{display:none}
+ .library-hero{padding:26px 22px}.library-hero h2{font-size:31px}
+ .catalog-header{align-items:flex-start}.catalog-chip{font-size:9px}.library-toolbar{grid-template-columns:1fr 1fr;gap:9px}
+ .filter-field label{font-size:10px}.library-toolbar .control{padding:9px;font-size:11px}.search-field .control{padding-left:39px}
+ .practice-fields.four{grid-template-columns:1fr 1fr}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+@media print{.sidebar,.workspace-topbar,.exam-v6-top,.exam-v6-actions{display:none!important}.main{margin:0;padding:0}.exam-v6-shell{padding:0}.exam-question,.exam-v6-head{break-inside:avoid;box-shadow:none}}
+
+/* Móvil: contador de la biblioteca separado del dibujo decorativo */
+.library-count.mobile-count{display:none}
+@media(max-width:700px){.library-count.mobile-count{display:flex}.hero-side .library-count{display:none}}
+</style>
+</head>
+<body>
+
+<div id="app" class="app">
+  <aside class="sidebar" aria-label="Navegación principal">
+    <div class="brand">
+      <div class="brandmark">§</div>
+      <div class="brandtext">Lex Studium<small>Tu espacio jurídico</small></div>
+    </div>
+    <nav class="nav">
+      <button class="active" data-page="biblioteca" onclick="go('biblioteca',this)"><span class="ico">§</span><span>Biblioteca</span></button>
+      <button data-page="practicar" onclick="go('practicar',this)"><span class="ico">✎</span><span>Simulador</span></button>
+      <button data-page="comunidad" onclick="go('comunidad',this)"><span class="ico">◌</span><span>Comunidad</span></button>
+    </nav>
+    <button class="account-shortcut" onclick="goById('perfil')" title="Mi espacio local" aria-label="Mi espacio local">◉</button>
+    <div class="sidebar-spacer"></div>
+    <div class="side-profile" onclick="goById('perfil')">
+      <div id="sideAvatar"></div>
+      <div><strong id="sideName">Estudiante</strong><small>Preferencias locales</small></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="workspace-topbar">
+      <div class="workspace-crumb"><span class="crumb-dot"></span> PLATAFORMA DE ESTUDIO JURÍDICO</div>
+      <div class="workspace-tools"><span class="top-status">Acceso libre · sin registro</span>
+        <button type="button" class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Cambiar apariencia" aria-label="Cambiar apariencia"><span id="themeIcon">☾</span><span id="themeText">Modo oscuro</span></button>
+      </div>
+    </header>
+    <!-- BIBLIOTECA -->
+    <section id="biblioteca" class="page active">
+      <div class="library-hero">
+        <div class="hero-copy">
+          <div class="eyebrow">LEX STUDIUM / ECUADOR</div>
+          <h2>Tu biblioteca jurídica,<br><em>sin complicaciones.</em></h2>
+          <p>Encuentra leyes, códigos y fuentes institucionales en un solo lugar. Guarda tus documentos favoritos y consulta las referencias en cualquier momento.</p>
+          <div class="hero-highlights"><span>Fuentes institucionales</span><span>Sin cuenta ni registro</span></div>
+        </div>
+        <div class="hero-side" aria-hidden="true">
+          <div class="hero-seal">
+            <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+             <path d="M60 22v72M31 42h58M42 42l-18 30h36L42 42ZM78 42 60 72h36L78 42Z" stroke="#bfd3ff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+             <path d="M43 97h34M31 104h58" stroke="#bfd3ff" stroke-width="5" stroke-linecap="round"/>
+             <circle cx="60" cy="21" r="7" stroke="#bfd3ff" stroke-width="4"/>
+            </svg>
+          </div>
+          <div class="library-count"><span>Documentos disponibles</span><b id="visibleLawCount">0</b></div>
+        </div>
+        <div class="library-count mobile-count"><span>Documentos disponibles</span><b id="mobileLawCount">0</b></div>
+      </div>
+      <div class="card catalog-card">
+        <div class="catalog-header">
+          <div><h3>Explorar legislación</h3><p>Filtra por área, tipo de documento o tus favoritos.</p></div>
+          <div class="catalog-chip">Biblioteca abierta</div>
+        </div>
+        <div class="library-toolbar">
+          <div class="filter-field search-field"><label for="lawSearch">Buscar norma o tema</label><input id="lawSearch" class="control" placeholder="Código Civil, Constitución..." oninput="renderLibrary()"></div>
+          <div class="filter-field"><label for="lawArea">Área jurídica</label><select id="lawArea" class="control" onchange="renderLibrary()"></select></div>
+          <div class="filter-field"><label for="lawType">Tipo de documento</label><select id="lawType" class="control" onchange="renderLibrary()"></select></div>
+          <div class="filter-field"><label for="lawSaved">Mostrar</label><select id="lawSaved" class="control" onchange="renderLibrary()"><option value="all">Todos</option><option value="saved">Mis guardados</option></select></div>
+        </div>
+        <div class="catalog-note">Fuentes oficiales e institucionales de Ecuador. Enlaces revisados el 08/11/2026. La fecha de publicación de una edición <strong>no garantiza</strong> que incluya las reformas más recientes; confirma siempre el texto vigente en el Registro Oficial. Algunas fichas corresponden a portales temáticos.</div>
+        <div id="lawGrid" class="law-grid stagger"></div>
+      </div>
+    </section>
+
+    <!-- PRACTICAR -->
+    <section id="practicar" class="page">
+      <div class="practice-v6">
+        <header class="practice-heading">
+          <div>
+            <span class="practice-kicker">Evaluaciones</span>
+            <h2>Diseña tu simulador de estudio.</h2>
+            <p>Selecciona el alcance, define cómo quieres practicar y añade el material que entrará en la evaluación.</p>
+          </div>
+          <div class="practice-summary">
+            <span>Promedio registrado</span>
+            <b id="practiceAvg">0%</b>
+            <small id="draftStatus">Borrador local</small>
+          </div>
+        </header>
+
+        <div class="practice-paper">
+          <section class="practice-step">
+            <div class="step-index">01</div>
+            <div class="step-body">
+              <div class="step-title"><h3>Materia y alcance</h3><p>Define exactamente qué quieres estudiar.</p></div>
+              <div class="practice-fields">
+                <div><label class="lbl">Área jurídica</label><select id="subject" class="control" onchange="updateSources();savePracticeDraft()"></select></div>
+                <div><label class="lbl">Fuente o código</label><select id="sourceType" class="control" onchange="savePracticeDraft()"></select></div>
+                <div class="wide-field"><label class="lbl">Capítulo, artículos o tema</label><input id="range" class="control" placeholder="Ej.: artículos 1 al 15 · capítulo 2 · personas naturales" oninput="savePracticeDraft()"></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="practice-step">
+            <div class="step-index">02</div>
+            <div class="step-body">
+              <div class="step-title"><h3>Configuración</h3><p>Ajusta el nivel y el formato de la prueba.</p></div>
+              <div class="practice-fields four">
+                <div><label class="lbl">Dificultad</label><select id="difficulty" class="control" onchange="savePracticeDraft()"><option>Fácil</option><option selected>Media</option><option>Difícil</option><option>Nivel examen</option></select></div>
+                <div><label class="lbl">Preguntas</label><select id="count" class="control" onchange="savePracticeDraft()"><option>5</option><option selected>10</option><option>15</option><option>20</option></select></div>
+                <div><label class="lbl">Orden</label><select id="order" class="control" onchange="savePracticeDraft()"><option value="mix">Entremezcladas</option><option value="source">Según el contenido</option></select></div>
+                <div><label class="lbl">Formato</label><select id="type" class="control" onchange="savePracticeDraft()"><option value="mixed">Mixta</option><option value="mcq">Opción múltiple</option><option value="tf">Verdadero / falso</option><option value="open">Preguntas abiertas</option></select></div>
+              </div>
+              <div style="margin-top:10px"><label class="lbl">Indicaciones adicionales</label><input id="instruction" class="control" placeholder="Ej.: prioriza conceptos, artículos y diferencias" oninput="savePracticeDraft()"></div>
+            </div>
+          </section>
+
+          <section class="practice-step">
+            <div class="step-index">03</div>
+            <div class="step-body">
+              <div class="step-title"><h3>Material de estudio</h3><p>La evaluación se construirá únicamente con el contenido que incluyas aquí.</p></div>
+              <textarea id="studyText" class="control study-editor" placeholder="Pega tus apuntes, artículos, resumen o contenido del capítulo..." oninput="savePracticeDraft()"></textarea>
+              <div class="study-foot">
+                <span>Tu borrador se guarda automáticamente en este navegador.</span>
+                <button class="quiet-link" onclick="loadDemo()">Usar texto de ejemplo</button>
+              </div>
+            </div>
+          </section>
+
+          <div class="practice-submit">
+            <div>
+              <strong>Listo para practicar</strong>
+              <span>El examen se abrirá en una pestaña independiente. Si el navegador la bloquea, Lex Studium abrirá un modo de examen en esta misma pestaña.</span>
+            </div>
+            <button class="btn btn-primary exam-button" onclick="openExam()">Generar evaluación <span>↗</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMUNIDAD: sin simulación de usuarios ni publicaciones -->
+    <section id="comunidad" class="page">
+      <div class="coming-shell">
+        <div class="coming-overline">Comunidad Lex Studium · En preparación</div>
+        <div class="coming-symbol" aria-hidden="true">§</div>
+        <h2>Las mejores ideas se construyen en comunidad.</h2>
+        <p>Estamos preparando un espacio para debates jurídicos, dudas, casos y aportes de estudiantes. Todavía no hay cuentas, publicaciones ni comentarios compartidos.</p>
+        <div class="coming-state"><span class="coming-dot"></span> Próximamente</div>
+        <button class="btn btn-primary" onclick="goById('biblioteca')">Explorar la biblioteca</button>
+      </div>
+    </section>
+
+    <!-- PERFIL -->
+    <section id="perfil" class="page">
+      <div class="profile-wrap">
+        <div class="profile-hero">
+          <div id="profileCover" class="profile-cover">
+            <label class="btn btn-soft upload-cover" for="coverInput">Cambiar portada</label>
+            <input id="coverInput" class="file-input" type="file" accept="image/*" onchange="handleCover(event)">
+          </div>
+          <div class="profile-body">
+            <div class="profile-avatar-wrap">
+              <div id="profileAvatar"></div>
+              <label class="upload-avatar" for="avatarInput">＋</label>
+              <input id="avatarInput" class="file-input" type="file" accept="image/*" onchange="handleAvatar(event)">
+            </div>
+            <div class="profile-title-row">
+              <div class="profile-title">
+                <h2 id="profileDisplayName">Estudiante</h2>
+                <p id="profileDisplayMeta">Perfil jurídico</p>
+                <div id="profileBioText" class="profile-bio">Tus preferencias se guardan solo en este navegador.</div>
+                <div class="profile-stats">
+                  <div class="profile-stat"><b id="profileTests">0</b><span>Evaluaciones</span></div>
+                  <div class="profile-stat"><b id="profileAvg">0%</b><span>Promedio</span></div>
+                  <div class="profile-stat"><b id="profileSavedCount">0</b><span>Guardados</span></div>
+                </div>
+              </div>
+              <button class="btn btn-primary" onclick="document.getElementById('profileName').focus()">Editar perfil</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-grid">
+          <div class="card">
+            <div class="section-heading"><div><h3>Actividad de estudio</h3><p>Resultados de pruebas y normas guardadas en este dispositivo.</p></div></div>
+            <div id="profileActivity" class="activity-list"></div>
+          </div>
+          <div class="card">
+            <div class="section-heading"><div><h3>Información del perfil</h3><p>Opcional. Se guarda solo en este navegador, sin registro ni contraseña.</p></div></div>
+            <div class="form-grid">
+              <div><label class="lbl">Nombre visible</label><input id="profileName" class="control"></div>
+              <div><label class="lbl">Universidad / institución</label><input id="institution" class="control"></div>
+              <div><label class="lbl">Semestre o nivel</label><input id="semester" class="control"></div>
+              <div><label class="lbl">Área de interés</label><input id="interest" class="control"></div>
+              <div class="full"><label class="lbl">Biografía</label><textarea id="bio" class="control" style="min-height:105px" placeholder="Temas que quieres estudiar o reforzar."></textarea></div>
+            </div>
+            <button class="btn btn-primary" style="margin-top:13px" onclick="saveProfile()">Guardar cambios</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+const subjectData={
+  "Derecho Constitucional":["Constitución de la República","Jurisprudencia constitucional","Apuntes / doctrina"],
+  "Derecho Civil":["Código Civil","Jurisprudencia civil","Apuntes / doctrina"],
+  "Derecho Penal":["COIP","Jurisprudencia penal","Apuntes / doctrina"],
+  "Derecho Procesal":["COGEP","Procedimiento penal","Apuntes / doctrina"],
+  "Niñez y Adolescencia":["Código de la Niñez y Adolescencia","Jurisprudencia","Apuntes / doctrina"],
+  "Derecho Laboral":["Código del Trabajo","Jurisprudencia laboral","Apuntes / doctrina"],
+  "Derecho Administrativo":["COA","Normativa administrativa","Apuntes / doctrina"],
+  "Derechos Humanos":["Instrumentos internacionales","Constitución","Jurisprudencia"],
+  "Filosofía del Derecho":["Autores y teoría","Lecturas","Apuntes"]
+};
+
+const laws=[
+["Constitución de la República del Ecuador","Constitucional","Constitución","Norma constitucional y marco general del Estado y los derechos."],
+["Código Civil","Civil","Código","Personas, bienes, sucesiones, obligaciones, contratos y otras instituciones civiles."],
+["Código Orgánico Integral Penal (COIP)","Penal","Código","Normativa penal sustantiva y procesal integrada."],
+["Código Orgánico General de Procesos (COGEP)","Procesal","Código","Reglas generales de los procesos judiciales no penales."],
+["Código de la Niñez y Adolescencia","Niñez","Código","Protección integral, derechos y relaciones jurídicas de niñas, niños y adolescentes."],
+["Código del Trabajo","Laboral","Código","Relaciones individuales y colectivas de trabajo."],
+["Código Orgánico Administrativo (COA)","Administrativo","Código","Actividad administrativa, procedimientos y actuación de la administración pública."],
+["Código Orgánico de la Función Judicial","Judicial","Código","Principios, órganos y funcionamiento de la Función Judicial."],
+["Código Orgánico de Organización Territorial, Autonomía y Descentralización (COOTAD)","Administrativo","Código","Gobiernos autónomos descentralizados y organización territorial."],
+["Código Orgánico Monetario y Financiero","Financiero","Código","Marco monetario, financiero, de valores y seguros."],
+["Código Orgánico de Planificación y Finanzas Públicas","Público","Código","Planificación nacional y administración de finanzas públicas."],
+["Código Orgánico de la Economía Social de los Conocimientos","Tecnología","Código","Conocimiento, creatividad, innovación y propiedad intelectual."],
+["Código Orgánico del Ambiente","Ambiental","Código","Gestión ambiental y protección de la naturaleza."],
+["Código Orgánico de la Producción, Comercio e Inversiones","Mercantil","Código","Producción, comercio e inversiones."],
+["Código Tributario","Tributario","Código","Principios y procedimientos generales de la relación tributaria."],
+["Ley Orgánica de Garantías Jurisdiccionales y Control Constitucional","Constitucional","Ley orgánica","Garantías jurisdiccionales y procesos de control constitucional."],
+["Ley Orgánica de Participación Ciudadana","Constitucional","Ley orgánica","Mecanismos de participación y control social."],
+["Ley Orgánica Electoral y de Organizaciones Políticas","Electoral","Ley orgánica","Régimen electoral y organizaciones políticas."],
+["Ley Orgánica de Educación Superior","Educación","Ley orgánica","Sistema de educación superior, instituciones, derechos y obligaciones."],
+["Ley Orgánica de Educación Intercultural","Educación","Ley orgánica","Sistema nacional de educación y comunidad educativa."],
+["Ley Orgánica de Protección de Datos Personales","Tecnología","Ley orgánica","Tratamiento, derechos y obligaciones en materia de datos personales."],
+["Ley Orgánica de Transparencia y Acceso a la Información Pública","Público","Ley orgánica","Acceso a información pública y obligaciones de transparencia."],
+["Ley Orgánica de Defensa del Consumidor","Consumidor","Ley orgánica","Derechos y protección de consumidores y usuarios."],
+["Ley Orgánica del Sistema Nacional de Contratación Pública","Contratación","Ley orgánica","Contratación pública y procedimientos del sistema nacional."],
+["Ley de Compañías","Mercantil","Ley","Constitución, organización y régimen de compañías."],
+["Ley de Inquilinato","Civil","Ley","Relaciones vinculadas con arrendamientos urbanos."],
+["Ley de Propiedad Horizontal","Civil","Ley","Régimen de inmuebles sujetos a propiedad horizontal."],
+["Ley de Arbitraje y Mediación","Procesal","Ley","Mecanismos alternativos para solución de conflictos."],
+["Ley de Comercio Electrónico, Firmas Electrónicas y Mensajes de Datos","Tecnología","Ley","Marco legal para comercio y documentos electrónicos."],
+["Ley Orgánica Integral para Prevenir y Erradicar la Violencia contra las Mujeres","Derechos","Ley orgánica","Prevención, protección y respuesta frente a distintas formas de violencia."],
+["Ley Orgánica de las Personas con Discapacidad","Derechos","Ley orgánica","Derechos, acciones afirmativas y protección de personas con discapacidad."],
+["Ley Orgánica de Movilidad Humana","Derechos","Ley orgánica","Derechos y régimen jurídico relacionado con movilidad humana."],
+["Ley Orgánica de Servicio Público","Público","Ley orgánica","Régimen del servicio público y talento humano estatal."],
+["Ley Orgánica de Empresas Públicas","Público","Ley orgánica","Creación, organización y funcionamiento de empresas públicas."],
+["Ley de Seguridad Social","Laboral","Ley","Marco general del sistema de seguridad social."],
+["Ley de Régimen Tributario Interno","Tributario","Ley orgánica","Impuestos internos y reglas tributarias relacionadas."],
+["Ley Orgánica de Recursos Hídricos","Ambiental","Ley orgánica","Gestión y protección de recursos hídricos."],
+["Normativa forestal (Código Orgánico del Ambiente)","Ambiental","Normativa","Referencia temática para estudio ambiental y de recursos naturales."],
+["Reglamentos y normativa secundaria","General","Reglamento","Espacio preparado para incorporar normativa secundaria verificada."],
+["Jurisprudencia constitucional","Constitucional","Jurisprudencia","Colección futura de sentencias y criterios constitucionales."],
+["Jurisprudencia nacional","Judicial","Jurisprudencia","Colección futura de fallos relevantes por materia."]
+];
+const lawSources = [
+  {
+    "url": "https://www.asambleanacional.gob.ec/es/contenido/constitucion_de_la_republica_del_ecuador_reformada",
+    "pdf": "",
+    "edition": "",
+    "note": "Consulta de la Asamblea; contrasta reformas posteriores.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://biblioteca.defensoria.gob.ec/handle/37000/3410",
+    "pdf": "https://biblioteca.defensoria.gob.ec/bitstream/37000/3410/1/C%C3%B3digo%20Civil%20%28%C3%9Altima%20reforma%2014-03-2022%29.pdf",
+    "edition": "14/03/2022",
+    "note": "Edición de 2022; no incluye necesariamente reformas más recientes.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://biblioteca.defensoria.gob.ec/handle/37000/3817",
+    "pdf": "",
+    "edition": "02/10/2026",
+    "note": "Fecha consignada en la ficha de la Defensoría Pública.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://biblioteca.defensoria.gob.ec/handle/37000/4069",
+    "pdf": "",
+    "edition": "19/10/2026",
+    "note": "Fecha consignada en los metadatos de la ficha.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://biblioteca.defensoria.gob.ec/handle/37000/3820",
+    "pdf": "",
+    "edition": "14/08/2026",
+    "note": "Fecha consignada en la ficha; confirma reformas posteriores.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://biblioteca.defensoria.gob.ec/handle/37000/3819",
+    "pdf": "",
+    "edition": "18/05/2026",
+    "note": "Fecha consignada en la ficha de la Defensoría Pública.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://biblioteca.defensoria.gob.ec/handle/37000/4259",
+    "pdf": "",
+    "edition": "13/01/2026",
+    "note": "Fecha consignada en los metadatos de la ficha.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://www.funcionjudicial.gob.ec/normativa/",
+    "pdf": "https://www.funcionjudicial.gob.ec/resources/pdf/CODIGO_ORGANICO_DE_LA_FUNCI%C3%93N_JUDICIAL_-_COFJ.pdf",
+    "edition": "26/06/2025",
+    "note": "Fecha de reforma indicada por el documento del Consejo de la Judicatura.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://biblioteca.defensoria.gob.ec/handle/37000/495",
+    "pdf": "https://biblioteca.defensoria.gob.ec/bitstream/37000/495/1/C%C3%B3digo%20org%C3%A1nico%20de%20organizaci%C3%B3n%20territorial%2C%20autonom%C3%ADa%20y%20descentralizaci%C3%B3n%20%28COOTAD%29.pdf",
+    "edition": "2015",
+    "note": "Versión de referencia histórica; revisar reformas actuales.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://biblioteca.defensoria.gob.ec/handle/37000/3399",
+    "pdf": "",
+    "edition": "11/02/2022",
+    "note": "Edición de 2022; puede haber reformas posteriores.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://biblioteca.defensoria.gob.ec/handle/37000/3401",
+    "pdf": "",
+    "edition": "29/11/2021",
+    "note": "Edición de 2021; puede haber reformas posteriores.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://www.asambleanacional.gob.ec/es/multimedios-legislativos/38877-codigo-organico-de-la-economia-social",
+    "pdf": "",
+    "edition": "09/12/2016",
+    "note": "Publicación original; revisar reformas posteriores.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://sustanciasyresiduos.ambiente.gob.ec/producto/codigo-organico-del-ambiente/",
+    "pdf": "https://www.gob.ec/sites/default/files/regulations/2022-02/CODIGO_ORGANICO_AMBIENTE.pdf",
+    "edition": "2022",
+    "note": "PDF de referencia. Revisar reformas ambientales de 2026.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://defensacomercial.produccion.gob.ec/wp-content/uploads/2021/01/1.-Codigo-de-la-Produccion-Comercio-e-Inversiones.pdf",
+    "pdf": "https://defensacomercial.produccion.gob.ec/wp-content/uploads/2021/01/1.-Codigo-de-la-Produccion-Comercio-e-Inversiones.pdf",
+    "edition": "2021",
+    "note": "Copia institucional de referencia; no garantiza texto consolidado.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://www.sri.gob.ec/normativa-tributaria-legislacion-nacional",
+    "pdf": "https://www.sri.gob.ec/o/sri-portlet-biblioteca-alfresco-internet/descargar/e748e1af-1685-4745-a9a0-e04673356ab5/C%C3%B3digo%20Tributario-%C3%BAltima%20modificaci%C3%B3n%2031%20de%20diciembre%20de%202019.pdf",
+    "edition": "31/12/2019",
+    "note": "PDF de 2019; consultar la normativa vigente en el portal SRI.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://biblioteca.defensoria.gob.ec/handle/37000/3823",
+    "pdf": "",
+    "edition": "09/05/2024",
+    "note": "Edición citada en la ficha; revisar reformas posteriores.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://www.asambleanacional.gob.ec/es/contenido/varias_leyes8",
+    "pdf": "https://www.asambleanacional.gob.ec/documentos/LEY-PARTICIPACION-.pdf",
+    "edition": "2011",
+    "note": "Edición original de referencia; consultar reformas, como la de junio de 2024.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://www.cne.gob.ec/codigo-de-la-democracia/",
+    "pdf": "https://www.cne.gob.ec/wp-content/uploads/2022/09/cod-de-la-democracia.pdf",
+    "edition": "2022",
+    "note": "PDF de referencia; revisar la reforma electoral de 2025.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://www.educacionsuperior.gob.ec/wp-content/uploads/downloads/2022/12/LEY-ORGANICA-DE-EDUCACION-SUPERIOR-REFORMA-06-04-2022-1.pdf",
+    "pdf": "https://www.educacionsuperior.gob.ec/wp-content/uploads/downloads/2022/12/LEY-ORGANICA-DE-EDUCACION-SUPERIOR-REFORMA-06-04-2022-1.pdf",
+    "edition": "06/04/2022",
+    "note": "Edición de referencia, revisar reformas más recientes.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://www.registroficial.gob.ec/quinto-suplemento-al-registro-oficial-no-689/",
+    "pdf": "",
+    "edition": "22/11/2024",
+    "note": "Codificación publicada en Registro Oficial (2024).",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://www.registroficial.gob.ec/quinto-suplemento-al-registro-oficial-no-459/",
+    "pdf": "",
+    "edition": "26/05/2021",
+    "note": "Publicación original; consultar reformas posteriores.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://biblioteca.defensoria.gob.ec/handle/37000/3726",
+    "pdf": "",
+    "edition": "07/07/2023",
+    "note": "Nueva LOTAIP publicada en 2023; no confundir con la ley de 2004.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://www.produccion.gob.ec/wp-content/uploads/2019/08/A2-LEY-ORGANICA-DE-DEFENSA-DEL-CONSUMIDOR.pdf",
+    "pdf": "https://www.produccion.gob.ec/wp-content/uploads/2019/08/A2-LEY-ORGANICA-DE-DEFENSA-DEL-CONSUMIDOR.pdf",
+    "edition": "13/10/2011",
+    "note": "Última reforma indicada en esta edición de referencia.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://portal.compraspublicas.gob.ec/sercop/normativa/losncp/ley-organica-del-sistema-nacional-de-contratacion-publica",
+    "pdf": "https://portal.compraspublicas.gob.ec/sercop/wp-content/uploads/2025/12/LOSNCP.pdf",
+    "edition": "07/10/2025",
+    "note": "SERCOP: documento de referencia. Hay reformas reglamentarias de 2026.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://www1.supercias.gob.ec/portalscvs/Institucion/SectorSocietario.php?seccion=ley-de-compa%C3%B1ias",
+    "pdf": "",
+    "edition": "",
+    "note": "Repositorio oficial de la Superintendencia de Compañías.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://www.gob.ec/sites/default/files/regulations/2021-02/LEY%20DE%20INQUILINATO.pdf",
+    "pdf": "https://www.gob.ec/sites/default/files/regulations/2021-02/LEY%20DE%20INQUILINATO.pdf",
+    "edition": "30/12/2016",
+    "note": "Reforma indicada en el PDF del portal estatal.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://www.gob.ec/sites/default/files/regulations/2024-11/LEY_DE_PROPIEDAD_HORIZONTAL.pdf",
+    "pdf": "https://www.gob.ec/sites/default/files/regulations/2024-11/LEY_DE_PROPIEDAD_HORIZONTAL.pdf",
+    "edition": "2024",
+    "note": "Versión publicada en el portal estatal; verificar normativa aplicable.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://mediacion.funcionjudicial.gob.ec/documentos/",
+    "pdf": "https://www.funcionjudicial.gob.ec/resources/pdf/Ley%20de%20Arbitraje%20y%20Mediaci%C3%B3n%20final.pdf",
+    "edition": "22/05/2015",
+    "note": "Versión histórica de referencia del Consejo de la Judicatura.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://biblioteca.defensoria.gob.ec/handle/37000/3374",
+    "pdf": "https://www.telecomunicaciones.gob.ec/wp-content/uploads/2023/04/CompletosSinConcordanciaspdf31127_-_LEY_DE_COMERCIO_ELECTRONICO__FIRMAS_ELECTR-1.pdf",
+    "edition": "07/02/2023",
+    "note": "Reforma indicada por PDF del Ministerio de Telecomunicaciones.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://www.asambleanacional.gob.ec/es/publicacion/55899-ley-organica-integral-para-prevenir-y-erradicar-la",
+    "pdf": "https://www.asambleanacional.gob.ec/sites/default/files/private/asambleanacional/filesasambleanacionalnameuid-29/Leyes%202013-2017/361-errad-violencia-contra-mujeres-18-08-2017/ro-contra-violencia-mujer.pdf",
+    "edition": "05/02/2018",
+    "note": "Publicación original; consultar reformas posteriores.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://www.asambleanacional.gob.ec/es/contenido/ley-organica-de-las-personas-con-discapacidad",
+    "pdf": "https://www.asambleanacional.gob.ec/es/system/files/ro_12.pdf",
+    "edition": "03/07/2025",
+    "note": "Nueva ley de 2025; sustituye la ficha de la antigua Ley de Discapacidades.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://www.asambleanacional.gob.ec/es/multimedios-legislativos/38946-ley-organica-de-movilidad-humana",
+    "pdf": "",
+    "edition": "06/02/2017",
+    "note": "Publicación original. Hay reformas posteriores, entre ellas la de 2021.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://biblioteca.defensoria.gob.ec/handle/37000/4070",
+    "pdf": "",
+    "edition": "09/04/2026",
+    "note": "Referencia de Registro Oficial 212 mostrada por la ficha.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://www.asambleanacional.gob.ec/es/system/files/ley_organica_de_empresas_publicas.pdf",
+    "pdf": "https://www.asambleanacional.gob.ec/es/system/files/ley_organica_de_empresas_publicas.pdf",
+    "edition": "16/10/2009",
+    "note": "Texto de promulgación; consultar reformas posteriores.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://biblioteca.defensoria.gob.ec/handle/37000/3398",
+    "pdf": "",
+    "edition": "05/04/2022",
+    "note": "Edición de 2022, no necesariamente consolidada a 2026.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://www.sri.gob.ec/normativa-tributaria-legislacion-nacional",
+    "pdf": "",
+    "edition": "",
+    "note": "Portal del SRI con normativa tributaria vigente; texto puede actualizarse.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://www.ambiente.gob.ec/wp-content/uploads/downloads/2018/05/Ley-Organica-Recursos-Hidricos-Usos-y-Aprovechamiento-del-Agua.pdf",
+    "pdf": "https://www.ambiente.gob.ec/wp-content/uploads/downloads/2018/05/Ley-Organica-Recursos-Hidricos-Usos-y-Aprovechamiento-del-Agua.pdf",
+    "edition": "2018",
+    "note": "PDF de referencia del Ministerio del Ambiente; consulta reformas.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://snmb.ambiente.gob.ec/snmb/?page_id=374",
+    "pdf": "",
+    "edition": "",
+    "note": "La antigua Ley Forestal fue derogada por el Código Orgánico del Ambiente.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://www.registroficial.gob.ec/",
+    "pdf": "",
+    "edition": "",
+    "note": "Portal general de normativa secundaria; no es una norma individual.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://buscador.corteconstitucional.gob.ec/",
+    "pdf": "",
+    "edition": "",
+    "note": "Buscador oficial de sentencias, sin un único PDF.",
+    "review": "08/11/2026"
+  },
+  {
+    "url": "https://www.cortenacional.gob.ec/resoluciones-con-fuerza-de-ley/",
+    "pdf": "",
+    "edition": "",
+    "note": "Portal oficial de resoluciones; sin un único PDF.",
+    "review": "08/11/2026"
+  }
+];
+
+
+const stopWords=new Set(("de la el los las un una unos unas y o u e en a ante bajo con contra desde durante entre hacia hasta mediante para por segun sin sobre tras que se su sus al del es son fue fueron ser como mas menos muy ya si no lo le les esto esta estas este estos esa ese esas esos cada puede pueden debe deben ha han hay donde cuando cual cuales quien quienes").split(/\s+/));
+
+function store(){try{return JSON.parse(localStorage.getItem("lexData")||'{"results":[],"profile":{},"posts":[],"users":[]}')}catch(e){return{results:[],profile:{},posts:[],users:[]}}}
+function save(d){localStorage.setItem("lexData",JSON.stringify(d))}
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+
+function titleCase(s){s=String(s||"");return s.charAt(0).toUpperCase()+s.slice(1)}
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+
+function avatarHTML(name,img,cls="avatar-img"){
+  return img?`<img class="${cls}" src="${img}" alt="Foto de perfil">`:`<div class="${cls==="profile-avatar"?"profile-avatar-fallback":"avatar-fallback"}">${esc((name||"E").charAt(0).toUpperCase())}</div>`;
+}
+
+/* NAV */
+function go(id,btn){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
+  (btn||document.querySelector(`.nav button[data-page="${id}"]`))?.classList.add("active");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function goById(id){go(id,document.querySelector(`.nav button[data-page="${id}"]`))}
+
+/* LIBRARY */
+
+/* SUBJECTS */
+function renderSubjects(){
+  const icons=["§","⚖","¶","⌘","◇","†","◈","∞","Φ"];
+  (document.getElementById("subjectGrid")||{}).innerHTML=Object.keys(subjectData).map((s,i)=>`
+    <div class="subject-card" onclick="selectSubject('${s.replace(/'/g,"\\'")}')">
+      <div class="subject-icon">${icons[i%icons.length]}</div>
+      <strong>${esc(s)}</strong><small>${esc(subjectData[s][0])}</small>
+    </div>`).join("");
+  const sel=document.getElementById("subject");
+  sel.innerHTML=Object.keys(subjectData).map(s=>`<option>${esc(s)}</option>`).join("");
+  updateSources();
+}
+function selectSubject(s){goById("practicar");document.getElementById("subject").value=s;updateSources()}
+function updateSources(){
+  const s=document.getElementById("subject").value;
+  document.getElementById("sourceType").innerHTML=(subjectData[s]||[]).map(x=>`<option>${esc(x)}</option>`).join("");
+}
+
+/* LIBRARY */
+
+function lawVisual(area,name){
+  const stroke="#475952", accent="#a98550", wine="#754b55", paper="#fffdf8";
+  const base=(inside)=>`<div class="law-visual"><svg viewBox="0 0 56 56" aria-hidden="true">${inside}</svg></div>`;
+  const book=`<rect x="12" y="10" width="31" height="36" rx="4" fill="${paper}" stroke="${stroke}" stroke-width="1.8"/><path d="M17 17h20M17 23h20M17 29h14" stroke="${accent}" stroke-width="2" stroke-linecap="round"/><path d="M17 36h18" stroke="${stroke}" stroke-width="1.7" stroke-linecap="round"/>`;
+  if(name.includes("Constitución")) return base(`<rect x="12" y="9" width="31" height="38" rx="4" fill="${paper}" stroke="${stroke}" stroke-width="1.8"/><path d="M16 15h23" stroke="#c8a84e" stroke-width="3"/><path d="M16 20h23" stroke="#5479a4" stroke-width="3"/><path d="M16 25h23" stroke="#a95555" stroke-width="3"/><path d="M18 33h18M18 39h14" stroke="${stroke}" stroke-width="1.8" stroke-linecap="round"/>`);
+  if(area==="Civil") return base(`${book}<path d="M38 13v27" stroke="${wine}" stroke-width="1.7"/><path d="M33 18h10" stroke="${wine}" stroke-width="1.7"/>`);
+  if(area==="Penal") return base(`<path d="M18 18l11 11M25 11l14 14" stroke="${wine}" stroke-width="5" stroke-linecap="round"/><path d="M28 28l-8 8M16 40h26" stroke="${stroke}" stroke-width="2" stroke-linecap="round"/><rect x="13" y="40" width="32" height="5" rx="2.5" fill="${accent}" opacity=".55"/>`);
+  if(area==="Procesal"||area==="Judicial") return base(`<path d="M11 20h34L28 10 11 20Z" fill="#eee7d9" stroke="${stroke}" stroke-width="1.7"/><path d="M15 23v18M23 23v18M33 23v18M41 23v18M11 43h34" stroke="${stroke}" stroke-width="2" stroke-linecap="round"/>`);
+  if(area==="Laboral") return base(`<rect x="10" y="19" width="36" height="25" rx="4" fill="#f4eee3" stroke="${stroke}" stroke-width="1.8"/><path d="M20 19v-5h16v5M10 29h36M25 27h6v5h-6z" stroke="${accent}" stroke-width="2" fill="none"/>`);
+  if(area==="Ambiental") return base(`<path d="M41 12C25 13 14 23 15 40c15 2 27-9 26-28Z" fill="#e8efe9" stroke="${stroke}" stroke-width="1.8"/><path d="M18 38c8-8 13-13 21-21" stroke="${accent}" stroke-width="2" stroke-linecap="round"/>`);
+  if(area==="Tecnología") return base(`<path d="M28 9l16 6v11c0 10-6 17-16 21-10-4-16-11-16-21V15l16-6Z" fill="#edf1ee" stroke="${stroke}" stroke-width="1.8"/><circle cx="28" cy="27" r="4" fill="none" stroke="${accent}" stroke-width="2"/><path d="M28 18v5M28 31v6M19 27h5M32 27h5" stroke="${accent}" stroke-width="1.8"/>`);
+  if(area==="Educación") return base(`<path d="M8 23l20-10 20 10-20 10L8 23Z" fill="#efe8db" stroke="${stroke}" stroke-width="1.8"/><path d="M16 29v9c7 5 17 5 24 0v-9M47 24v13" stroke="${accent}" stroke-width="1.8" fill="none"/>`);
+  if(area==="Electoral") return base(`<rect x="12" y="23" width="32" height="22" rx="3" fill="#f4efe5" stroke="${stroke}" stroke-width="1.8"/><path d="M17 23l5-11h21l-5 11" stroke="${accent}" stroke-width="1.8" fill="#fffdf8"/><path d="M24 17l4 4 7-8" stroke="${wine}" stroke-width="2.2" fill="none" stroke-linecap="round"/>`);
+  if(area==="Tributario"||area==="Financiero") return base(`<rect x="13" y="10" width="30" height="36" rx="4" fill="#f5efe4" stroke="${stroke}" stroke-width="1.8"/><path d="M18 18h20M18 25h8M30 25h8M18 32h8M30 32h8M18 39h20" stroke="${accent}" stroke-width="1.8" stroke-linecap="round"/>`);
+  if(area==="Derechos") return base(`<path d="M28 45S11 35 11 22c0-7 9-11 17-3 8-8 17-4 17 3 0 13-17 23-17 23Z" fill="#f4e9ec" stroke="${wine}" stroke-width="1.8"/><path d="M21 27h14" stroke="${accent}" stroke-width="2" stroke-linecap="round"/>`);
+  return base(book);
+}
+
+function renderLibraryFilters(){
+  const areas=["Todas las áreas",...new Set(laws.map(x=>x[1]))];
+  const types=["Todos los tipos",...new Set(laws.map(x=>x[2]))];
+  document.getElementById("lawArea").innerHTML=areas.map(x=>`<option>${esc(x)}</option>`).join("");
+  document.getElementById("lawType").innerHTML=types.map(x=>`<option>${esc(x)}</option>`).join("");
+}
+
+function isLawSaved(name){
+  const d=store();return (d.savedLaws||[]).includes(name);
+}
+function toggleLawSaved(name){
+  const d=store();d.savedLaws=d.savedLaws||[];
+  const i=d.savedLaws.indexOf(name);
+  if(i>=0)d.savedLaws.splice(i,1);else d.savedLaws.push(name);
+  save(d);renderLibrary();refreshStats();
+}
+
+function renderLibrary(){
+  const q=(document.getElementById("lawSearch")?.value||"").toLowerCase();
+  const area=document.getElementById("lawArea")?.value||"Todas las áreas";
+  const type=document.getElementById("lawType")?.value||"Todos los tipos";
+  const savedOnly=(document.getElementById("lawSaved")?.value||"all")==="saved";
+  const savedSet=new Set(store().savedLaws||[]);
+  const filtered=laws.map((law,i)=>({law,i})).filter(({law:x})=>(!q||x.join(" ").toLowerCase().includes(q))&&(area==="Todas las áreas"||x[1]===area)&&(type==="Todos los tipos"||x[2]===type)&&(!savedOnly||savedSet.has(x[0])));
+  document.getElementById("visibleLawCount").textContent=filtered.length;
+  const mobileCount=document.getElementById("mobileLawCount");if(mobileCount)mobileCount.textContent=filtered.length;
+  document.getElementById("lawGrid").innerHTML=filtered.length?filtered.map(({law:x,i})=>{
+    const m=lawSources[i];
+    const label=/^https?:\/\//.test(m.url)?'Abrir fuente oficial ↗':'Fuente no disponible';
+    const isSaved=savedSet.has(x[0]);
+    return `<article class="law-card">
+      <div class="law-top">${lawVisual(x[1],x[0])}<div class="law-top-actions"><span class="badge">${esc(x[1])}</span><button class="save-law ${isSaved?'saved':''}" aria-label="${isSaved?'Quitar de favoritos':'Guardar en favoritos'}" title="Favoritos locales" onclick="toggleSavedByIndex(${i})">${isSaved?'★':'☆'}</button></div></div>
+      <h3>${esc(x[0])}</h3><p>${esc(x[3])}</p>
+      <div class="law-meta"><span>Revisión de enlace: ${esc(m.review)}</span>${m.edition?`<span class="edition">Edición / referencia: ${esc(m.edition)}</span>`:''}</div>
+      <p class="law-note">${esc(m.note)}</p>
+      <div class="law-actions">
+        <a class="btn btn-soft" href="${esc(m.url)}" target="_blank" rel="noopener noreferrer">${label}</a>
+        ${m.pdf?`<a class="btn btn-outline" href="${esc(m.pdf)}" target="_blank" rel="noopener noreferrer">Ver PDF ↗</a>`:''}
+      </div>
+    </article>`;
+  }).join(''):'<div class="empty">No encontramos documentos con esos filtros.</div>';
+}
+function toggleSavedByIndex(i){if(laws[i])toggleLawSaved(laws[i][0]);}
+
+function clean(t){return t.replace(/\s+/g," ").trim()}
+function sentences(t){return t.replace(/\n+/g," ").split(/(?<=[.!?;:])\s+/).map(clean).filter(x=>x.length>45&&x.length<420)}
+function keywords(t){
+  const words=(t.toLowerCase().match(/[a-záéíóúñü]{4,}/gi)||[]).filter(w=>!stopWords.has(w));
+  const m={};words.forEach(w=>m[w]=(m[w]||0)+1);
+  return Object.entries(m).sort((a,b)=>b[1]-a[1]).map(x=>x[0]).slice(0,80)
+}
+function mkMCQ(sent,keys){
+  let target=keys.find(k=>new RegExp("\\b"+k+"\\b","i").test(sent))||((sent.match(/[A-Za-zÁÉÍÓÚáéíóúÑñ]{5,}/)||["concepto"])[0].toLowerCase());
+  let stem=sent.replace(new RegExp("\\b"+target+"\\b","i"),"__________");
+  let ds=shuffle(keys.filter(k=>k!==target&&!new RegExp("\\b"+k+"\\b","i").test(sent))).slice(0,3);
+  while(ds.length<3)ds.push(["principio","competencia","norma","institución"][ds.length]);
+  return{type:"Opción múltiple",q:`Completa correctamente: “${stem}”`,options:shuffle([target,...ds]),answer:target}
+}
+function mkTF(sent,keys){
+  if(Math.random()>.5)return{type:"Verdadero / falso",q:sent,options:["Verdadero","Falso"],answer:"Verdadero"};
+  const p=keys.find(k=>new RegExp("\\b"+k+"\\b","i").test(sent)),r=keys.find(k=>k!==p&&!new RegExp("\\b"+k+"\\b","i").test(sent))||"institución";
+  return{type:"Verdadero / falso",q:p?sent.replace(new RegExp("\\b"+p+"\\b","i"),r):"No es correcto afirmar que "+sent,options:["Verdadero","Falso"],answer:"Falso"}
+}
+function mkOpen(sent){return{type:"Pregunta abierta",q:"Explica con tus propias palabras la idea jurídica central del siguiente tema.",answer:sent}}
+
+function buildQuizData(){
+  const text=document.getElementById("studyText").value.trim();
+  if(text.length<120){alert("Añade más contenido de estudio para generar una evaluación útil.");return null}
+  const ss=sentences(text);if(ss.length<3){alert("El texto necesita más oraciones completas.");return null}
+  const keys=keywords(text),count=+document.getElementById("count").value,type=document.getElementById("type").value;
+  let pool=document.getElementById("order").value==="mix"?shuffle(ss):ss,questions=[];
+  for(let i=0;i<count;i++){
+    const sent=pool[i%pool.length],t=type==="mixed"?["mcq","tf","open"][i%3]:type;
+    questions.push(t==="mcq"?mkMCQ(sent,keys):t==="tf"?mkTF(sent,keys):mkOpen(sent))
+  }
+  if(document.getElementById("order").value==="mix")questions=shuffle(questions);
+  return{
+    title:document.getElementById("subject").value,
+    source:document.getElementById("sourceType").value,
+    range:document.getElementById("range").value||"Contenido seleccionado",
+    difficulty:document.getElementById("difficulty").value,
+    instruction:document.getElementById("instruction").value,
+    questions
+  };
+}
+function encodeExamPayload(obj){
+  const raw=encodeURIComponent(JSON.stringify(obj));
+  return btoa(raw);
+}
+function decodeExamPayload(raw){
+  return JSON.parse(decodeURIComponent(atob(raw)));
+}
+function openExam(){
+  const data=buildQuizData();if(!data)return;
+  savePracticeDraft();
+  const hash="#exam="+encodeURIComponent(encodeExamPayload(data));
+  const url=location.href.split("#")[0]+hash;
+  const win=window.open(url,"_blank");
+  if(!win){
+    location.hash=hash;
+    renderStandaloneExam(data);
+  }
+}
+function renderStandaloneExam(data){
+  document.getElementById("authScreen")?.classList.add("hidden");
+  document.getElementById("app")?.classList.add("hidden");
+  document.body.insertAdjacentHTML("beforeend",`
+    <div id="standaloneExam" class="exam-v6-shell">
+      <div class="exam-v6-top">
+        <div class="exam-brand">Lex Studium <span>Evaluación</span></div>
+        <button class="btn btn-soft" onclick="closeStandaloneExam()">Cerrar</button>
+      </div>
+      <header class="exam-v6-head">
+        <div><span>${esc(data.difficulty)} · ${esc(data.source)}</span><h1>${esc(data.title)}</h1><p>${esc(data.range)}${data.instruction?` · ${esc(data.instruction)}`:""}</p></div>
+        <div class="exam-v6-score" id="standaloneScore">0 / 0</div>
+      </header>
+      <div class="exam-v6-progress"><span id="standaloneProgress"></span></div>
+      <main id="standaloneQuestions"></main>
+      <div class="exam-v6-actions">
+        <button class="btn btn-primary" onclick="checkStandaloneExam()">Corregir evaluación</button>
+        <button class="btn btn-soft" onclick="toggleStandaloneAnswers()">Mostrar respuestas</button>
+        <button class="btn btn-soft" onclick="window.print()">Imprimir / PDF</button>
+      </div>
+    </div>`);
+  window.__lexExam=data;window.__lexAnswers=false;window.__lexRecorded=false;
+  document.getElementById("standaloneQuestions").innerHTML=data.questions.map((q,i)=>`
+    <article class="exam-question" id="sq${i}">
+      <div class="exam-qmeta"><span>Pregunta ${i+1}</span><span>${esc(q.type)}</span></div>
+      <div class="exam-qtitle">${esc(q.q)}</div>
+      ${q.options?q.options.map(o=>`<label class="exam-option"><input type="radio" name="sqn${i}" value="${esc(o)}"><span>${esc(titleCase(o))}</span></label>`).join(""):`<textarea class="control exam-open" placeholder="Escribe tu respuesta..."></textarea>`}
+      <div class="exam-answer" id="sa${i}"><b>Guía de respuesta</b><br>${esc(q.answer)}</div>
+    </article>`).join("");
+}
+function checkStandaloneExam(){
+  const data=window.__lexExam;if(!data)return;
+  let total=0,correct=0,answered=0;
+  data.questions.forEach((q,i)=>{
+    const card=document.getElementById("sq"+i);card.classList.remove("right","wrong");
+    if(!q.options)return;total++;
+    const chosen=document.querySelector(`input[name="sqn${i}"]:checked`);
+    if(chosen){answered++;if(chosen.value.toLowerCase()===q.answer.toLowerCase()){correct++;card.classList.add("right")}else card.classList.add("wrong")}
+  });
+  document.getElementById("standaloneScore").textContent=`${correct} / ${total}`;
+  document.getElementById("standaloneProgress").style.width=(total?Math.round(answered/total*100):0)+"%";
+  if(total&&answered===total&&!window.__lexRecorded){
+    window.__lexRecorded=true;recordExternalResult(data.title,Math.round(correct/total*100),total,correct);
+  }
+}
+function toggleStandaloneAnswers(){
+  window.__lexAnswers=!window.__lexAnswers;
+  document.querySelectorAll(".exam-answer").forEach(x=>x.classList.toggle("show",window.__lexAnswers));
+}
+function closeStandaloneExam(){
+  if(location.hash.startsWith("#exam=")){location.href=location.href.split("#")[0];}
+  else{document.getElementById("standaloneExam")?.remove();document.getElementById("app")?.classList.remove("hidden")}
+}
+function recordExternalResult(subject,pct,total,correct){
+  const d=store();d.results=d.results||[];d.results.unshift({date:new Date().toLocaleDateString(),subject,pct,total,correct});d.results=d.results.slice(0,40);save(d);refreshStats();
+}
+
+function savePracticeDraft(){
+  const ids=["subject","sourceType","range","difficulty","count","order","type","instruction","studyText"];
+  const draft={};ids.forEach(id=>{const el=document.getElementById(id);if(el)draft[id]=el.value});
+  localStorage.setItem("lexPracticeDraft",JSON.stringify(draft));
+  const s=document.getElementById("draftStatus");if(s){s.textContent="Borrador guardado";clearTimeout(window.__draftTimer);window.__draftTimer=setTimeout(()=>s.textContent="Guardado automáticamente",1200)}
+}
+function restorePracticeDraft(){
+  try{
+    const d=JSON.parse(localStorage.getItem("lexPracticeDraft")||"null");if(!d)return;
+    if(d.subject&&document.getElementById("subject")){document.getElementById("subject").value=d.subject;updateSources()}
+    ["sourceType","range","difficulty","count","order","type","instruction","studyText"].forEach(id=>{const el=document.getElementById(id);if(el&&d[id]!=null)el.value=d[id]});
+  }catch(e){}
+}
+
+function loadDemo(){
+  document.getElementById("subject").value="Derecho Constitucional";updateSources();document.getElementById("range").value="Capítulos 1 al 3";
+  document.getElementById("studyText").value="La Constitución es la norma suprema del ordenamiento jurídico y organiza los elementos esenciales del Estado. La supremacía constitucional implica que las normas inferiores deben guardar conformidad con la Constitución. El principio de legalidad exige que las autoridades públicas actúen dentro de las competencias que les han sido atribuidas. Los derechos constitucionales limitan el ejercicio del poder público y orientan la actuación estatal. La separación de funciones busca impedir la concentración del poder y promover controles recíprocos. Las garantías constitucionales sirven para proteger derechos cuando han sido vulnerados o amenazados. El control de constitucionalidad permite examinar la compatibilidad de una norma con la Constitución. La interpretación constitucional debe considerar el texto, los principios y la finalidad de las disposiciones."
+  savePracticeDraft();
+}
+
+
+/* PROFILE */
+function resizeImage(file,maxW,maxH,q=.84){return new Promise((resolve,reject)=>{const img=new Image(),fr=new FileReader();fr.onload=e=>{img.onload=()=>{let w=img.width,h=img.height,r=Math.min(maxW/w,maxH/h,1);w=Math.round(w*r);h=Math.round(h*r);const c=document.createElement("canvas");c.width=w;c.height=h;c.getContext("2d").drawImage(img,0,0,w,h);resolve(c.toDataURL("image/jpeg",q))};img.onerror=reject;img.src=e.target.result};fr.onerror=reject;fr.readAsDataURL(file)})}
+async function handleAvatar(e){const f=e.target.files?.[0];if(!f)return;const d=store();d.profile=d.profile||{};d.profile.avatar=await resizeImage(f,500,500,.88);save(d);refreshAll()}
+async function handleCover(e){const f=e.target.files?.[0];if(!f)return;const d=store();d.profile=d.profile||{};d.profile.cover=await resizeImage(f,1600,700,.84);save(d);refreshAll()}
+function saveProfile(){
+  const d=store();d.profile={...(d.profile||{}),name:document.getElementById("profileName").value.trim()||"Estudiante",institution:document.getElementById("institution").value.trim(),semester:document.getElementById("semester").value.trim(),interest:document.getElementById("interest").value.trim(),bio:document.getElementById("bio").value.trim()};save(d);refreshAll();alert("Perfil guardado.");
+}
+function renderProfile(){
+  const p=store().profile||{},name=p.name||"Estudiante",meta=[p.institution,p.semester,p.interest].filter(Boolean).join(" · ")||"Perfil jurídico local";
+  document.getElementById("sideName").textContent=name;
+  document.getElementById("sideAvatar").innerHTML=avatarHTML(name,p.avatar);
+  document.getElementById("profileDisplayName").textContent=name;
+  document.getElementById("profileDisplayMeta").textContent=meta;
+  document.getElementById("profileBioText").textContent=p.bio||"Tus preferencias se guardan solo en este navegador.";
+  document.getElementById("profileAvatar").innerHTML=p.avatar?`<img class="profile-avatar" src="${p.avatar}" alt="Foto de perfil">`:avatarHTML(name,"","profile-avatar");
+  document.getElementById("profileCover").style.backgroundImage=p.cover?`linear-gradient(180deg,transparent 55%,rgba(19,29,45,.28)),url("${p.cover}")`:"";
+  document.getElementById("profileName").value=p.name||"";document.getElementById("institution").value=p.institution||"";document.getElementById("semester").value=p.semester||"";document.getElementById("interest").value=p.interest||"";document.getElementById("bio").value=p.bio||"";
+}
+function refreshStats(){
+  const d=store(),r=d.results||[],saved=d.savedLaws||[];
+  const avg=r.length?Math.round(r.reduce((a,b)=>a+(Number(b.pct)||0),0)/r.length):0;
+  const el=id=>document.getElementById(id);
+  el("practiceAvg").textContent=avg+"%";
+  el("profileTests").textContent=r.length;
+  el("profileAvg").textContent=avg+"%";
+  el("profileSavedCount").textContent=saved.length;
+  const results=r.slice(0,5).map(x=>`<div class="activity"><div><strong>${esc(x.subject)}</strong><span>Evaluación · ${esc(x.date)}</span></div><div class="score">${Number(x.pct)||0}%</div></div>`);
+  const favorites=saved.slice(0,5).map(name=>`<div class="activity"><div><strong>${esc(name)}</strong><span>Norma favorita</span></div><button class="btn btn-soft" onclick="openSavedLawByIndex(${laws.findIndex(x=>x[0]===name)})">Ver</button></div>`);
+  el("profileActivity").innerHTML=results.concat(favorites).join("")||'<div class="empty">Todavía no tienes evaluaciones ni normas guardadas.</div>';
+}
+function openSavedLawByIndex(i){if(laws[i])openSavedLaw(laws[i][0]);}
+function openSavedLaw(name){
+  goById("biblioteca");
+  document.getElementById("lawSaved").value="all";
+  document.getElementById("lawArea").value="Todas las áreas";
+  document.getElementById("lawType").value="Todos los tipos";
+  document.getElementById("lawSearch").value=name;
+  renderLibrary();
+}
+function refreshAll(){renderProfile();refreshStats();renderLibrary()}
+
+function applyTheme(theme){
+  document.documentElement.dataset.theme=theme;
+  const isDark=theme==="dark";
+  document.getElementById("themeIcon").textContent=isDark?"☀":"☾";
+  document.getElementById("themeText").textContent=isDark?"Modo claro":"Modo oscuro";
+}
+function toggleTheme(){
+  const theme=document.documentElement.dataset.theme==="dark"?"light":"dark";
+  try{localStorage.setItem("lexAppearance",theme)}catch(e){}
+  applyTheme(theme);
+}
+try{applyTheme(localStorage.getItem("lexAppearance")==="dark"?"dark":"light")}catch(e){applyTheme("light")}
+renderSubjects();renderLibraryFilters();refreshAll();restorePracticeDraft();
+if(location.hash.startsWith("#exam=")){
+  try{renderStandaloneExam(decodeExamPayload(decodeURIComponent(location.hash.slice(6))))}
+  catch(e){location.hash="";alert("La evaluación no se pudo abrir. Genera una nueva desde Simulador.")}
+}
+</script>
+</body>
+</html>
