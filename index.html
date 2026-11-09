@@ -643,6 +643,8 @@ body{
 @media(max-width:710px){.lex-docs-shell{padding:16px;border-radius:21px}.lex-docs-head{padding:20px;gap:10px}.lex-docs-illustration{display:none}.lex-docs-grid{grid-template-columns:1fr}.lex-docs-tools{flex-direction:column;align-items:stretch}.lex-docs-search-label{max-width:none}.lex-docs-admin{flex-direction:column;align-items:stretch}.lex-docs-admin .btn{text-align:center}.lex-library-tabs{display:grid;grid-template-columns:1fr 1fr;width:100%;gap:4px}.lex-library-tabs button{font-size:11px;padding:11px 6px;white-space:normal}}
 
 </style>
+<link rel="stylesheet" href="experience.css">
+<link rel="stylesheet" href="documents.css">
 </head>
 <body>
 
@@ -694,10 +696,10 @@ body{
         <div class="library-count mobile-count"><span>Documentos disponibles</span><b id="mobileLawCount">0</b></div>
       </div>
       <div class="lex-library-tabs" role="tablist" aria-label="Secciones de la biblioteca">
-        <button id="lexTabLaws" class="active" role="tab" aria-selected="true" onclick="lexSwitchShelf('leyes')"><span aria-hidden="true">⚖️</span> Normativa oficial</button>
-        <button id="lexTabFiles" role="tab" aria-selected="false" onclick="lexSwitchShelf('archivos')"><span aria-hidden="true">📚</span> Archivos compartidos</button>
+        <button id="lexTabLaws" class="active" role="tab" aria-selected="true" aria-controls="lexShelfLaws" onclick="lexSwitchShelf('leyes')"><span aria-hidden="true">⚖️</span> Normativa oficial</button>
+        <button id="lexTabFiles" role="tab" aria-selected="false" aria-controls="lexShelfFiles" tabindex="-1" onclick="lexSwitchShelf('archivos')"><span aria-hidden="true">📚</span> Archivos compartidos</button>
       </div>
-      <div id="lexShelfLaws">
+      <div id="lexShelfLaws" role="tabpanel" aria-labelledby="lexTabLaws">
       <div class="card catalog-card">
         <div class="catalog-header">
           <div><h3>Explorar legislación</h3><p>Filtra por área, tipo de documento o tus favoritos.</p></div>
@@ -713,7 +715,7 @@ body{
         <div id="lawGrid" class="law-grid stagger"></div>
       </div>
       </div>
-      <section id="lexShelfFiles" class="lex-docs-shell hidden" aria-label="Archivos compartidos">
+      <section id="lexShelfFiles" class="lex-docs-shell hidden" role="tabpanel" aria-labelledby="lexTabFiles">
         <div class="lex-docs-head">
           <div>
             <div class="lex-docs-kicker">RECURSOS COMPARTIDOS</div>
@@ -726,14 +728,31 @@ body{
           <label class="lex-docs-search-label" for="lexDocsSearch">Buscar archivo
             <input class="control" id="lexDocsSearch" placeholder="Ej.: Derecho Civil, guía, examen..." oninput="lexRenderDocuments()">
           </label>
-          <button class="btn btn-outline" type="button" onclick="lexLoadDocuments(true)">↻ Actualizar</button>
+          <button id="lexDocsRefresh" class="btn btn-outline" type="button" onclick="lexLoadDocuments(true)">↻ Actualizar</button>
         </div>
         <div id="lexDocsStatus" class="lex-docs-status" role="status">Abre esta sección para consultar los materiales.</div>
         <div id="lexDocsGrid" class="lex-docs-grid" aria-live="polite"></div>
-        <div class="lex-docs-admin">
-          <div><strong>¿Administras Lex Studium?</strong><p>Sube documentos desde tu cuenta de GitHub. Aparecerán aquí para todo el público.</p></div>
-          <a class="btn btn-soft" href="https://github.com/cuentautmach-svg/lex-studium/upload/main/materiales" target="_blank" rel="noopener noreferrer">Subir archivos en GitHub ↗</a>
-        </div>
+        <details id="lexAdminPanel" class="lex-admin-panel">
+          <summary>Administrar documentos <span>Acceso exclusivo de administración</span></summary>
+          <div class="lex-admin-content">
+            <p id="lexAdminStatus" class="lex-admin-message" role="status">Abre este panel para iniciar sesión.</p>
+            <form id="lexAdminLogin" class="lex-admin-login hidden">
+              <div><label class="lbl" for="lexAdminPassword">Contraseña de administración</label><input id="lexAdminPassword" class="control" type="password" autocomplete="current-password" required maxlength="256"></div>
+              <button class="btn btn-primary" type="submit">Iniciar sesión</button>
+            </form>
+            <form id="lexUploadForm" class="lex-upload-form hidden">
+              <div class="lex-admin-session"><strong>Sesión de administración activa</strong><button id="lexAdminLogout" class="btn btn-soft" type="button">Cerrar sesión</button></div>
+              <div><label class="lbl" for="lexDocumentTitle">Título del documento</label><input id="lexDocumentTitle" name="title" class="control" maxlength="160" required placeholder="Ej.: Guía de Derecho Civil"></div>
+              <div><label class="lbl" for="lexDocumentDescription">Descripción <span>(opcional)</span></label><textarea id="lexDocumentDescription" name="description" class="control" rows="2" maxlength="1000" placeholder="Tema o contenido del material"></textarea></div>
+              <div class="lex-upload-picker"><label class="lbl" for="lexDocumentFile">Seleccionar documento</label><input id="lexDocumentFile" name="file" class="control" type="file" accept=".pdf,.doc,.docx,.ppt,.pptx" required aria-describedby="lexUploadHelp lexFileSelected"><p id="lexUploadHelp">PDF, Word o PowerPoint · máximo 20 MB por archivo.</p><p id="lexFileSelected" role="status"></p></div>
+              <label class="lex-upload-consent"><input id="lexPublishConsent" type="checkbox" required><span>Tengo permiso para compartir este documento y entiendo que será público.</span></label>
+              <button id="lexUploadSubmit" class="btn btn-primary" type="submit">Subir y publicar documento ↑</button>
+              <p id="lexUploadStatus" class="lex-admin-message" role="status"></p>
+            </form>
+            <a id="lexGithubUpload" class="btn btn-soft hidden" href="https://github.com/cuentautmach-svg/lex-studium/upload/main/materiales" target="_blank" rel="noopener noreferrer">Subir archivos en GitHub ↗</a>
+          </div>
+        </details>
+        <p class="lex-docs-footnote">Los PDF pueden abrirse en el navegador. Los documentos Word y PowerPoint se descargan para consultarlos en una aplicación compatible.</p>
         <p class="lex-docs-footnote">Solo comparte archivos que tengas permiso de publicar. No subas información privada ni datos personales de estudiantes. Los documentos son públicos.</p>
       </section>
     </section>
@@ -1234,7 +1253,7 @@ function go(id,btn){
   document.getElementById(id).classList.add("active");
   document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
   (btn||document.querySelector(`.nav button[data-page="${id}"]`))?.classList.add("active");
-  window.scrollTo({top:0,behavior:"smooth"});
+  window.scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
 }
 function goById(id){go(id,document.querySelector(`.nav button[data-page="${id}"]`))}
 
@@ -1519,80 +1538,8 @@ if(location.hash.startsWith("#exam=")){
   catch(e){location.hash="";alert("La evaluación no se pudo abrir. Genera una nueva desde Simulador.")}
 }
 
-/* Catálogo público: los archivos se publican desde la carpeta materiales/ del repositorio. */
-const LEX_MATERIALS_OWNER='cuentautmach-svg';
-const LEX_MATERIALS_REPO='lex-studium';
-let lexMaterials=[];
-let lexMaterialsLoaded=false;
-const lexMaterialTypes=/\.(pdf|docx?|pptx?|xlsx?|odt|ods|txt|md|png|jpe?g|webp|zip|epub)$/i;
-function lexSwitchShelf(which){
-  const showFiles=which==='archivos';
-  document.getElementById('lexShelfLaws').classList.toggle('hidden',showFiles);
-  document.getElementById('lexShelfFiles').classList.toggle('hidden',!showFiles);
-  const a=document.getElementById('lexTabLaws'),b=document.getElementById('lexTabFiles');
-  a.classList.toggle('active',!showFiles);b.classList.toggle('active',showFiles);
-  a.setAttribute('aria-selected',String(!showFiles));b.setAttribute('aria-selected',String(showFiles));
-  if(showFiles)lexLoadDocuments(false);
-}
-function lexNiceFileName(path){
-  return path.split('/').pop().replace(/\.[^.]+$/,'').replace(/[_-]+/g,' ').trim();
-}
-function lexFileURL(path){
-  return 'https://'+LEX_MATERIALS_OWNER+'.github.io/'+LEX_MATERIALS_REPO+'/'+path.split('/').map(encodeURIComponent).join('/');
-}
-function lexFileSize(n){
-  if(n<1024)return n+' B';
-  if(n<1024*1024)return (n/1024).toFixed(1)+' KB';
-  return (n/(1024*1024)).toFixed(1)+' MB';
-}
-function lexRenderDocuments(){
-  const box=document.getElementById('lexDocsGrid'),status=document.getElementById('lexDocsStatus');
-  if(!box||!status)return;
-  if(!lexMaterialsLoaded)return;
-  const q=document.getElementById('lexDocsSearch').value.toLocaleLowerCase('es');
-  const filtered=lexMaterials.filter(x=>x.path.toLocaleLowerCase('es').includes(q)||lexNiceFileName(x.path).toLocaleLowerCase('es').includes(q));
-  status.textContent=filtered.length+' archivo'+(filtered.length===1?' disponible':'s disponibles')+' para ver y descargar.';
-  if(!filtered.length){
-    box.innerHTML='<div class="lex-docs-empty"><strong>'+(q?'No encontramos archivos con esa búsqueda.':'Todavía no hay archivos compartidos.')+'</strong>'+(q?'Prueba otra palabra.':'La administración puede cargar el primer documento desde el botón de GitHub que aparece abajo.')+'</div>';
-    return;
-  }
-  box.innerHTML=filtered.map(x=>{
-    const extension=x.path.split('.').pop().toUpperCase();
-    const viewIcon=extension==='PDF'?'📕':/^(DOC|DOCX|ODT|TXT|MD)$/.test(extension)?'📝':/^(PPT|PPTX|ODP)$/.test(extension)?'📊':/^(PNG|JPG|JPEG|WEBP)$/.test(extension)?'🖼️':'📂';
-    const url=lexFileURL(x.path);
-    const folder=x.path.split('/').slice(1,-1).join(' / ')||'Material general';
-    const filename=x.path.split('/').pop();
-    return '<article class="lex-doc-card">'+
-      '<div class="lex-doc-badge"><span class="lex-doc-icon">'+viewIcon+'</span><span class="lex-doc-format">'+esc(extension)+'</span></div>'+
-      '<h4 class="lex-doc-name">'+esc(lexNiceFileName(x.path))+'</h4>'+
-      '<div class="lex-doc-context">'+esc(folder)+' · '+lexFileSize(x.size)+'</div>'+
-      '<div class="lex-doc-actions"><a class="btn btn-outline" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">Ver archivo ↗</a><a class="btn btn-primary" href="'+esc(url)+'" download="'+esc(filename)+'">Descargar ↓</a></div>'+
-      '</article>';
-  }).join('');
-}
-async function lexLoadDocuments(force){
-  if(lexMaterialsLoaded&&!force){lexRenderDocuments();return}
-  const status=document.getElementById('lexDocsStatus'),box=document.getElementById('lexDocsGrid');
-  if(!status||!box)return;
-  status.textContent='Consultando los archivos compartidos en GitHub…';box.innerHTML='';
-  try{
-    const api='https://api.github.com/repos/'+LEX_MATERIALS_OWNER+'/'+LEX_MATERIALS_REPO+'/git/trees/main?recursive=1';
-    const response=await fetch(api,{headers:{Accept:'application/vnd.github+json'}});
-    if(!response.ok)throw new Error('GitHub respondió '+response.status);
-    const data=await response.json();
-    if(!Array.isArray(data.tree))throw new Error('Listado no disponible');
-    lexMaterials=data.tree.filter(x=>x.type==='blob'&&x.path.startsWith('materiales/')&&lexMaterialTypes.test(x.path)&&!/^(_|README\.)/i.test(x.path.split('/').pop()));
-    lexMaterials.sort((a,b)=>a.path.localeCompare(b.path,'es',{sensitivity:'base'}));
-    lexMaterialsLoaded=true;
-    lexRenderDocuments();
-    if(data.truncated)status.textContent+=' Algunos elementos pueden faltar porque el repositorio es muy grande.';
-  }catch(err){
-    lexMaterialsLoaded=false;
-    status.textContent='Ahora no se pudo consultar el catálogo ('+err.message+'). Puedes reintentar.';
-    box.innerHTML='<div class="lex-docs-empty">También puedes consultar los documentos directamente en <a href="https://github.com/'+LEX_MATERIALS_OWNER+'/'+LEX_MATERIALS_REPO+'/tree/main/materiales" target="_blank" rel="noopener noreferrer">GitHub ↗</a>.</div>';
-  }
-}
 
 </script>
+<script src="documents.js"></script>
 </body>
 </html>

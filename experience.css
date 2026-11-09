@@ -1,0 +1,205 @@
+/* Incremental polish. Preserve the blue, lavender and coral V12 identity. */
+:root {
+  --ease-out: cubic-bezier(.23, 1, .32, 1);
+  --focus-ring: #465ddd;
+}
+
+/* The original vertical sidebar leaves these rules behind in the top navigation. */
+.sidebar { flex-direction: row; bottom: auto; }
+html { scroll-padding-top: 110px; }
+.sidebar::after { display: none; }
+.brand, .workspace-tools { flex-shrink: 0; }
+.main, .page, .practice-v6, .practice-paper, .step-body,
+.profile-wrap, .profile-grid > *, .form-grid > *, .practice-fields > * { min-width: 0; }
+.workspace-crumb { overflow-wrap: anywhere; }
+.hero-seal { width: 112px; height: 112px; }
+.hero-seal svg { width: 100%; height: 100%; }
+.hero-highlights span { backdrop-filter: none; }
+.library-hero { box-shadow: 0 14px 36px rgba(71, 92, 219, .16); }
+.law-card { box-shadow: 0 4px 16px rgba(54, 77, 157, .055); }
+.law-card:hover { transform: none; box-shadow: 0 4px 16px rgba(54, 77, 157, .055); }
+.btn:hover, .nav button:hover { transform: none; }
+.btn-primary:hover, .btn-wine:hover { filter: none; }
+
+/* Stable reading surfaces and deliberate feedback, without animating layout. */
+.btn, .nav button, .theme-toggle, .save-law, .account-shortcut,
+.side-profile, .law-card, .lex-doc-card, .lex-library-tabs button,
+.exam-option, .control {
+  transition: transform 160ms var(--ease-out), opacity 160ms var(--ease-out),
+    background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+.btn, .theme-toggle, .account-shortcut, .quiet-link,
+.nav button, .lex-library-tabs button, .law-actions a,
+.lex-doc-actions .btn { min-height: 44px; }
+.save-law { width: 44px; height: 44px; }
+.account-shortcut { min-width: 44px; }
+.upload-avatar { width: 44px; height: 44px; }
+.quiet-link { padding: 10px 8px; }
+.btn:active, .theme-toggle:active, .save-law:active,
+.account-shortcut:active, .nav button:active,
+.lex-library-tabs button:active { transform: scale(.97); }
+:is(button, input, select, textarea, a, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+.control:focus-visible { outline-offset: 2px; }
+.btn:disabled, button:disabled, input:disabled, select:disabled {
+  cursor: not-allowed;
+  opacity: .58;
+  transform: none;
+}
+.save-law { color: #65799f; }
+.save-law:hover, .save-law.saved {
+  color: #94600d;
+  background: #fff4dc;
+  border-color: #ead29e;
+}
+.nav button[data-page="comunidad"]:after {
+  color: #626d90;
+  background: #eef0fa;
+}
+.law-actions a, .lex-doc-actions a { text-decoration: none; }
+.lex-docs-empty strong { color: var(--ink); }
+.lex-docs-status { min-height: 1.65em; }
+.page.active { animation: lex-page-enter 180ms var(--ease-out) both; }
+.stagger > * { animation: none; }
+@keyframes lex-page-enter {
+  from { opacity: .78; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (hover: hover) and (pointer: fine) {
+  .law-card:hover, .lex-doc-card:hover { transform: translateY(-2px); border-color: #c3cef1; }
+  .btn:hover, .nav button:hover { transform: translateY(-1px); }
+  .btn:active, .nav button:active { transform: scale(.97); }
+}
+
+/* V12 uses literal light backgrounds; restore the existing dark theme throughout. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #101625;
+  --paper: #192338;
+  --paper-2: #1e2a42;
+  --ink: #edf1ff;
+  --muted: #b4bfd7;
+  --line: #34425f;
+  --soft: #1d2940;
+  --control: #1e2a42;
+  --nav: rgba(19, 28, 46, .96);
+  --nav-2: #192338;
+  --teal-soft: #2b345c;
+  --blue: #b1bcff;
+  --note: #c5cee3;
+  --focus-ring: #bec6ff;
+  --shadow-soft: 0 4px 18px rgba(0, 0, 0, .12);
+}
+:root[data-theme="dark"] body {
+  background: radial-gradient(ellipse at 0 0, rgba(123, 97, 255, .1), transparent 55%), var(--bg);
+}
+:root[data-theme="dark"] .sidebar { background: var(--nav); border-color: var(--line); }
+:root[data-theme="dark"] :is(.card, .law-card, .side-profile, .theme-toggle,
+  .profile-hero, .profile-stat, .lex-docs-shell, .lex-doc-card, .lex-library-tabs) {
+  background: var(--paper); border-color: var(--line); color: var(--ink);
+}
+:root[data-theme="dark"] :is(.practice-heading, .coming-shell, .exam-v6-head,
+  .lex-docs-head, .lex-docs-admin) {
+  background: linear-gradient(125deg, #1c2840, #2a2947);
+  border-color: var(--line);
+}
+:root[data-theme="dark"] :is(.step-body, .exam-question, .exam-essay) {
+  background: var(--paper); border-color: var(--line);
+}
+:root[data-theme="dark"] :is(.step-index, .practice-submit) {
+  background: var(--paper-2); border-color: var(--line);
+}
+:root[data-theme="dark"] :is(.control, .exam-option, .activity, .lex-docs-empty) {
+  background: var(--paper-2); border-color: var(--line); color: var(--ink); box-shadow: none;
+}
+:root[data-theme="dark"] .control::placeholder { color: #9aaac5; }
+:root[data-theme="dark"] :is(.filter-field label, .lbl, .lex-docs-search-label,
+  .lex-docs-status, .lex-doc-context, .lex-docs-footnote, .lex-docs-admin p,
+  .lex-docs-head p, .exam-v6-head p) { color: var(--muted); }
+:root[data-theme="dark"] :is(.nav button, .lex-library-tabs button) { color: var(--muted); }
+:root[data-theme="dark"] :is(.nav button:hover, .lex-library-tabs button:hover) {
+  background: #293551; color: var(--ink);
+}
+:root[data-theme="dark"] .nav button.active {
+  background: linear-gradient(120deg, #303b6a, #46324c);
+  color: #e3e5ff; border-color: #59638c;
+}
+:root[data-theme="dark"] .lex-library-tabs button.active { color: #fff; }
+:root[data-theme="dark"] .nav button[data-page="comunidad"]:after {
+  color: #ced4f3; background: #303b59;
+}
+:root[data-theme="dark"] :is(.badge, .catalog-chip, .law-visual, .practice-kicker,
+  .coming-overline, .coming-state, .exam-qmeta span, .lex-doc-format, .lex-doc-icon,
+  .exam-v6-head > div:first-child > span) {
+  background: #2b3459; border-color: #46527b; color: #d0d5ff;
+}
+:root[data-theme="dark"] :is(.law-meta span, .law-meta span.edition) {
+  background: #222f49; border-color: var(--line); color: var(--muted);
+}
+:root[data-theme="dark"] :is(.law-note, .catalog-note) {
+  background: #302e3c; border-color: #575064; color: #e7d8bb;
+}
+:root[data-theme="dark"] .btn-primary,
+:root[data-theme="dark"] .btn-wine { color: #fff; }
+:root[data-theme="dark"] :is(.btn-soft, .btn-outline, .account-shortcut, .save-law) {
+  background: var(--paper-2); border-color: var(--line); color: #d4dbff;
+}
+:root[data-theme="dark"] :is(.btn-soft:hover, .btn-outline:hover) { background: #303b59; }
+:root[data-theme="dark"] .save-law.saved {
+  color: #ffd58c; background: #473b2b; border-color: #796442;
+}
+:root[data-theme="dark"] .exam-option:hover { background: #29354f; }
+:root[data-theme="dark"] .exam-option:has(input:checked) {
+  background: #343b65; border-color: #a4afff;
+}
+:root[data-theme="dark"] .exam-answer { background: #27334f; border-color: #465274; }
+:root[data-theme="dark"] .profile-avatar-fallback {
+  background: var(--paper-2); border-color: var(--paper); color: #d4dbff;
+}
+:root[data-theme="dark"] .lex-docs-illustration { background: var(--paper-2); }
+:root[data-theme="dark"] .lex-docs-kicker { color: #c2c5ff; }
+
+@media (max-width: 980px) {
+  .sidebar { width: 100%; flex-wrap: wrap; }
+  .nav { flex-basis: 100%; width: 100%; order: 3; }
+  .main { margin: 0 auto; }
+  .workspace-topbar { align-items: flex-start; flex-wrap: wrap; }
+  .workspace-tools { margin-left: auto; }
+}
+@media (max-width: 700px) {
+  html { scroll-padding-top: 145px; }
+  .brandtext { display: block; font-size: 20px; }
+  .sidebar { gap: 10px; padding: 10px 14px; }
+  .account-shortcut { margin-left: auto; }
+  .nav { gap: 4px; justify-content: stretch; overflow: visible; }
+  .nav button { flex: 1; justify-content: center; padding: 10px 6px; gap: 5px; }
+  .nav button span:last-child { font-size: 11px; }
+  .nav .ico { width: 18px; font-size: 17px; }
+  .library-hero h2 { font-size: clamp(31px, 9vw, 38px); }
+  .library-hero { min-height: auto; gap: 18px; }
+  .hero-side { display: none; }
+  .library-count.mobile-count {
+    display: flex; flex-direction: row; align-items: center; gap: 12px;
+    margin-top: 0; padding: 10px 14px; border-radius: 14px;
+  }
+  .library-count.mobile-count b { font-size: 26px; margin: 0; }
+  .library-count.mobile-count span { max-width: 120px; line-height: 1.4; }
+  .library-toolbar .control, .control, .study-editor { font-size: 16px !important; }
+  .law-top-actions { gap: 4px; }
+  .badge { font-size: 10px; padding: 7px 9px; }
+  .law-card h3 { margin-top: 5px; }
+  .lex-doc-actions { gap: 8px; }
+  .lex-doc-actions .btn { min-width: 100px; white-space: normal; }
+  .profile-stats { gap: 18px; }
+  .exam-brand span { display: block; margin-left: 0; }
+  .exam-v6-actions .btn { flex: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
