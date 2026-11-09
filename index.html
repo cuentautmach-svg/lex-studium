@@ -3,672 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lex Studium — Biblioteca y Simulador | V10</title>
-<style>
-/* Lex Studium V10 — diseño profesional, sin dependencias externas */
-:root{
-  --bg:#f4f6fb;--paper:#ffffff;--paper-2:#f8faff;--ink:#17243b;
-  --muted:#64748b;--nav:#121d33;--nav-2:#1c2b49;--teal:#4e78ed;
-  --teal-soft:#eaf0ff;--clay:#9d6e56;--wine:#3c5ace;--gold:#f2bb68;
-  --gold-soft:#fff1d7;--blue:#385cde;--line:#e3e9f2;--ok:#188967;
-  --danger:#be4956;--shadow:0 18px 48px rgba(19,37,67,.055);
-  --shadow-soft:0 10px 28px rgba(16,30,58,.085);
-  --control:#fff;--soft:#f7f9fd;--badge-bg:#eff3fc;--note:#53647e;
-  --ui:Inter,"Segoe UI Variable","Segoe UI",Roboto,Arial,sans-serif;
-  --display:Inter,"Segoe UI Variable","Segoe UI",Roboto,Arial,sans-serif;
-  --radius:18px;
-}
-:root[data-theme="dark"]{
-  color-scheme:dark;
-  --bg:#0d1422;--paper:#162138;--paper-2:#182640;--ink:#eaf1ff;
-  --muted:#a2b3cc;--nav:#0a1120;--nav-2:#1b2b47;--teal:#86a4ff;
-  --teal-soft:#233556;--wine:#92a9ff;--line:#2b3b57;--blue:#a1b6ff;
-  --control:#1b2942;--soft:#1b2941;--badge-bg:#243653;--note:#b4c2d8;
-  --shadow:0 16px 42px rgba(0,0,0,.15);--shadow-soft:0 9px 30px rgba(0,0,0,.18);
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ui);font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased}
-button,input,select,textarea{font:inherit}
-button,a{-webkit-tap-highlight-color:transparent}
-button{cursor:pointer}
-a{color:inherit}
-.hidden{display:none!important}
-:focus-visible{outline:3px solid #8da4ff;outline-offset:3px}
-::selection{background:#b9c8ff;color:#101d3a}
-.app{min-height:100vh}
-.sidebar{
-  position:fixed;top:0;left:0;bottom:0;width:248px;
-  padding:28px 17px 20px;display:flex;flex-direction:column;z-index:20;
-  background:linear-gradient(165deg,#16223b 0%,#111a2c 66%,#10182a 100%);
-  border-right:1px solid rgba(255,255,255,.055);color:#fff;
-}
-.brand{display:flex;align-items:center;gap:12px;padding:3px 10px 42px}
-.brandmark{flex:none;width:43px;height:43px;display:grid;place-items:center;
-  border:1px solid rgba(255,255,255,.2);background:#4669ec;color:#fff;
-  border-radius:13px;font:800 24px/1 var(--display);box-shadow:0 10px 24px rgba(53,81,202,.23)}
-.brandtext{font-size:18px;font-weight:800;letter-spacing:-.7px;line-height:1.1}
-.brandtext small{display:block;margin-top:6px;font-size:10px;letter-spacing:.03em;font-weight:500;color:#9baecc}
-.nav{display:grid;gap:7px}
-.nav:before{content:"ESPACIO DE ESTUDIO";font-size:10px;font-weight:800;letter-spacing:.12em;color:#7789a8;padding:0 14px 12px}
-.nav button{border:1px solid transparent;background:transparent;color:#aebbd0;display:flex;align-items:center;
-  width:100%;gap:13px;min-height:49px;padding:11px 14px;border-radius:12px;text-align:left;transition:background .2s,color .2s}
-.nav button:hover{background:rgba(255,255,255,.055);color:#fff}
-.nav button.active{background:#334ec0;color:white;border-color:rgba(255,255,255,.11);box-shadow:0 9px 20px rgba(17,27,93,.2)}
-.nav .ico{font-size:20px;width:24px;flex:none;text-align:center;line-height:1}
-.nav span:last-child{font-size:13px;font-weight:750}
-.nav button[data-page="comunidad"]:after{content:"PRONTO";font-size:8px;font-weight:850;color:#abbceb;background:rgba(255,255,255,.09);padding:4px 5px;border-radius:5px;margin-left:auto;letter-spacing:.04em}
-.nav button[data-page="comunidad"].active:after{color:white}
-.account-shortcut{display:none}
-.sidebar-spacer{flex:1}
-.sidebar::after{content:"Tu espacio para aprender, consultar y practicar Derecho.";display:block;color:#8d9db9;font-size:11px;line-height:1.7;padding:16px 12px 22px;margin-top:auto;border-bottom:1px solid rgba(255,255,255,.1)}
-.side-profile{display:flex;align-items:center;gap:10px;margin-top:15px;padding:11px;border-radius:12px;cursor:pointer;transition:background .2s}
-.side-profile:hover{background:rgba(255,255,255,.06)}
-.avatar-img,.avatar-fallback{width:37px;height:37px;flex:none;border-radius:11px;object-fit:cover;border:1px solid rgba(255,255,255,.19)}
-.avatar-fallback{background:#2c3d65;color:#d4e0ff;display:grid;place-items:center;font-size:14px;font-weight:800}
-.side-profile strong{display:block;color:#fff;font-size:12px;font-weight:750}
-.side-profile small{display:block;color:#8f9fbb;font-size:10px;margin-top:2px}
-.main{margin-left:248px;min-width:0;min-height:100vh;padding:27px clamp(23px,4vw,68px) 75px}
-.main>.page{max-width:1320px;margin:0 auto}
-.workspace-topbar{max-width:1320px;margin:0 auto 28px;display:flex;align-items:center;justify-content:space-between;gap:14px}
-.workspace-crumb{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:11px;font-weight:750;letter-spacing:.085em;text-transform:uppercase}
-.crumb-dot{width:7px;height:7px;background:#496dea;border-radius:50%;box-shadow:0 0 0 4px rgba(73,109,234,.12)}
-.workspace-tools{display:flex;align-items:center;gap:16px}
-.top-status{font-size:11px;color:var(--muted);white-space:nowrap}
-.top-status:before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#24ac86;vertical-align:middle;margin-right:7px}
-.theme-toggle{display:flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:9px 12px;border-radius:11px;font-size:12px;font-weight:750;box-shadow:0 2px 7px rgba(9,24,50,.025)}
-.theme-toggle:hover{border-color:#8099e8}
-.page{display:none}
-.page.active{display:block;animation:pageIn .28s ease-out both}
-@keyframes pageIn{from{opacity:.65;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
-.stagger>*{animation:cardIn .3s ease-out both}
-@keyframes cardIn{from{opacity:.7;transform:translateY(6px)}to{opacity:1;transform:none}}
-.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px}
-.card.flat{box-shadow:none}
-.eyebrow{font-size:10px;font-weight:800;letter-spacing:.17em;text-transform:uppercase;color:#bdd0ff}
-.btn{display:inline-flex;justify-content:center;align-items:center;gap:6px;min-height:40px;padding:10px 15px;border:1px solid transparent;border-radius:10px;font-size:12px;line-height:1.25;font-weight:750;transition:background .18s,transform .18s,border-color .18s;white-space:normal}
-.btn:hover{transform:translateY(-1px)}
-.btn-primary{background:#415fe1;color:#fff;box-shadow:0 5px 13px rgba(54,81,197,.16)}
-.btn-primary:hover{background:#2d4dcf}
-.btn-soft{background:var(--soft);border-color:var(--line);color:var(--ink)}
-.btn-soft:hover{background:var(--teal-soft)}
-.btn-outline{background:transparent;border-color:#c9d5ee;color:var(--blue)}
-.btn-outline:hover{background:var(--teal-soft)}
-.btn-gold{background:var(--gold);color:#162238}.btn-wine{background:#415fe1;color:#fff}.wide{width:100%}
-.control{background:var(--control);border:1px solid var(--line);color:var(--ink);border-radius:10px;width:100%;min-height:44px;padding:11px 14px;outline:none;transition:border-color .2s,box-shadow .2s;font-size:13px}
-.control::placeholder{color:#94a3b8}
-.control:focus{border-color:#5578ec;box-shadow:0 0 0 3px rgba(84,116,238,.13)}
-textarea.control{resize:vertical;line-height:1.65}
-.lbl,.filter-field label{display:block;font-size:11px;font-weight:750;color:var(--ink);margin:0 0 8px}
-.section-heading{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:20px}
-.section-heading h2,.section-heading h3{margin:0;font-size:20px;font-weight:800;letter-spacing:-.4px}
-.section-heading p{margin:6px 0 0;font-size:12px;color:var(--muted)}
-
-/* Biblioteca */
-.library-hero{min-height:279px;position:relative;overflow:hidden;border-radius:23px;
-  background:linear-gradient(120deg,#172643 0%,#1e3460 67%,#223f7d 100%);
-  color:#fff;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(250px,.6fr);gap:18px;
-  align-items:center;padding:39px clamp(28px,4vw,56px);margin-bottom:22px;
-  box-shadow:0 22px 52px rgba(25,43,92,.13)}
-.library-hero:before{content:"";position:absolute;inset:auto -120px -250px auto;width:500px;height:500px;border:1px solid rgba(255,255,255,.10);border-radius:50%;pointer-events:none}
-.library-hero:after{content:"";position:absolute;right:25%;top:-160px;width:360px;height:360px;border:1px solid rgba(255,255,255,.055);border-radius:50%;pointer-events:none}
-.hero-copy{position:relative;z-index:1;max-width:640px}
-.library-hero h2{font-size:clamp(31px,3.5vw,49px);font-weight:830;letter-spacing:-1.8px;line-height:1.1;max-width:680px;margin:17px 0 16px}
-.library-hero h2 em{font-style:normal;color:#98b6ff}
-.library-hero p{font-size:14px;line-height:1.7;color:#bdcae1;max-width:560px;margin:0}
-.hero-highlights{display:flex;flex-wrap:wrap;gap:16px;margin-top:24px;color:#d7e3ff;font-size:11px;font-weight:650}
-.hero-highlights span{display:inline-flex;align-items:center;gap:7px}
-.hero-highlights span:before{content:"✓";background:rgba(120,164,255,.24);border-radius:50%;width:18px;height:18px;display:grid;place-items:center;font-size:11px}
-.hero-side{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;min-height:195px}
-.hero-seal{width:180px;height:180px;border:1px solid rgba(255,255,255,.19);border-radius:30px;background:linear-gradient(150deg,rgba(255,255,255,.13),rgba(255,255,255,.035));display:grid;place-items:center;transform:rotate(-9deg);box-shadow:0 22px 46px rgba(8,14,34,.16)}
-.hero-seal svg{width:108px;height:108px;transform:rotate(9deg)}
-.library-count{position:absolute;right:-3px;bottom:2px;z-index:2;display:flex;align-items:center;gap:9px;border-radius:14px;background:#fff;color:#122040;box-shadow:0 13px 29px rgba(0,0,0,.18);padding:12px 16px}
-.library-count b{font-size:28px;font-weight:850;line-height:1;letter-spacing:-1.3px;color:#274fd1;order:-1}
-.library-count span{max-width:90px;display:block;font-size:10px;line-height:1.25;font-weight:750;color:#566789;text-transform:uppercase;letter-spacing:.07em}
-.catalog-card{padding:26px 27px 30px}
-.catalog-header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}
-.catalog-header h3{font-size:19px;letter-spacing:-.4px;font-weight:800;margin:0}
-.catalog-header p{margin:3px 0 0;color:var(--muted);font-size:12px}
-.catalog-chip{background:var(--teal-soft);border:1px solid var(--line);color:var(--blue);border-radius:9px;padding:7px 10px;font-size:11px;font-weight:750}
-.library-toolbar{display:grid;grid-template-columns:minmax(250px,1.55fr) minmax(140px,.8fr) minmax(140px,.8fr) minmax(130px,.65fr);gap:12px;margin-bottom:18px}
-.filter-field{min-width:0}
-.library-toolbar .control{font-size:12px;height:46px;background:var(--soft)}
-.search-field{position:relative}
-.search-field:before{content:"⌕";position:absolute;left:12px;bottom:8px;color:#8294af;font-size:28px;line-height:1;pointer-events:none}
-.search-field .control{padding-left:39px}
-.catalog-note{font-size:11px;line-height:1.65;color:var(--note);padding:13px 14px;border:1px solid var(--line);border-left:3px solid #7691ec;background:var(--soft);border-radius:8px;margin-bottom:24px}
-.law-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.law-card{background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:20px;min-width:0;min-height:292px;display:flex;flex-direction:column;box-shadow:0 2px 3px rgba(12,25,47,.018);transition:box-shadow .2s,border-color .2s,transform .2s}
-.law-card:hover{border-color:#afc1f2;box-shadow:var(--shadow-soft);transform:translateY(-3px)}
-.law-top{display:flex;align-items:flex-start;justify-content:space-between;gap:9px}
-.law-visual{height:48px;width:48px;display:grid;place-items:center;background:var(--teal-soft);border-radius:12px;flex:none}
-.law-visual svg{width:37px;height:37px}
-.law-top-actions{display:flex;align-items:center;gap:6px}
-.badge{font-size:9px;font-weight:800;letter-spacing:.055em;text-transform:uppercase;background:var(--badge-bg);color:var(--blue);padding:6px 9px;border-radius:7px;max-width:125px;text-align:center}
-.save-law{width:30px;height:30px;flex:none;display:grid;place-items:center;border-radius:9px;border:1px solid var(--line);background:var(--paper);color:#8998b5;font-size:18px}
-.save-law:hover,.save-law.saved{background:#fff3dc;border-color:#eedbb8;color:#b27516}
-.law-card h3{font-size:15px;line-height:1.38;letter-spacing:-.25px;font-weight:800;margin:20px 0 8px;color:var(--ink)}
-.law-card>p:not(.law-note){font-size:12px;line-height:1.57;color:var(--muted);margin:0;flex:0}
-.law-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:16px 0 0}
-.law-meta span{display:inline-block;font-size:10px;line-height:1.35;font-weight:650;background:var(--soft);color:var(--note);border:1px solid var(--line);padding:6px 8px;border-radius:6px}
-.law-meta span.edition{background:var(--teal-soft);color:var(--blue)}
-.law-note{font-size:10.5px!important;line-height:1.5!important;color:var(--note)!important;margin:12px 0 0!important;flex:1!important}
-.law-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:18px}
-.law-actions a{text-decoration:none;flex:1;min-width:104px;min-height:37px;padding:8px 10px;font-size:11px;text-align:center}
-.empty{padding:40px 20px;color:var(--muted);font-size:13px;text-align:center;grid-column:1/-1}
-
-/* Simulador */
-.practice-v6{max-width:1170px;margin:0 auto}
-.practice-heading{display:flex;justify-content:space-between;align-items:center;gap:22px;border-radius:22px;padding:33px 36px;background:linear-gradient(115deg,#172541,#243c72);color:#fff;margin-bottom:19px}
-.practice-kicker{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.15em;font-weight:850;color:#a5bcff;margin-bottom:12px}
-.practice-heading h2{font-size:clamp(25px,3vw,39px);letter-spacing:-1.15px;line-height:1.15;margin:0 0 12px;font-weight:850}
-.practice-heading p{font-size:13px;max-width:640px;line-height:1.75;color:#c8d3e9;margin:0}
-.practice-summary{flex:none;min-width:155px;background:rgba(255,255,255,.105);border:1px solid rgba(255,255,255,.13);border-radius:14px;padding:17px 20px;text-align:center}
-.practice-summary span,.practice-summary small{display:block;color:#cbd7ed;font-size:10px;line-height:1.55}
-.practice-summary b{display:block;font-size:31px;color:#fff;font-weight:850;letter-spacing:-1px;margin:4px 0}
-.practice-paper{border:1px solid var(--line);border-radius:18px;background:var(--paper);box-shadow:var(--shadow);overflow:hidden}
-.practice-step{display:grid;grid-template-columns:76px minmax(0,1fr);border-bottom:1px solid var(--line)}
-.step-index{font-size:16px;font-weight:850;color:#4c6ee9;background:var(--soft);display:flex;align-items:flex-start;justify-content:center;padding-top:34px;border-right:1px solid var(--line)}
-.step-body{padding:28px 32px 31px}
-.step-title{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:20px}
-.step-title h3{font-weight:800;font-size:17px;letter-spacing:-.35px;margin:0}
-.step-title p{font-size:11.5px;color:var(--muted);margin:0}
-.practice-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.practice-fields.four{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-.wide-field{grid-column:1/-1}
-.step-body .lbl{margin:0 0 7px}
-.step-body .control{background:var(--soft)}
-.study-editor{min-height:230px!important;font-size:13px!important;line-height:1.65!important}
-.study-foot{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:10px;font-size:11px;color:var(--muted)}
-.quiet-link{background:none;border:0;padding:4px;color:var(--blue);font-size:11px;font-weight:800}
-.practice-submit{padding:24px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;background:var(--soft)}
-.practice-submit strong{display:block;font-size:14px;font-weight:800;margin-bottom:6px}
-.practice-submit span{font-size:11px;color:var(--muted);line-height:1.5;display:block;max-width:610px}
-.exam-button{min-height:48px;min-width:190px;white-space:nowrap}
-.exam-button span{color:#fff;margin-left:4px;font-size:15px}
-
-/* Comunidad */
-.coming-shell{max-width:950px;min-height:540px;margin:30px auto 0;border-radius:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:65px 35px;background:var(--paper);border:1px solid var(--line);box-shadow:var(--shadow);position:relative;overflow:hidden}
-.coming-shell:before{content:"";position:absolute;top:-200px;right:-190px;width:480px;height:480px;border:1px solid var(--line);border-radius:50%;pointer-events:none}
-.coming-overline{color:var(--blue);background:var(--teal-soft);border:1px solid var(--line);padding:7px 13px;border-radius:25px;font-size:10px;font-weight:850;letter-spacing:.08em;text-transform:uppercase}
-.coming-symbol{width:94px;height:94px;border-radius:25px;background:linear-gradient(135deg,#3755cc,#6d90f7);display:grid;place-items:center;color:#fff;font-size:55px;font-weight:700;box-shadow:0 14px 32px rgba(57,82,184,.19);margin:30px auto 20px}
-.coming-shell h2{font-size:clamp(28px,3.5vw,43px);font-weight:850;max-width:670px;line-height:1.16;letter-spacing:-1.3px;margin:0 0 15px}
-.coming-shell p{max-width:540px;font-size:14px;line-height:1.8;color:var(--muted);margin:0 auto 22px}
-.coming-state{display:flex;align-items:center;justify-content:center;gap:7px;margin-bottom:24px;font-size:12px;font-weight:800;color:var(--blue)}
-.coming-dot{width:8px;height:8px;background:#5276f0;border-radius:50%}
-
-/* Perfil local */
-.profile-wrap{max-width:1140px;margin:0 auto}
-.profile-hero{background:var(--paper);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:18px}
-.profile-cover{height:190px;background:linear-gradient(110deg,#1c2b4d,#375a9b 60%,#7297eb);background-size:cover;background-position:center;position:relative}
-.upload-cover{position:absolute;z-index:1;right:20px;top:20px}
-.profile-body{position:relative;padding:0 28px 28px}
-.profile-avatar-wrap{width:100px;height:100px;margin-top:-50px;position:relative}
-.profile-avatar,.profile-avatar-fallback{width:100px;height:100px;border-radius:22px;border:5px solid var(--paper);object-fit:cover;box-shadow:0 7px 19px rgba(0,0,0,.13)}
-.profile-avatar-fallback{background:#476ce9;color:#fff;display:grid;place-items:center;font-size:40px;font-weight:800}
-.upload-avatar{position:absolute;bottom:0;right:0;width:31px;height:31px;border-radius:9px;display:grid;place-items:center;background:#4567e1;color:#fff;border:2px solid var(--paper);cursor:pointer;font-weight:850}
-.profile-title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-top:16px}
-.profile-title h2{font-size:24px;font-weight:830;margin:0 0 5px}
-.profile-title p{margin:0;font-size:12px;color:var(--muted)}
-.profile-bio{margin:12px 0;color:var(--muted);font-size:12px;max-width:730px}
-.profile-stats{display:flex;gap:27px;flex-wrap:wrap;margin-top:20px}
-.profile-stat b{font-size:22px;font-weight:850;display:block;letter-spacing:-.7px}
-.profile-stat span{font-size:11px;color:var(--muted)}
-.profile-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:18px}
-.activity-list{display:grid;gap:10px}
-.activity{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--soft);border:1px solid var(--line);padding:11px 13px;border-radius:11px}
-.activity strong{font-size:12px;display:block}.activity span{display:block;color:var(--muted);font-size:10px;margin-top:3px}.score{background:var(--teal-soft);border-radius:8px;padding:7px;color:var(--blue);font-weight:850}
-.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
-.full{grid-column:1/-1}
-.file-input{display:none}
-
-/* Evaluación independiente — no modifica su lógica */
-.exam-v6-shell{min-height:100vh;max-width:970px;margin:0 auto;background:var(--bg);padding:30px 22px 90px;color:var(--ink)}
-.exam-v6-top{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:23px}
-.exam-brand{font-size:20px;font-weight:850;letter-spacing:-.7px}.exam-brand span{font-size:11px;color:var(--muted);font-weight:600;margin-left:10px}
-.exam-v6-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;background:linear-gradient(115deg,#162642,#284677);color:#fff;border-radius:17px;padding:29px}
-.exam-v6-head>div:first-child>span{font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:#adc4ff;font-weight:750}
-.exam-v6-head h1{font-size:clamp(24px,3vw,36px);line-height:1.16;margin:9px 0;font-weight:830;letter-spacing:-.8px}
-.exam-v6-head p{font-size:12px;color:#c6d4ec;margin:0}
-.exam-v6-score{font-size:27px;font-weight:850;white-space:nowrap}
-.exam-v6-progress{height:6px;background:var(--line);border-radius:10px;margin:15px 0 21px;overflow:hidden}
-.exam-v6-progress span{display:block;height:100%;width:0;background:#5875e8;transition:width .2s}
-.exam-question{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:24px;margin:0 0 12px}
-.exam-qmeta{display:flex;gap:7px;margin-bottom:12px;flex-wrap:wrap}
-.exam-qmeta span{font-size:10px;color:var(--blue);font-weight:800;letter-spacing:.04em;background:var(--teal-soft);border-radius:7px;padding:6px 9px}
-.exam-qtitle{font-size:15px;font-weight:730;line-height:1.65;margin-bottom:15px;white-space:pre-wrap}
-.exam-option{display:flex;gap:11px;align-items:flex-start;padding:13px 15px;border:1px solid var(--line);border-radius:10px;margin-top:9px;background:var(--soft);font-size:13px;cursor:pointer;line-height:1.5}
-.exam-option:hover{border-color:#91aae9}.exam-option input{margin:3px 0 0;accent-color:#4e6fe4}
-.exam-open{min-height:110px}
-.exam-answer{display:none;margin-top:15px;padding:15px;border-radius:10px;background:var(--teal-soft);font-size:12px;line-height:1.7;color:var(--ink)}
-.exam-answer.show{display:block}.exam-question.right{border-color:#70c3a3}.exam-question.wrong{border-color:#d89aa1}
-.exam-v6-actions{display:flex;gap:8px;flex-wrap:wrap;position:sticky;bottom:12px;margin-top:20px;padding:13px;border-radius:12px;border:1px solid var(--line);background:var(--paper);box-shadow:var(--shadow)}
-
-@media(max-width:1200px){.law-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.library-toolbar{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:970px){
- .sidebar{width:205px;padding:20px 12px 17px}.brand{padding:4px 7px 32px}.nav button{gap:9px;padding:9px 10px}
- .main{margin-left:205px;padding:23px 20px 60px}
- .library-hero{grid-template-columns:1fr minmax(130px,.35fr);padding:31px}
- .hero-seal{width:135px;height:135px}.hero-seal svg{width:85px;height:85px}
- .library-count{right:-4px;bottom:-11px}
- .practice-fields.four{grid-template-columns:repeat(2,minmax(0,1fr))}
- .profile-grid{grid-template-columns:1fr}
-}
-@media(max-width:700px){
- .sidebar{position:sticky;top:0;left:0;bottom:auto;width:100%;height:auto;padding:11px 16px;display:flex;flex-direction:row;align-items:center;gap:13px;box-shadow:0 5px 18px rgba(7,16,39,.1)}
- .brand{gap:8px;padding:0;flex:none}.brandmark{width:34px;height:34px;border-radius:9px;font-size:18px}.brandtext{font-size:14px;letter-spacing:-.5px}.brandtext small{display:none}
- .nav{display:flex;align-items:center;gap:3px;min-width:0;flex:1;justify-content:flex-end}
- .nav:before{display:none}
- .nav button{width:auto;min-width:0;padding:8px;border-radius:9px;min-height:35px;gap:6px;flex:none}
- .nav .ico{font-size:16px;width:17px}.nav button span:last-child{font-size:11px;font-weight:700}
- .nav button[data-page="comunidad"]:after{display:none}
- .sidebar::after,.sidebar-spacer,.side-profile{display:none}
- .account-shortcut{display:grid;place-items:center;flex:none;margin:0;border:1px solid rgba(255,255,255,.16);background:#29395d;color:#fff;border-radius:9px;width:33px;height:33px;font-size:16px}
- .main{margin:0;padding:18px 16px 55px}
- .workspace-topbar{margin-bottom:15px}
- .workspace-crumb{font-size:9px;letter-spacing:.055em}
- .top-status{display:none}
- .theme-toggle{font-size:11px;padding:7px 9px;min-height:33px}
- .library-hero{grid-template-columns:1fr;min-height:unset;padding:28px 24px 32px;border-radius:18px}
- .library-hero h2{font-size:34px;letter-spacing:-1.25px;margin:10px 0 11px}
- .library-hero p{font-size:12.5px}.hero-highlights{margin-top:16px;gap:10px;font-size:10px}
- .hero-side{display:none}
- .library-count{position:static;justify-self:start;margin-top:17px;order:3;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.13);box-shadow:none}
- .library-count b{color:#fff;font-size:22px}.library-count span{color:#cad8ff}
- .catalog-card{padding:19px 16px 23px}.catalog-header{margin-bottom:16px}.catalog-header h3{font-size:17px}
- .library-toolbar{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
- .search-field{grid-column:1/-1}.library-toolbar .control{font-size:12px}
- .law-grid{grid-template-columns:1fr;gap:12px}
- .law-card{min-height:0;padding:19px}.law-card h3{font-size:15px;margin:15px 0 8px}
- .catalog-note{margin-bottom:18px}
- .practice-heading{padding:27px 22px;display:block}.practice-heading h2{font-size:28px}
- .practice-summary{display:flex;align-items:center;justify-content:space-between;text-align:left;margin-top:18px;padding:13px 15px;min-width:0}
- .practice-summary b{font-size:24px;margin:0 5px}.practice-summary span{font-size:10px}
- .practice-step{grid-template-columns:45px minmax(0,1fr)}.step-index{font-size:12px;padding-top:26px}.step-body{padding:23px 17px}
- .step-title{display:block;margin-bottom:16px}.step-title h3{font-size:15px}.step-title p{font-size:11px;margin-top:5px}
- .practice-fields{grid-template-columns:1fr;gap:12px}.practice-fields.four{grid-template-columns:1fr 1fr;gap:10px}
- .practice-submit{padding:22px;display:block}.exam-button{margin-top:18px;width:100%}
- .study-foot{align-items:flex-start;flex-wrap:wrap}
- .coming-shell{margin:4px auto;padding:45px 23px;min-height:500px}.coming-shell h2{font-size:31px}
- .profile-cover{height:150px}.profile-body{padding:0 19px 23px}.profile-title-row{display:block}.profile-title-row>.btn{margin-top:15px}.form-grid{grid-template-columns:1fr}
- .exam-v6-shell{padding:15px 14px 55px}.exam-v6-head{display:block;padding:22px}.exam-v6-score{margin-top:14px}.exam-question{padding:18px}
-}
-@media(max-width:420px){
- .sidebar{padding:10px 9px;gap:6px}.brandtext{display:none}.brandmark{width:30px;height:30px}
- .nav button{padding:7px 6px;gap:4px}.nav button span:last-child{font-size:10px}.nav .ico{font-size:15px;width:15px}
- .account-shortcut{width:30px;height:30px;font-size:14px}
- .main{padding:14px 12px 50px}
- .workspace-crumb{font-size:9px}.theme-toggle{padding:7px 8px}.theme-toggle #themeText{display:none}
- .library-hero{padding:26px 22px}.library-hero h2{font-size:31px}
- .catalog-header{align-items:flex-start}.catalog-chip{font-size:9px}.library-toolbar{grid-template-columns:1fr 1fr;gap:9px}
- .filter-field label{font-size:10px}.library-toolbar .control{padding:9px;font-size:11px}.search-field .control{padding-left:39px}
- .practice-fields.four{grid-template-columns:1fr 1fr}
-}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
-@media print{.sidebar,.workspace-topbar,.exam-v6-top,.exam-v6-actions{display:none!important}.main{margin:0;padding:0}.exam-v6-shell{padding:0}.exam-question,.exam-v6-head{break-inside:avoid;box-shadow:none}}
-
-/* Móvil: contador de la biblioteca separado del dibujo decorativo */
-.library-count.mobile-count{display:none}
-@media(max-width:700px){.library-count.mobile-count{display:flex}.hero-side .library-count{display:none}}
-
-/* Lex Studium V12 · colorido equilibrado */
-:root{
-  --bg:#f4f7ff;
-  --paper:#ffffff;
-  --paper-2:#f9fbff;
-  --ink:#22304a;
-  --muted:#64748b;
-  --nav:#ffffffcc;
-  --nav-2:#ffffff;
-  --teal:#5d79ff;
-  --teal-soft:#eef2ff;
-  --clay:#ff8f6b;
-  --wine:#7b61ff;
-  --gold:#f6b85f;
-  --gold-soft:#fff5e3;
-  --blue:#3d63ff;
-  --line:#e4e9f5;
-  --ok:#1f9d74;
-  --danger:#d65467;
-  --shadow:0 18px 45px rgba(61,99,255,.10);
-  --shadow-soft:0 12px 32px rgba(69,93,161,.08);
-  --radius:22px;
-  --ui:"Inter","Segoe UI Variable","Segoe UI",Arial,sans-serif;
-  --display:"Poppins","Segoe UI",Arial,sans-serif;
-}
-body{
-  font-family:var(--ui);
-  background:
-    radial-gradient(circle at top left, rgba(123,97,255,.14), transparent 30%),
-    radial-gradient(circle at top right, rgba(255,143,107,.14), transparent 28%),
-    linear-gradient(180deg,#f6f8ff 0%,#f8fbff 42%,#ffffff 100%);
-  color:var(--ink);
-}
-::selection{background:#dce6ff;color:#1d2a45}
-.app{display:flex;flex-direction:column;min-height:100vh}
-.sidebar{
-  position:sticky;top:0;left:0;right:0;height:auto;width:100%;z-index:50;
-  display:flex;align-items:center;justify-content:space-between;gap:18px;
-  padding:16px 28px;backdrop-filter:blur(16px);
-  background:var(--nav);border-right:0;border-bottom:1px solid rgba(228,233,245,.9);
-  box-shadow:0 8px 30px rgba(36,58,129,.06);
-}
-.sidebar-spacer{display:none}
-.brand{padding:0;gap:12px}
-.brandmark{
-  width:46px;height:46px;border-radius:16px;
-  background:linear-gradient(135deg,#3d63ff 0%,#7b61ff 55%,#ff8f6b 100%);
-  color:#fff;font:700 27px/1 var(--display);box-shadow:0 10px 25px rgba(92,108,255,.28)
-}
-.brandtext{font:700 23px/1 var(--display);letter-spacing:-.04em;color:var(--ink)}
-.brandtext small{font:500 11px/1.2 var(--ui);color:var(--muted);margin-top:4px;letter-spacing:.01em}
-.nav{display:flex;align-items:center;justify-content:center;gap:10px;padding:0}
-.nav:before,.nav:after{display:none}
-.nav button{
-  width:auto;min-height:44px;padding:11px 16px;gap:8px;border-radius:14px;
-  color:var(--muted);background:transparent;border:1px solid transparent
-}
-.nav button:hover{background:#f2f5ff;color:var(--blue);transform:translateY(-1px)}
-.nav button.active{
-  background:linear-gradient(135deg,#edf2ff 0%,#fff2ee 100%);
-  color:var(--blue);border-color:#e2e8ff;box-shadow:0 8px 18px rgba(82,103,201,.10)
-}
-.nav .ico{width:18px;font-size:16px}
-.nav span:last-child{font-size:13px;font-weight:700}
-.account-shortcut{display:none}
-.side-profile{
-  margin:0;padding:8px 12px;border-radius:16px;background:#fff;border:1px solid var(--line);
-  box-shadow:var(--shadow-soft)
-}
-.side-profile strong{font-size:13px;color:var(--ink)}
-.side-profile small{font-size:11px;color:var(--muted)}
-.avatar-fallback,.avatar-img{border:2px solid #edf2ff}
-.main{margin:0 auto;padding:28px 28px 72px;max-width:1180px;width:100%;min-height:calc(100vh - 86px)}
-.workspace-topbar{margin:0 0 22px;gap:14px}
-.workspace-crumb{font-size:11px;letter-spacing:.12em;font-weight:700;color:var(--blue)}
-.crumb-dot{width:8px;height:8px;background:linear-gradient(135deg,#3d63ff,#ff8f6b);box-shadow:0 0 0 4px rgba(61,99,255,.1)}
-.top-status{font-size:12px;color:var(--muted)}
-.top-status:before{background:#19b37d;box-shadow:0 0 0 4px rgba(25,179,125,.12)}
-.theme-toggle{
-  min-height:38px;padding:8px 12px;border-radius:14px;background:#fff;border:1px solid var(--line);
-  color:var(--muted);box-shadow:var(--shadow-soft)
-}
-.theme-toggle:hover{color:var(--blue);border-color:#d6deff}
-.card{
-  background:rgba(255,255,255,.95);border:1px solid rgba(228,233,245,.95);
-  box-shadow:var(--shadow-soft);border-radius:24px
-}
-.library-hero{
-  position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.15fr) 300px;gap:24px;
-  align-items:center;padding:34px 34px 28px;border-radius:30px;
-  background:linear-gradient(135deg,#314fdf 0%,#657cff 45%,#8a63ff 75%,#ff8f6b 100%);
-  color:#fff;box-shadow:0 22px 55px rgba(71,92,219,.22)
-}
-.library-hero:before,
-.library-hero:after{
-  content:"";position:absolute;border-radius:50%;pointer-events:none;opacity:.28;filter:blur(2px)
-}
-.library-hero:before{width:220px;height:220px;background:#fff;top:-90px;right:110px}
-.library-hero:after{width:170px;height:170px;background:#ffd7b8;bottom:-70px;right:-20px}
-.hero-copy,.hero-side{position:relative;z-index:1}
-.library-hero .eyebrow{color:#dbe4ff;font-size:12px;letter-spacing:.18em}
-.library-hero h2{font:800 clamp(34px,4vw,56px)/1.03 var(--display);letter-spacing:-.04em;color:#fff;margin:10px 0 14px}
-.library-hero h2 em{color:#ffe6c9;font-style:normal}
-.library-hero p{font-size:15px;line-height:1.75;color:rgba(255,255,255,.92);max-width:600px;margin:0}
-.hero-highlights{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
-.hero-highlights span{
-  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);color:#fff;
-  backdrop-filter:blur(10px);font-size:12px;font-weight:700;border-radius:999px;padding:9px 14px
-}
-.hero-side{display:flex;justify-content:flex-end;align-items:center}
-.hero-seal{
-  width:92px;height:92px;padding:20px;border-radius:28px;
-  background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(10px)
-}
-.library-count,
-.library-count.mobile-count{
-  position:absolute;right:34px;bottom:26px;display:flex;flex-direction:column;align-items:flex-end;
-  min-width:120px;padding:18px 18px 16px;border-radius:24px;background:rgba(255,255,255,.18);
-  border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(16px);box-shadow:none
-}
-.library-count span{font-size:11px;color:#ecf0ff;text-transform:uppercase;letter-spacing:.09em}
-.library-count b{font:800 34px/1 var(--display);color:#fff;margin-top:6px}
-.library-count.mobile-count{display:none}
-.catalog-card{padding:28px}
-.catalog-header{margin-bottom:18px}
-.catalog-header h3{font:800 26px/1.1 var(--display);letter-spacing:-.04em;color:var(--ink)}
-.catalog-header p{margin-top:8px;font-size:13px;color:var(--muted)}
-.catalog-chip{
-  border-radius:999px;padding:9px 14px;border:1px solid #e2e8ff;
-  background:linear-gradient(135deg,#eef2ff,#fff5ef);color:var(--blue);font-size:12px;font-weight:700
-}
-.library-toolbar{grid-template-columns:1.35fr repeat(3,minmax(150px,.8fr));gap:14px;margin-bottom:16px}
-.filter-field label,.lbl{font-size:11px;font-weight:700;color:#64748b;letter-spacing:.05em;text-transform:uppercase}
-.control{
-  min-height:50px;border-radius:16px;background:#fbfcff;border:1px solid var(--line);
-  color:var(--ink);font-size:14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.55)
-}
-.control:focus{border-color:#bcccff;box-shadow:0 0 0 4px rgba(61,99,255,.10)}
-.search-field:before{color:#8ea0e6;bottom:12px}
-.catalog-note{
-  background:linear-gradient(135deg,#f8faff,#fff9f1);border:1px solid #edf1fb;color:var(--muted);
-  border-radius:16px;padding:13px 16px;font-size:12px;line-height:1.65;margin-bottom:18px
-}
-.law-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.law-card{
-  min-height:100%;padding:20px;border-radius:24px;background:linear-gradient(180deg,#fff 0%,#fbfcff 100%);
-  border:1px solid #e8edf9;box-shadow:0 12px 28px rgba(54,77,157,.07);transition:.2s ease
-}
-.law-card:hover{transform:translateY(-4px);box-shadow:0 18px 32px rgba(54,77,157,.12);border-color:#dde5ff}
-.law-top{align-items:flex-start;margin-bottom:10px}
-.badge{
-  border-radius:999px;padding:8px 12px;background:linear-gradient(135deg,#eef2ff,#fff4ee);
-  color:var(--blue);border:1px solid #e5eaff;font-weight:700;font-size:11px
-}
-.save-law{
-  width:36px;height:36px;border-radius:12px;border:1px solid #edf1fb;background:#fff;box-shadow:none;color:#9db0d8
-}
-.save-law:hover,.save-law.saved{color:#ffb545;border-color:#ffe3ad;background:#fffaf0}
-.law-visual{
-  width:52px;height:52px;border-radius:18px;
-  background:linear-gradient(135deg,#eef2ff,#fff2ec);border:1px solid #e4e9ff;color:var(--blue)
-}
-.law-card h3{font:800 19px/1.28 var(--display);letter-spacing:-.03em;color:var(--ink);margin:0 0 10px}
-.law-card p{font-size:13px;line-height:1.68;color:var(--muted)}
-.law-meta{gap:8px;margin-top:14px}
-.law-meta span,.law-meta span.edition{
-  border-radius:999px;padding:7px 10px;background:#f7f9ff;border:1px solid #edf1fb;color:#72819c;font-size:11px
-}
-.law-note{background:#fff8f1;border:1px solid #ffe7c4;color:#8d6b2d;border-radius:14px;padding:12px 13px;margin-top:14px;font-size:12px}
-.law-actions{margin-top:14px;gap:10px;flex-wrap:wrap}
-.btn{min-height:42px;border-radius:14px;font-weight:700;box-shadow:none}
-.btn-primary,.btn-wine{
-  color:#fff;background:linear-gradient(135deg,#3d63ff,#7b61ff);border:0
-}
-.btn-primary:hover,.btn-wine:hover{transform:translateY(-1px);filter:brightness(1.03)}
-.btn-soft{background:#fff;color:var(--ink);border:1px solid #e4e9f5}
-.btn-soft:hover{background:#f8faff}
-.btn-outline{
-  background:linear-gradient(135deg,#fff5ef,#f4f7ff);border:1px solid #e8e3ff;color:#5b53d6
-}
-.btn-outline:hover{background:linear-gradient(135deg,#fff0e7,#eef3ff)}
-.practice-heading{
-  background:linear-gradient(135deg,#fff 0%,#f4f7ff 55%,#fff6ef 100%);
-  border:1px solid #e6ebf8;box-shadow:var(--shadow-soft);border-radius:30px;padding:28px 30px;margin-bottom:20px
-}
-.practice-kicker{display:inline-block;padding:8px 12px;border-radius:999px;background:#edf2ff;color:var(--blue);font-size:12px;font-weight:700}
-.practice-heading h2{font:800 clamp(30px,3.8vw,46px)/1.04 var(--display);letter-spacing:-.04em;color:var(--ink);margin-top:16px}
-.practice-heading p{font-size:14px;color:var(--muted);line-height:1.75;max-width:700px}
-.practice-summary{
-  border-radius:22px;background:linear-gradient(135deg,#4a68ff,#7b61ff 70%,#ff8f6b);color:#fff;
-  min-width:220px;padding:20px 18px;border:0;box-shadow:0 18px 40px rgba(85,86,220,.18)
-}
-.practice-summary span,.practice-summary small{color:rgba(255,255,255,.86)}
-.practice-summary b{font:800 32px/1 var(--display);color:#fff}
-.practice-paper{overflow:hidden;border-radius:28px;border:1px solid #e6ebf8;box-shadow:var(--shadow-soft)}
-.practice-step{grid-template-columns:88px minmax(0,1fr);border-bottom:1px solid #edf1fb}
-.step-index{
-  padding-top:30px;background:linear-gradient(180deg,#f4f7ff 0%,#fff 100%);border-right:1px solid #edf1fb;
-  font:800 26px/1 var(--display);color:var(--blue)
-}
-.step-body{padding:28px 30px;background:#fff}
-.step-title h3{font:800 20px var(--display);letter-spacing:-.03em;color:var(--ink)}
-.step-title p{font-size:13px;color:var(--muted)}
-.practice-submit{background:linear-gradient(135deg,#f6f8ff,#fff8f2)}
-.coming-shell{
-  position:relative;overflow:hidden;background:linear-gradient(135deg,#fff 0%,#f6f8ff 55%,#fff4ed 100%);
-  border:1px solid #e5eaf8;box-shadow:var(--shadow-soft);border-radius:30px;min-height:450px
-}
-.coming-shell:before,
-.coming-shell:after{content:"";position:absolute;border-radius:50%;opacity:.7}
-.coming-shell:before{width:180px;height:180px;background:rgba(123,97,255,.10);top:-40px;right:-20px}
-.coming-shell:after{width:140px;height:140px;background:rgba(255,143,107,.10);bottom:-35px;left:-10px}
-.coming-overline{background:#edf2ff;color:var(--blue);border:1px solid #e2e8ff}
-.coming-symbol{
-  width:78px;height:78px;border-radius:24px;background:linear-gradient(135deg,#3d63ff,#7b61ff 60%,#ff8f6b);
-  color:#fff;box-shadow:0 18px 34px rgba(97,92,228,.20)
-}
-.coming-shell h2{font:800 clamp(32px,3.9vw,48px)/1.08 var(--display);letter-spacing:-.04em;color:var(--ink);position:relative;z-index:1}
-.coming-shell p{font-size:15px;line-height:1.8;color:var(--muted);max-width:760px;position:relative;z-index:1}
-.coming-state{color:var(--blue);background:#eef2ff;border:1px solid #e2e8ff;padding:9px 14px;border-radius:999px;display:inline-flex;gap:10px;font-weight:700;position:relative;z-index:1}
-.coming-dot{background:#ff8f6b;box-shadow:0 0 0 4px rgba(255,143,107,.12)}
-.profile-hero{border-radius:30px;overflow:hidden;box-shadow:var(--shadow-soft);border:1px solid #e5eaf8}
-.profile-cover{background:linear-gradient(135deg,#3d63ff,#7b61ff 65%,#ff8f6b);height:160px}
-.profile-avatar-fallback{background:#fff;border:4px solid #fff;color:var(--blue);box-shadow:var(--shadow-soft)}
-.profile-title h2{font:800 30px var(--display);letter-spacing:-.03em}
-.profile-stat{background:#fff;border:1px solid #edf1fb;box-shadow:none}
-.profile-stat b{font:800 24px var(--display);color:var(--ink)}
-.exam-v6-head{
-  background:linear-gradient(135deg,#fff 0%,#f4f7ff 50%,#fff5ef 100%);border:1px solid #e6ebf8;
-  box-shadow:var(--shadow-soft);border-radius:28px;color:var(--ink)
-}
-.exam-v6-head>div:first-child>span{display:inline-block;padding:8px 12px;border-radius:999px;background:#edf2ff;color:var(--blue);font-size:12px;font-weight:700}
-.exam-v6-head h1{font:800 clamp(28px,3.7vw,42px)/1.05 var(--display);letter-spacing:-.04em;color:var(--ink)}
-.exam-v6-score{font:800 34px/1 var(--display);color:var(--blue)}
-.exam-v6-progress{background:#eef2ff}
-.exam-v6-progress span{background:linear-gradient(90deg,#3d63ff,#7b61ff)}
-.exam-question,.exam-essay{border-radius:24px;border:1px solid #e6ebf8;box-shadow:var(--shadow-soft)}
-.exam-qmeta span{background:#edf2ff;color:var(--blue);border-radius:999px;padding:6px 10px;font-size:11px;font-weight:700}
-.exam-option{border-radius:16px;border:1px solid #edf1fb;background:#fbfcff}
-.exam-option:hover{border-color:#d7e0ff;background:#fff}
-.exam-answer{border-radius:16px;background:#f7faff;border:1px solid #eaf0ff}
-@media (max-width:980px){
-  .sidebar{padding:14px 18px;flex-wrap:wrap}
-  .nav{order:3;width:100%;justify-content:flex-start}
-  .main{padding:22px 20px 56px}
-  .library-hero{grid-template-columns:1fr;gap:18px}
-  .hero-side{justify-content:flex-start}
-  .library-count{position:relative;right:auto;bottom:auto;align-items:flex-start;width:max-content}
-  .catalog-card{padding:22px}
-  .library-toolbar{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .law-grid{grid-template-columns:1fr}
-  .practice-heading{display:block}
-  .practice-summary{margin-top:18px;display:inline-flex;flex-direction:column}
-}
-@media (max-width:700px){
-  .sidebar{padding:12px 14px;gap:10px}
-  .brandmark{width:40px;height:40px;border-radius:14px;font-size:24px}
-  .brandtext{font-size:20px}
-  .brandtext small{font-size:10px}
-  .account-shortcut{display:grid;place-items:center;width:38px;height:38px;border-radius:14px;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow-soft);color:var(--blue)}
-  .side-profile{display:none}
-  .nav{gap:8px;overflow:auto;padding-bottom:2px}
-  .nav button{padding:10px 13px;min-height:42px;white-space:nowrap}
-  .main{padding:18px 14px 48px}
-  .library-hero{padding:26px 22px 24px;border-radius:26px}
-  .library-hero h2{font-size:38px}
-  .library-hero p{font-size:14px}
-  .hero-highlights span{font-size:11px}
-  .hero-seal{width:78px;height:78px;padding:16px}
-  .library-count{display:none}
-  .library-count.mobile-count{display:flex;position:static;align-items:flex-start;margin-top:14px;min-width:auto}
-  .catalog-header{display:block}
-  .catalog-chip{display:inline-flex;margin-top:12px}
-  .library-toolbar{grid-template-columns:1fr;gap:12px}
-  .law-card{padding:18px;border-radius:20px}
-  .law-card h3{font-size:18px}
-  .law-actions{flex-direction:column}
-  .law-actions a{width:100%;justify-content:center}
-  .practice-heading{padding:24px 22px;border-radius:26px}
-  .practice-heading h2{font-size:34px}
-  .practice-paper{border-radius:24px}
-  .practice-step{grid-template-columns:1fr}
-  .step-index{padding:16px 22px;border-right:0;border-bottom:1px solid #edf1fb;text-align:left}
-  .step-body{padding:22px}
-  .practice-fields,.practice-fields.four{grid-template-columns:1fr}
-  .coming-shell{padding:38px 22px;min-height:auto;border-radius:26px}
-  .coming-shell h2{font-size:34px}
-  .profile-hero,.exam-v6-head,.exam-question,.exam-essay{border-radius:24px}
-}
-
-
-/* Lex Studium — biblioteca pública de archivos descargables */
-.lex-library-tabs{display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin:23px 0 18px;padding:7px;background:rgba(255,255,255,.86);border:1px solid #e6ebf8;border-radius:20px;width:max-content;max-width:100%;box-shadow:0 10px 24px rgba(54,77,157,.06)}
-.lex-library-tabs button{cursor:pointer;border:1px solid transparent;border-radius:14px;padding:12px 17px;background:transparent;color:#667696;font-size:13px;font-weight:750;transition:background .2s,color .2s;white-space:nowrap}
-.lex-library-tabs button:hover{background:#f5f7ff;color:#415bdb}
-.lex-library-tabs button.active{background:linear-gradient(135deg,#4263f9,#8664f5);color:#fff;box-shadow:0 8px 22px rgba(75,95,222,.22)}
-.lex-library-tabs button span{margin-right:6px}
-.lex-docs-shell{background:#fff;border:1px solid #e8edf9;border-radius:27px;box-shadow:var(--shadow-soft);overflow:hidden;padding:26px}
-.lex-docs-head{display:flex;align-items:center;justify-content:space-between;gap:25px;background:linear-gradient(115deg,#f2f4ff 0%,#f7f4ff 57%,#fff4eb 100%);border-radius:21px;padding:26px 28px;margin-bottom:24px}
-.lex-docs-kicker{font-size:10px;letter-spacing:.13em;color:#5e61c6;font-weight:800}
-.lex-docs-head h3{font:800 clamp(24px,3.5vw,35px)/1.18 var(--display);letter-spacing:-.045em;color:#263457;margin:9px 0 10px}
-.lex-docs-head p{font-size:13px;color:#677797;line-height:1.7;max-width:700px;margin:0}
-.lex-docs-illustration{font-size:53px;min-width:90px;height:90px;border-radius:25px;display:grid;place-items:center;background:rgba(255,255,255,.85);box-shadow:0 8px 25px rgba(108,108,211,.08)}
-.lex-docs-tools{display:flex;gap:12px;align-items:end;margin-bottom:18px}
-.lex-docs-search-label{display:grid;gap:7px;flex:1;max-width:580px;color:#68769b;font-size:11px;text-transform:uppercase;letter-spacing:.07em;font-weight:800}
-.lex-docs-search-label .control{width:100%;max-width:100%}
-.lex-docs-tools>.btn{height:50px;min-width:115px}
-.lex-docs-status{font-size:12px;color:#667696;margin:10px 0 13px;line-height:1.65}
-.lex-docs-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.lex-doc-card{border-radius:20px;border:1px solid #e6eaf6;background:linear-gradient(145deg,#fff,#fbfcff);padding:19px;display:grid;gap:8px;min-width:0}
-.lex-doc-badge{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.lex-doc-icon{width:46px;height:46px;display:grid;place-items:center;border-radius:15px;background:#edf2ff;color:#5267e2;font-size:23px}
-.lex-doc-format{font-size:10px;font-weight:850;color:#606c98;background:#f0f2ff;border-radius:999px;padding:6px 10px}
-.lex-doc-name{font-size:15px;line-height:1.45;font-weight:750;color:#263457;overflow-wrap:anywhere;margin:3px 0 0}
-.lex-doc-context{font-size:12px;color:#7182a0;overflow-wrap:anywhere}
-.lex-doc-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:4px}
-.lex-doc-actions .btn{min-height:38px;font-size:12px;flex:1;white-space:nowrap;text-align:center}
-.lex-docs-empty{grid-column:1/-1;padding:32px;text-align:center;border:1px dashed #d6dff4;border-radius:20px;background:#fbfcff;color:#6b789a;font-size:14px;line-height:1.7}
-.lex-docs-empty strong{display:block;font-size:16px;color:#344366;margin-bottom:6px}
-.lex-docs-admin{display:flex;align-items:center;justify-content:space-between;gap:20px;background:#fbf8ff;border:1px solid #ece8fa;border-radius:18px;padding:17px 20px;margin-top:24px}
-.lex-docs-admin strong{font-size:13px;color:#444b7d}
-.lex-docs-admin p{font-size:12px;color:#78819c;margin:5px 0 0;line-height:1.6}
-.lex-docs-admin .btn{white-space:nowrap}
-.lex-docs-footnote{margin:13px 0 0;font-size:11px;color:#7b879a;line-height:1.6}
-:root[data-theme="dark"] .lex-library-tabs{background:var(--paper);border-color:var(--line)}
-:root[data-theme="dark"] .lex-docs-shell,:root[data-theme="dark"] .lex-doc-card{background:var(--paper);border-color:var(--line)}
-:root[data-theme="dark"] .lex-docs-head,:root[data-theme="dark"] .lex-docs-admin{background:var(--paper-2);border-color:var(--line)}
-:root[data-theme="dark"] .lex-docs-head h3,:root[data-theme="dark"] .lex-doc-name,:root[data-theme="dark"] .lex-docs-admin strong{color:var(--ink)}
-:root[data-theme="dark"] .lex-docs-empty{background:var(--paper-2);border-color:var(--line)}
-@media(max-width:710px){.lex-docs-shell{padding:16px;border-radius:21px}.lex-docs-head{padding:20px;gap:10px}.lex-docs-illustration{display:none}.lex-docs-grid{grid-template-columns:1fr}.lex-docs-tools{flex-direction:column;align-items:stretch}.lex-docs-search-label{max-width:none}.lex-docs-admin{flex-direction:column;align-items:stretch}.lex-docs-admin .btn{text-align:center}.lex-library-tabs{display:grid;grid-template-columns:1fr 1fr;width:100%;gap:4px}.lex-library-tabs button{font-size:11px;padding:11px 6px;white-space:normal}}
-
-</style>
+<title>Lex Studium — El Derecho, más claro</title>
+<meta name="theme-color" content="#f4f2e9">
+<meta name="description" content="Tu espacio para estudiar Derecho ecuatoriano. Consulta fuentes oficiales, guarda tus normas y practica con tus propios apuntes.">
+<script>
+(()=>{const d=new URLSearchParams(location.search).get('design');document.documentElement.dataset.design=['archivo','foro','orbita'].includes(d)?d:'archivo';try{document.documentElement.dataset.theme=localStorage.getItem('lexAppearance')==='dark'?'dark':'light'}catch{}})();
+</script>
+<link rel="preload" href="materiales/identidad/manrope.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="materiales/identidad/fraunces.woff" as="font" type="font/woff" crossorigin>
+<link rel="stylesheet" href="experience.css">
 </head>
 <body>
+<a class="skip-link" href="#mainContent">Ir al contenido</a>
 
 <div id="app" class="app">
   <aside class="sidebar" aria-label="Navegación principal">
-    <div class="brand">
-      <div class="brandmark">§</div>
-      <div class="brandtext">Lex Studium<small>Tu espacio jurídico</small></div>
-    </div>
-    <nav class="nav">
-      <button class="active" data-page="biblioteca" onclick="go('biblioteca',this)"><span class="ico">§</span><span>Biblioteca</span></button>
-      <button data-page="practicar" onclick="go('practicar',this)"><span class="ico">✎</span><span>Simulador</span></button>
-      <button data-page="comunidad" onclick="go('comunidad',this)"><span class="ico">◌</span><span>Comunidad</span></button>
+    <button class="brand" type="button" onclick="goById('biblioteca')" aria-label="Lex Studium, volver a Biblioteca">
+      <span class="brandmark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M8 8v24h24M15 8v17h17M22 8v10h10" stroke="currentColor" stroke-width="2.7"/><path d="m8 32 24-24" stroke="currentColor" stroke-width="1.2" opacity=".45"/></svg></span>
+      <span class="brandtext">Lex Studium<small>El Derecho, más claro.</small></span>
+    </button>
+    <nav class="nav" aria-label="Tu espacio de estudio">
+      <button class="active" data-page="biblioteca" aria-current="page" onclick="go('biblioteca',this)"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h6a3 3 0 0 1 3 3v13a4 4 0 0 0-4-3H4zm16 0h-4a3 3 0 0 0-3 3v13a4 4 0 0 1 4-3h3z"/></svg></span><span>Biblioteca</span></button>
+      <button data-page="practicar" onclick="go('practicar',this)"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m15 4 5 5M4 20l5-1L21 7a2 2 0 0 0-5-5L4 14zm0 0 1-6"/></svg></span><span>Simulador</span></button>
+      <button data-page="comunidad" onclick="go('comunidad',this)"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 16H4l-2 4V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3M11 10h9a2 2 0 0 1 2 2v10l-4-3h-7a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2Z"/></svg></span><span>Comunidad</span></button>
     </nav>
-    <button class="account-shortcut" onclick="goById('perfil')" title="Mi espacio local" aria-label="Mi espacio local">◉</button>
+    <button class="account-shortcut" onclick="goById('perfil')" title="Mi espacio local" aria-label="Mi espacio local"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 22v-3a8 8 0 0 1 16 0v3"/></svg></button>
     <div class="sidebar-spacer"></div>
-    <div class="side-profile" onclick="goById('perfil')">
-      <div id="sideAvatar"></div>
-      <div><strong id="sideName">Estudiante</strong><small>Preferencias locales</small></div>
-    </div>
+    <button class="side-profile" type="button" onclick="goById('perfil')" aria-label="Abrir mi espacio local">
+      <span id="sideAvatar"></span>
+      <span><strong id="sideName">Estudiante</strong><small>Tu espacio personal <span aria-hidden="true"><svg class="icon-arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M5 19 19 5M5 5h14v14"/></svg></span></small></span>
+    </button>
   </aside>
 
-  <main class="main">
+  <main class="main" id="mainContent">
     <header class="workspace-topbar">
-      <div class="workspace-crumb"><span class="crumb-dot"></span> UN ESPACIO SIMPLE PARA APRENDER DERECHO</div>
-      <div class="workspace-tools"><span class="top-status">Acceso libre · sin registro</span>
+      <div class="workspace-crumb"><span id="workspaceSection">Biblioteca</span></div>
+      <div class="workspace-tools">
         <button type="button" class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Cambiar apariencia" aria-label="Cambiar apariencia"><span id="themeIcon">☾</span><span id="themeText">Modo oscuro</span></button>
       </div>
     </header>
@@ -676,63 +46,62 @@ body{
     <section id="biblioteca" class="page active">
       <div class="library-hero">
         <div class="hero-copy">
-          <div class="eyebrow">LEX STUDIUM / ECUADOR</div>
-          <h2>Aprende Derecho<br><em>sin perderte.</em></h2>
-          <p>Consulta legislación ecuatoriana, practica con simuladores y organiza tus normas favoritas en una interfaz más amable, clara y moderna.</p>
-          <div class="hero-highlights"><span>Normas y códigos</span><span>Estudio más claro</span></div>
+          <h1 class="hero-title">El Derecho,<br><em>más claro.</em></h1>
+          <p class="hero-description">Fuentes oficiales y práctica con tus apuntes. Un espacio para entender, a tu ritmo.</p>
         </div>
         <div class="hero-side" aria-hidden="true">
-          <div class="hero-seal">
-            <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-             <path d="M60 22v72M31 42h58M42 42l-18 30h36L42 42ZM78 42 60 72h36L78 42Z" stroke="#bfd3ff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-             <path d="M43 97h34M31 104h58" stroke="#bfd3ff" stroke-width="5" stroke-linecap="round"/>
-             <circle cx="60" cy="21" r="7" stroke="#bfd3ff" stroke-width="4"/>
-            </svg>
+          <div class="lex-art">
+            <div class="art-orbit"></div>
+            <div class="art-index">§</div>
+            <div class="art-book book-one"><span class="book-label">LEX / ECUADOR</span><span class="book-glyph">§</span><span class="book-rule"></span><span class="book-label">LEER</span></div>
+            <div class="art-book book-two"><span class="book-label">IDEAS EN ORDEN</span><span class="book-glyph">¶</span><span class="book-rule"></span><span class="book-label">ENTENDER</span></div>
+            <div class="art-book book-three"><span class="book-label">TU PROPIO CRITERIO</span><span class="book-glyph">∴</span><span class="book-rule"></span><span class="book-label">ARGUMENTAR</span></div>
           </div>
-          <div class="library-count"><span>Documentos disponibles</span><b id="visibleLawCount">0</b></div>
         </div>
-        <div class="library-count mobile-count"><span>Documentos disponibles</span><b id="mobileLawCount">0</b></div>
       </div>
       <div class="lex-library-tabs" role="tablist" aria-label="Secciones de la biblioteca">
-        <button id="lexTabLaws" class="active" role="tab" aria-selected="true" onclick="lexSwitchShelf('leyes')"><span aria-hidden="true">⚖️</span> Normativa oficial</button>
-        <button id="lexTabFiles" role="tab" aria-selected="false" onclick="lexSwitchShelf('archivos')"><span aria-hidden="true">📚</span> Archivos compartidos</button>
+        <button id="lexTabLaws" class="active" role="tab" aria-selected="true" aria-controls="lexShelfLaws" onclick="lexSwitchShelf('leyes')">Normativa oficial</button>
+        <button id="lexTabFiles" role="tab" aria-selected="false" aria-controls="lexShelfFiles" tabindex="-1" onclick="lexSwitchShelf('archivos')">Archivos compartidos</button>
       </div>
-      <div id="lexShelfLaws">
-      <div class="card catalog-card">
-        <div class="catalog-header">
-          <div><h3>Explorar legislación</h3><p>Filtra por área, tipo de documento o tus favoritos.</p></div>
-          <div class="catalog-chip">Biblioteca abierta</div>
-        </div>
+      <div id="lexShelfLaws" role="tabpanel" aria-labelledby="lexTabLaws">
+      <div class="card catalog-card" id="catalog">
+        <div class="catalog-header"><h2>Encuentra tu norma.</h2><span class="sr-only" id="visibleLawCount">41</span><span class="sr-only" id="mobileLawCount">41</span></div>
         <div class="library-toolbar">
-          <div class="filter-field search-field"><label for="lawSearch">Buscar norma o tema</label><input id="lawSearch" class="control" placeholder="Código Civil, Constitución..." oninput="renderLibrary()"></div>
-          <div class="filter-field"><label for="lawArea">Área jurídica</label><select id="lawArea" class="control" onchange="renderLibrary()"></select></div>
-          <div class="filter-field"><label for="lawType">Tipo de documento</label><select id="lawType" class="control" onchange="renderLibrary()"></select></div>
-          <div class="filter-field"><label for="lawSaved">Mostrar</label><select id="lawSaved" class="control" onchange="renderLibrary()"><option value="all">Todos</option><option value="saved">Mis guardados</option></select></div>
+          <div class="filter-field search-field"><label for="lawSearch" class="sr-only">Buscar norma o tema</label><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg><input id="lawSearch" class="control" type="search" placeholder="Buscar norma o tema" oninput="renderLibrary()" aria-controls="lawGrid" aria-describedby="libraryResultStatus"></div>
+          <details class="library-advanced" id="libraryAdvanced"><summary>Filtrar <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg></summary>
+            <div class="library-filter-fields">
+              <div class="filter-field"><label for="lawArea">Área jurídica</label><select id="lawArea" class="control" onchange="renderLibrary()"></select></div>
+              <div class="filter-field"><label for="lawType">Tipo</label><select id="lawType" class="control" onchange="renderLibrary()"></select></div>
+              <div class="filter-field"><label for="lawSaved">Mostrar</label><select id="lawSaved" class="control" onchange="renderLibrary()"><option value="all">Todas las normas</option><option value="saved">Mis favoritos</option></select></div>
+              <button class="quiet-link" id="libraryReset" onclick="resetLibraryFilters()">Limpiar filtros</button>
+            </div>
+          </details>
         </div>
-        <div class="catalog-note">Fuentes oficiales e institucionales de Ecuador. Enlaces revisados el 08/11/2026. La fecha de publicación de una edición <strong>no garantiza</strong> que incluya las reformas más recientes; confirma siempre el texto vigente en el Registro Oficial. Algunas fichas corresponden a portales temáticos.</div>
-        <div id="lawGrid" class="law-grid stagger"></div>
+        <p id="libraryResultStatus" class="library-result-status" role="status" aria-live="polite"></p>
+        <details class="catalog-note"><summary>Fuentes oficiales · contrasta siempre las reformas vigentes <span aria-hidden="true">+</span></summary><p>Fuentes oficiales e institucionales de Ecuador. Enlaces revisados el 08/11/2026. La fecha de publicación de una edición <strong>no garantiza</strong> que incluya las reformas más recientes; confirma siempre el texto vigente en el Registro Oficial. Algunas fichas corresponden a portales temáticos.</p></details>
+        <div id="lawGrid" class="law-grid"></div>
+        <div class="library-more"><button id="lawLoadMore" class="btn btn-outline" type="button" onclick="loadMoreLaws()">Mostrar más normas</button></div>
       </div>
       </div>
-      <section id="lexShelfFiles" class="lex-docs-shell hidden" aria-label="Archivos compartidos">
+      <section id="lexShelfFiles" class="lex-docs-shell hidden" role="tabpanel" aria-labelledby="lexTabFiles">
         <div class="lex-docs-head">
           <div>
-            <div class="lex-docs-kicker">RECURSOS COMPARTIDOS</div>
             <h3>Material para estudiar y compartir</h3>
             <p>Apuntes, guías y documentos subidos por la administración. Puedes consultarlos y descargarlos gratuitamente.</p>
           </div>
-          <div class="lex-docs-illustration" aria-hidden="true">📁</div>
+          <div class="lex-docs-illustration" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 6h7l2 3h9v11H3Z"/><path d="M3 9V4h7l2 3h9v2"/></svg></div>
         </div>
         <div class="lex-docs-tools">
           <label class="lex-docs-search-label" for="lexDocsSearch">Buscar archivo
             <input class="control" id="lexDocsSearch" placeholder="Ej.: Derecho Civil, guía, examen..." oninput="lexRenderDocuments()">
           </label>
-          <button class="btn btn-outline" type="button" onclick="lexLoadDocuments(true)">↻ Actualizar</button>
+          <button class="btn btn-outline" type="button" onclick="lexLoadDocuments(true)"><svg class="icon-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v6h-6M4 17v-6h6M5 8a8 8 0 0 1 14-3l1 2M4 17l1 2a8 8 0 0 0 14-3"/></svg> Actualizar</button>
         </div>
         <div id="lexDocsStatus" class="lex-docs-status" role="status">Abre esta sección para consultar los materiales.</div>
         <div id="lexDocsGrid" class="lex-docs-grid" aria-live="polite"></div>
         <div class="lex-docs-admin">
           <div><strong>¿Administras Lex Studium?</strong><p>Sube documentos desde tu cuenta de GitHub. Aparecerán aquí para todo el público.</p></div>
-          <a class="btn btn-soft" href="https://github.com/cuentautmach-svg/lex-studium/upload/main/materiales" target="_blank" rel="noopener noreferrer">Subir archivos en GitHub ↗</a>
+          <a class="btn btn-soft" href="https://github.com/cuentautmach-svg/lex-studium/upload/main/materiales" target="_blank" rel="noopener noreferrer">Subir archivos en GitHub <svg class="icon-arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M5 19 19 5M5 5h14v14"/></svg></a>
         </div>
         <p class="lex-docs-footnote">Solo comparte archivos que tengas permiso de publicar. No subas información privada ni datos personales de estudiantes. Los documentos son públicos.</p>
       </section>
@@ -741,65 +110,43 @@ body{
     <!-- PRACTICAR -->
     <section id="practicar" class="page">
       <div class="practice-v6">
-        <header class="practice-heading">
-          <div>
-            <span class="practice-kicker">Evaluaciones</span>
-            <h2>Crea tu práctica ideal.</h2>
-            <p>Configura tu práctica con el tema, el tipo de preguntas y el contenido que deseas repasar, de una forma visualmente más cómoda.</p>
-          </div>
-          <div class="practice-summary">
-            <span>Promedio registrado</span>
-            <b id="practiceAvg">0%</b>
-            <small id="draftStatus">Borrador local</small>
-          </div>
-        </header>
-
-        <div class="practice-paper">
-          <section class="practice-step">
-            <div class="step-index">01</div>
-            <div class="step-body">
-              <div class="step-title"><h3>Materia y alcance</h3><p>Define exactamente qué quieres estudiar.</p></div>
+        <header class="practice-heading"><h2>Practica a tu ritmo.</h2><p>Empieza por tus apuntes. Lo demás, paso a paso.</p></header>
+        <div class="practice-flowbar">
+          <nav class="practice-flow-nav" aria-label="Pasos de la práctica"><button data-practice-jump="0"><span>1</span><span>Material</span></button><button data-practice-jump="1"><span>2</span><span>Materia</span></button><button data-practice-jump="2"><span>3</span><span>Práctica</span></button></nav>
+          <div class="practice-flow-meta sr-only"><p id="practiceStepLabel" role="status">Paso 1 de 3 · Tu material</p><progress id="practiceStepProgress" max="3" value="1" aria-label="Progreso de configuración"></progress></div>
+        </div>
+        <div id="practiceFlow" class="practice-paper">
+          <section class="practice-step" data-practice-step="0" data-step-title="Tu material">
+            <div class="step-body"><div class="step-title"><h3>¿Qué quieres repasar?</h3><p>Pega tus apuntes o artículos. La evaluación se basará en ese contenido.</p></div>
+              <label class="sr-only" for="studyText">Contenido de estudio</label><textarea id="studyText" class="control study-editor" placeholder="Pega aquí el contenido que quieres entender mejor…" oninput="savePracticeDraft()" aria-describedby="studyDraftHelp"></textarea>
+              <div class="study-foot"><span id="studyDraftHelp">Borrador guardado en este dispositivo.</span><button class="quiet-link" type="button" onclick="loadDemo()">Usar texto de ejemplo</button></div>
+            </div>
+          </section>
+          <section class="practice-step" data-practice-step="1" data-step-title="Materia y alcance" hidden>
+            <div class="step-body"><div class="step-title"><h3>Dale contexto a tu práctica.</h3><p>Elige la materia y, si lo necesitas, delimita el tema.</p></div>
               <div class="practice-fields">
-                <div><label class="lbl">Área jurídica</label><select id="subject" class="control" onchange="updateSources();savePracticeDraft()"></select></div>
-                <div><label class="lbl">Fuente o código</label><select id="sourceType" class="control" onchange="savePracticeDraft()"></select></div>
-                <div class="wide-field"><label class="lbl">Capítulo, artículos o tema</label><input id="range" class="control" placeholder="Ej.: artículos 1 al 15 · capítulo 2 · personas naturales" oninput="savePracticeDraft()"></div>
+                <div><label class="lbl" for="subject">Materia</label><select id="subject" class="control" onchange="updateSources();savePracticeDraft()"></select></div>
+                <div><label class="lbl" for="sourceType">Fuente o código</label><select id="sourceType" class="control" onchange="savePracticeDraft()"></select></div>
+                <div class="wide-field"><label class="lbl" for="range">Tema o artículos <span class="optional-label">(opcional)</span></label><input id="range" class="control" placeholder="Ej.: personas naturales, artículos 1 al 15" oninput="savePracticeDraft()"></div>
               </div>
             </div>
           </section>
-
-          <section class="practice-step">
-            <div class="step-index">02</div>
-            <div class="step-body">
-              <div class="step-title"><h3>Configuración</h3><p>Ajusta el nivel y el formato de la prueba.</p></div>
+          <section class="practice-step" data-practice-step="2" data-step-title="Tu práctica" hidden>
+            <div class="step-body"><div class="step-title"><h3>Elige cómo practicar.</h3><p>Puedes empezar con estos ajustes y cambiarlos cuando quieras.</p></div>
               <div class="practice-fields four">
-                <div><label class="lbl">Dificultad</label><select id="difficulty" class="control" onchange="savePracticeDraft()"><option>Fácil</option><option selected>Media</option><option>Difícil</option><option>Nivel examen</option></select></div>
-                <div><label class="lbl">Preguntas</label><select id="count" class="control" onchange="savePracticeDraft()"><option>5</option><option selected>10</option><option>15</option><option>20</option></select></div>
-                <div><label class="lbl">Orden</label><select id="order" class="control" onchange="savePracticeDraft()"><option value="mix">Entremezcladas</option><option value="source">Según el contenido</option></select></div>
-                <div><label class="lbl">Formato</label><select id="type" class="control" onchange="savePracticeDraft()"><option value="mixed">Mixta</option><option value="mcq">Opción múltiple</option><option value="tf">Verdadero / falso</option><option value="open">Preguntas abiertas</option></select></div>
+                <div><label class="lbl" for="count">Preguntas</label><select id="count" class="control" onchange="savePracticeDraft()"><option>5</option><option selected>10</option><option>15</option><option>20</option></select></div>
+                <div><label class="lbl" for="type">Formato</label><select id="type" class="control" onchange="savePracticeDraft()"><option value="mixed">Mixta</option><option value="mcq">Opción múltiple</option><option value="tf">Verdadero / falso</option><option value="open">Preguntas abiertas</option></select></div>
               </div>
-              <div style="margin-top:10px"><label class="lbl">Indicaciones adicionales</label><input id="instruction" class="control" placeholder="Ej.: prioriza conceptos, artículos y diferencias" oninput="savePracticeDraft()"></div>
+              <details class="practice-advanced" id="practiceAdvanced"><summary>Más opciones</summary><div class="practice-fields">
+                <div><label class="lbl" for="difficulty">Dificultad</label><select id="difficulty" class="control" onchange="savePracticeDraft()"><option>Fácil</option><option selected>Media</option><option>Difícil</option><option>Nivel examen</option></select></div>
+                <div><label class="lbl" for="order">Orden</label><select id="order" class="control" onchange="savePracticeDraft()"><option value="mix">Entremezcladas</option><option value="source">Según el contenido</option></select></div>
+                <div class="wide-field"><label class="lbl" for="instruction">Indicaciones adicionales</label><input id="instruction" class="control" placeholder="Ej.: prioriza conceptos y diferencias" oninput="savePracticeDraft()"></div>
+              </div></details>
             </div>
           </section>
-
-          <section class="practice-step">
-            <div class="step-index">03</div>
-            <div class="step-body">
-              <div class="step-title"><h3>Material de estudio</h3><p>La evaluación se construirá únicamente con el contenido que incluyas aquí.</p></div>
-              <textarea id="studyText" class="control study-editor" placeholder="Pega tus apuntes, artículos, resumen o contenido del capítulo..." oninput="savePracticeDraft()"></textarea>
-              <div class="study-foot">
-                <span>Tu borrador se guarda automáticamente en este navegador.</span>
-                <button class="quiet-link" onclick="loadDemo()">Usar texto de ejemplo</button>
-              </div>
-            </div>
-          </section>
-
-          <div class="practice-submit">
-            <div>
-              <strong>Listo para practicar</strong>
-              <span>El examen se abrirá en una pestaña independiente. Si el navegador la bloquea, Lex Studium abrirá un modo de examen en esta misma pestaña.</span>
-            </div>
-            <button class="btn btn-primary exam-button" onclick="openExam()">Generar evaluación <span>↗</span></button>
-          </div>
+          <p id="practiceFlowError" role="alert"></p>
+          <div class="practice-flow-controls"><button id="practicePrevious" class="btn btn-outline" type="button" hidden>Volver</button><button id="practiceNext" class="btn btn-primary" type="button">Continuar</button></div>
+          <div class="practice-submit" hidden><div><strong>Tu práctica está lista.</strong><span>Se abrirá en otra pestaña. Si el navegador la bloquea, continuará aquí.</span><span id="draftStatus" class="sr-only">Borrador local</span><b id="practiceAvg" class="sr-only">0%</b></div><button class="btn btn-primary exam-button" onclick="openExam()">Generar evaluación</button></div>
         </div>
       </div>
     </section>
@@ -807,10 +154,9 @@ body{
     <!-- COMUNIDAD: sin simulación de usuarios ni publicaciones -->
     <section id="comunidad" class="page">
       <div class="coming-shell">
-        <div class="coming-overline">Comunidad Lex Studium · En preparación</div>
         <div class="coming-symbol" aria-hidden="true">§</div>
         <h2>Las mejores ideas se construyen en comunidad.</h2>
-        <p>Estamos preparando un espacio para debates jurídicos, dudas, casos y aportes de estudiantes. Todavía no hay cuentas, publicaciones ni comentarios compartidos.</p>
+        <p>Un lugar para compartir preguntas, contrastar ideas y aprender con otros estudiantes. Estamos preparando ese próximo capítulo.</p>
         <div class="coming-state"><span class="coming-dot"></span> Próximamente</div>
         <button class="btn btn-primary" onclick="goById('biblioteca')">Explorar la biblioteca</button>
       </div>
@@ -854,11 +200,11 @@ body{
           <div class="card">
             <div class="section-heading"><div><h3>Información del perfil</h3><p>Opcional. Se guarda solo en este navegador, sin registro ni contraseña.</p></div></div>
             <div class="form-grid">
-              <div><label class="lbl">Nombre visible</label><input id="profileName" class="control"></div>
-              <div><label class="lbl">Universidad / institución</label><input id="institution" class="control"></div>
-              <div><label class="lbl">Semestre o nivel</label><input id="semester" class="control"></div>
-              <div><label class="lbl">Área de interés</label><input id="interest" class="control"></div>
-              <div class="full"><label class="lbl">Biografía</label><textarea id="bio" class="control" style="min-height:105px" placeholder="Temas que quieres estudiar o reforzar."></textarea></div>
+              <div><label class="lbl" for="profileName">Nombre visible</label><input id="profileName" class="control"></div>
+              <div><label class="lbl" for="institution">Universidad / institución</label><input id="institution" class="control"></div>
+              <div><label class="lbl" for="semester">Semestre o nivel</label><input id="semester" class="control"></div>
+              <div><label class="lbl" for="interest">Área de interés</label><input id="interest" class="control"></div>
+              <div class="full"><label class="lbl" for="bio">Biografía</label><textarea id="bio" class="control" style="min-height:105px" placeholder="Temas que quieres estudiar o reforzar."></textarea></div>
             </div>
             <button class="btn btn-primary" style="margin-top:13px" onclick="saveProfile()">Guardar cambios</button>
           </div>
@@ -868,6 +214,7 @@ body{
   </main>
 </div>
 
+<script src="library-view.js"></script>
 <script>
 const subjectData={
   "Derecho Constitucional":["Constitución de la República","Jurisprudencia constitucional","Apuntes / doctrina"],
@@ -1232,11 +579,18 @@ function avatarHTML(name,img,cls="avatar-img"){
 function go(id,btn){
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
   document.getElementById(id).classList.add("active");
-  document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll(".nav button").forEach(b=>{b.classList.remove("active");b.removeAttribute("aria-current")});
   (btn||document.querySelector(`.nav button[data-page="${id}"]`))?.classList.add("active");
-  window.scrollTo({top:0,behavior:"smooth"});
+  document.querySelector('.nav button.active')?.setAttribute('aria-current','page');
+  document.getElementById('workspaceSection').textContent=({biblioteca:'Biblioteca',practicar:'Simulador',comunidad:'Comunidad',perfil:'Mi espacio'})[id]||'Lex Studium';
+  window.scrollTo({top:0,behavior:(matchMedia("(prefers-reduced-motion: reduce)").matches||document.documentElement.dataset.input==="keyboard")?"auto":"smooth"});
 }
 function goById(id){go(id,document.querySelector(`.nav button[data-page="${id}"]`))}
+function exploreLibrary(){
+  goById('biblioteca');lexSwitchShelf('leyes');
+  document.getElementById('catalog').scrollIntoView({block:'start',behavior:(matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.dataset.input==='keyboard')?'auto':'smooth'});
+  document.getElementById('lawSearch').focus({preventScroll:true});
+}
 
 /* LIBRARY */
 
@@ -1295,31 +649,6 @@ function toggleLawSaved(name){
   save(d);renderLibrary();refreshStats();
 }
 
-function renderLibrary(){
-  const q=(document.getElementById("lawSearch")?.value||"").toLowerCase();
-  const area=document.getElementById("lawArea")?.value||"Todas las áreas";
-  const type=document.getElementById("lawType")?.value||"Todos los tipos";
-  const savedOnly=(document.getElementById("lawSaved")?.value||"all")==="saved";
-  const savedSet=new Set(store().savedLaws||[]);
-  const filtered=laws.map((law,i)=>({law,i})).filter(({law:x})=>(!q||x.join(" ").toLowerCase().includes(q))&&(area==="Todas las áreas"||x[1]===area)&&(type==="Todos los tipos"||x[2]===type)&&(!savedOnly||savedSet.has(x[0])));
-  document.getElementById("visibleLawCount").textContent=filtered.length;
-  const mobileCount=document.getElementById("mobileLawCount");if(mobileCount)mobileCount.textContent=filtered.length;
-  document.getElementById("lawGrid").innerHTML=filtered.length?filtered.map(({law:x,i})=>{
-    const m=lawSources[i];
-    const label=/^https?:\/\//.test(m.url)?'Abrir fuente oficial ↗':'Fuente no disponible';
-    const isSaved=savedSet.has(x[0]);
-    return `<article class="law-card">
-      <div class="law-top">${lawVisual(x[1],x[0])}<div class="law-top-actions"><span class="badge">${esc(x[1])}</span><button class="save-law ${isSaved?'saved':''}" aria-label="${isSaved?'Quitar de favoritos':'Guardar en favoritos'}" title="Favoritos locales" onclick="toggleSavedByIndex(${i})">${isSaved?'★':'☆'}</button></div></div>
-      <h3>${esc(x[0])}</h3><p>${esc(x[3])}</p>
-      <div class="law-meta"><span>Revisión de enlace: ${esc(m.review)}</span>${m.edition?`<span class="edition">Edición / referencia: ${esc(m.edition)}</span>`:''}</div>
-      <p class="law-note">${esc(m.note)}</p>
-      <div class="law-actions">
-        <a class="btn btn-soft" href="${esc(m.url)}" target="_blank" rel="noopener noreferrer">${label}</a>
-        ${m.pdf?`<a class="btn btn-outline" href="${esc(m.pdf)}" target="_blank" rel="noopener noreferrer">Ver PDF ↗</a>`:''}
-      </div>
-    </article>`;
-  }).join(''):'<div class="empty">No encontramos documentos con esos filtros.</div>';
-}
 function toggleSavedByIndex(i){if(laws[i])toggleLawSaved(laws[i][0]);}
 
 function clean(t){return t.replace(/\s+/g," ").trim()}
@@ -1504,7 +833,8 @@ function refreshAll(){renderProfile();refreshStats();renderLibrary()}
 function applyTheme(theme){
   document.documentElement.dataset.theme=theme;
   const isDark=theme==="dark";
-  document.getElementById("themeIcon").textContent=isDark?"☀":"☾";
+  document.getElementById("themeIcon").innerHTML=isDark?'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1 1m12 12 1 1M5 19l1-1M18 6l1-1"/></svg>':'<svg viewBox="0 0 24 24"><path d="M20 15A9 9 0 0 1 9 4 9 9 0 1 0 20 15Z"/></svg>';
+  document.getElementById('themeToggle').setAttribute('aria-pressed',String(isDark));
   document.getElementById("themeText").textContent=isDark?"Modo claro":"Modo oscuro";
 }
 function toggleTheme(){
@@ -1519,80 +849,10 @@ if(location.hash.startsWith("#exam=")){
   catch(e){location.hash="";alert("La evaluación no se pudo abrir. Genera una nueva desde Simulador.")}
 }
 
-/* Catálogo público: los archivos se publican desde la carpeta materiales/ del repositorio. */
-const LEX_MATERIALS_OWNER='cuentautmach-svg';
-const LEX_MATERIALS_REPO='lex-studium';
-let lexMaterials=[];
-let lexMaterialsLoaded=false;
-const lexMaterialTypes=/\.(pdf|docx?|pptx?|xlsx?|odt|ods|txt|md|png|jpe?g|webp|zip|epub)$/i;
-function lexSwitchShelf(which){
-  const showFiles=which==='archivos';
-  document.getElementById('lexShelfLaws').classList.toggle('hidden',showFiles);
-  document.getElementById('lexShelfFiles').classList.toggle('hidden',!showFiles);
-  const a=document.getElementById('lexTabLaws'),b=document.getElementById('lexTabFiles');
-  a.classList.toggle('active',!showFiles);b.classList.toggle('active',showFiles);
-  a.setAttribute('aria-selected',String(!showFiles));b.setAttribute('aria-selected',String(showFiles));
-  if(showFiles)lexLoadDocuments(false);
-}
-function lexNiceFileName(path){
-  return path.split('/').pop().replace(/\.[^.]+$/,'').replace(/[_-]+/g,' ').trim();
-}
-function lexFileURL(path){
-  return 'https://'+LEX_MATERIALS_OWNER+'.github.io/'+LEX_MATERIALS_REPO+'/'+path.split('/').map(encodeURIComponent).join('/');
-}
-function lexFileSize(n){
-  if(n<1024)return n+' B';
-  if(n<1024*1024)return (n/1024).toFixed(1)+' KB';
-  return (n/(1024*1024)).toFixed(1)+' MB';
-}
-function lexRenderDocuments(){
-  const box=document.getElementById('lexDocsGrid'),status=document.getElementById('lexDocsStatus');
-  if(!box||!status)return;
-  if(!lexMaterialsLoaded)return;
-  const q=document.getElementById('lexDocsSearch').value.toLocaleLowerCase('es');
-  const filtered=lexMaterials.filter(x=>x.path.toLocaleLowerCase('es').includes(q)||lexNiceFileName(x.path).toLocaleLowerCase('es').includes(q));
-  status.textContent=filtered.length+' archivo'+(filtered.length===1?' disponible':'s disponibles')+' para ver y descargar.';
-  if(!filtered.length){
-    box.innerHTML='<div class="lex-docs-empty"><strong>'+(q?'No encontramos archivos con esa búsqueda.':'Todavía no hay archivos compartidos.')+'</strong>'+(q?'Prueba otra palabra.':'La administración puede cargar el primer documento desde el botón de GitHub que aparece abajo.')+'</div>';
-    return;
-  }
-  box.innerHTML=filtered.map(x=>{
-    const extension=x.path.split('.').pop().toUpperCase();
-    const viewIcon=extension==='PDF'?'📕':/^(DOC|DOCX|ODT|TXT|MD)$/.test(extension)?'📝':/^(PPT|PPTX|ODP)$/.test(extension)?'📊':/^(PNG|JPG|JPEG|WEBP)$/.test(extension)?'🖼️':'📂';
-    const url=lexFileURL(x.path);
-    const folder=x.path.split('/').slice(1,-1).join(' / ')||'Material general';
-    const filename=x.path.split('/').pop();
-    return '<article class="lex-doc-card">'+
-      '<div class="lex-doc-badge"><span class="lex-doc-icon">'+viewIcon+'</span><span class="lex-doc-format">'+esc(extension)+'</span></div>'+
-      '<h4 class="lex-doc-name">'+esc(lexNiceFileName(x.path))+'</h4>'+
-      '<div class="lex-doc-context">'+esc(folder)+' · '+lexFileSize(x.size)+'</div>'+
-      '<div class="lex-doc-actions"><a class="btn btn-outline" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">Ver archivo ↗</a><a class="btn btn-primary" href="'+esc(url)+'" download="'+esc(filename)+'">Descargar ↓</a></div>'+
-      '</article>';
-  }).join('');
-}
-async function lexLoadDocuments(force){
-  if(lexMaterialsLoaded&&!force){lexRenderDocuments();return}
-  const status=document.getElementById('lexDocsStatus'),box=document.getElementById('lexDocsGrid');
-  if(!status||!box)return;
-  status.textContent='Consultando los archivos compartidos en GitHub…';box.innerHTML='';
-  try{
-    const api='https://api.github.com/repos/'+LEX_MATERIALS_OWNER+'/'+LEX_MATERIALS_REPO+'/git/trees/main?recursive=1';
-    const response=await fetch(api,{headers:{Accept:'application/vnd.github+json'}});
-    if(!response.ok)throw new Error('GitHub respondió '+response.status);
-    const data=await response.json();
-    if(!Array.isArray(data.tree))throw new Error('Listado no disponible');
-    lexMaterials=data.tree.filter(x=>x.type==='blob'&&x.path.startsWith('materiales/')&&lexMaterialTypes.test(x.path)&&!/^(_|README\.)/i.test(x.path.split('/').pop()));
-    lexMaterials.sort((a,b)=>a.path.localeCompare(b.path,'es',{sensitivity:'base'}));
-    lexMaterialsLoaded=true;
-    lexRenderDocuments();
-    if(data.truncated)status.textContent+=' Algunos elementos pueden faltar porque el repositorio es muy grande.';
-  }catch(err){
-    lexMaterialsLoaded=false;
-    status.textContent='Ahora no se pudo consultar el catálogo ('+err.message+'). Puedes reintentar.';
-    box.innerHTML='<div class="lex-docs-empty">También puedes consultar los documentos directamente en <a href="https://github.com/'+LEX_MATERIALS_OWNER+'/'+LEX_MATERIALS_REPO+'/tree/main/materiales" target="_blank" rel="noopener noreferrer">GitHub ↗</a>.</div>';
-  }
-}
 
 </script>
+<script src="shared-files.js"></script>
+<script src="simulator-flow.js"></script>
+<script src="learning-feedback.js"></script>
 </body>
 </html>

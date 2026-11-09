@@ -1,0 +1,116 @@
+/* The reading surface is calm; the three directions own navigation, type and rhythm. */
+[hidden]{display:none!important}
+body{font-size:16px}
+.brandtext{letter-spacing:-.03em}.hero-title{letter-spacing:-.035em}
+.workspace-topbar{min-height:44px}.workspace-crumb{font-size:12px}
+.sidebar .nav:before{display:none}
+.side-profile strong{font-size:12px}.side-profile small{font-size:11px}
+.control::placeholder{opacity:1;color:var(--muted)}
+input,textarea{caret-color:var(--blue)}
+a{text-underline-offset:4px}
+.art-book,.hero-side .art-book{box-shadow:none!important}
+.hero-side .art-book:after{display:none}
+.lex-library-tabs{margin-top:0}
+.lex-library-tabs button{font-size:13px}
+.library-toolbar{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:12px!important;align-items:start;margin-bottom:14px!important}
+.library-toolbar>.search-field{grid-column:1!important;min-width:0}
+.library-toolbar .search-field .control{padding:14px 16px 14px 44px;min-height:52px;font-size:16px}
+.search-field>svg{left:15px;bottom:17px;width:18px;height:18px}
+.library-advanced{min-width:0}
+.library-advanced>summary{display:flex;justify-content:center;align-items:center;gap:9px;min-height:52px;padding:12px 17px;border:1px solid var(--line);border-radius:6px;font-size:13px;font-weight:600;list-style:none;cursor:pointer;background:transparent;color:var(--ink)}
+.library-advanced>summary::-webkit-details-marker{display:none}
+.library-advanced>summary svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.6;fill:none}
+.library-advanced[open]{grid-column:1/-1;display:grid;grid-template-columns:1fr auto}
+.library-advanced[open]>summary{grid-column:2;grid-row:1;margin-top:-64px;align-self:start;background:var(--soft)}
+.library-filter-fields{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:16px;align-items:end;padding:20px 0 10px;min-width:0}
+.library-filter-fields>.filter-field{min-width:0}
+.library-filter-fields label{font-size:12px}
+.library-filter-fields .control{font-size:14px;min-height:48px}
+.library-filter-fields .quiet-link{min-height:48px;font-size:12px;white-space:nowrap}
+.library-result-status{font-size:12px;color:var(--muted);margin:0 0 11px;min-height:20px;font-variant-numeric:tabular-nums}
+.catalog-note{margin:0 0 12px;background:transparent}
+.catalog-note summary{font-size:12px;line-height:1.7;min-height:48px}
+.catalog-note p{font-size:13px;line-height:1.8;max-width:75ch}
+.catalog-header h2{margin:0}.catalog-card{scroll-margin-top:85px}
+.law-card-primary{display:grid;grid-template-columns:minmax(0,1fr) 44px auto;gap:18px;align-items:center;min-width:0}
+.law-heading{min-width:0}.law-heading h3{overflow-wrap:anywhere;max-width:unset}
+#lawGrid .law-summary{font-size:14px;line-height:1.75;max-width:72ch;margin:7px 0 0;color:var(--muted)}
+.save-law{display:grid;place-items:center;flex:none;min-height:44px;min-width:44px;width:44px;height:44px;border-radius:50%;color:var(--muted)}
+.save-law svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round}
+.save-law.saved{color:var(--blue);background:var(--teal-soft)}
+.law-card-main-action{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;min-width:90px;font:600 13px/1.4 var(--ui);color:var(--blue)}
+.law-card-main-action .icon-arrow{width:15px;height:15px}
+.law-source-unavailable{font-size:12px;color:var(--muted)}
+.law-details{min-width:0}
+.law-details>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:7px;width:max-content;max-width:100%;font:500 12px/1.7 var(--ui);min-height:44px;color:var(--muted)}
+.law-details>summary::-webkit-details-marker{display:none}
+.law-details>summary svg{width:14px;height:14px;stroke:currentColor;stroke-width:1.6;fill:none;flex:none}
+.law-details[open]>summary svg{transform:rotate(180deg)}
+.law-details-body{padding:4px 0 15px;max-width:75ch;font-size:13px;line-height:1.8}
+.law-reference{display:flex;flex-wrap:wrap;gap:15px 28px;margin:0 0 16px;font-size:12px}
+.law-reference>div{display:flex;flex-direction:column;gap:3px}
+.law-reference dt{color:var(--muted);font-weight:400}.law-reference dd{margin:0;color:var(--ink)}
+#lawGrid .law-note{font-size:13px;line-height:1.8;border:0;padding:0;margin:0;color:var(--note)}
+.law-details .law-actions{margin-top:17px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.law-details .law-actions span{color:var(--muted);font-size:12px;max-width:38ch}
+.law-details .law-actions a{font-size:13px;flex:none}
+.library-more{display:flex;justify-content:center;padding:9px 0 0}
+.library-more .btn{min-height:48px;font-size:13px}
+.lex-docs-admin{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:26px;padding-top:22px;border-top:1px solid var(--line);font-size:13px}
+.lex-docs-admin strong{font-size:14px}.lex-docs-admin p{font-size:12px;color:var(--muted);margin:6px 0 0;line-height:1.8}
+.lex-docs-illustration svg{height:46px;width:46px;stroke:var(--blue);stroke-width:1.4;fill:none}
+.file-outline{height:30px;width:30px;stroke:currentColor;stroke-width:1.5;fill:none}
+.optional-label{font-weight:400;color:var(--muted)}
+#practicar .practice-heading h2{font-size:2.375rem;color:var(--ink);letter-spacing:-.035em}
+#practicar .practice-heading p{font-size:15px;color:var(--muted)}
+.practice-flowbar{border:0!important;padding-bottom:0!important;margin-bottom:25px!important}
+.practice-flow-meta.sr-only{position:absolute;height:1px;width:1px;overflow:hidden;clip:rect(0,0,0,0)}
+#practiceFlow .study-editor{font-size:16px!important;line-height:1.8}
+#practiceFlow .practice-submit{border-top:0;margin-top:0}
+#practiceFlow .practice-submit .sr-only{position:absolute}
+#practiceFlow .practice-flow-controls:has(#practiceNext[hidden]){border:0;margin-top:10px;padding:0}
+html[data-design=foro] #practiceFlow{padding:24px;background:var(--paper);border-radius:12px;border:1px solid var(--line)}
+html[data-design=orbita] #practiceFlow{padding:24px;background:var(--paper);border-radius:12px;border:0}
+html[data-design=orbita] #practicar .practice-heading{background:var(--hero-bg);border:0;border-radius:12px;padding:24px}
+html[data-design=orbita] #practicar .practice-heading h2{color:var(--hero-ink)}
+html[data-design=orbita] #practicar .practice-heading p{color:var(--hero-muted)}
+.exam-answer-progress{font-size:12px;color:var(--muted);margin:12px 0;font-variant-numeric:tabular-nums}
+.exam-v6-head{background:transparent;border:0;padding:10px 0 24px}
+.exam-v6-head h1{font-size:2rem;letter-spacing:-.03em}
+.exam-v6-head>div>span{font-size:12px;letter-spacing:0;text-transform:none}
+.exam-v6-actions{box-shadow:none}
+:root[data-input=keyboard]{scroll-behavior:auto}
+:root[data-input=keyboard] *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+:root[data-input=keyboard] :is(.btn,.nav button,.save-law,.theme-toggle,.account-shortcut):active{transform:none}
+.btn,.nav button,.save-law,.theme-toggle,.account-shortcut{transition:transform 140ms cubic-bezier(.23,1,.32,1),opacity 140ms cubic-bezier(.23,1,.32,1)}
+.page.active{animation:none}
+@media(hover:hover) and (pointer:fine){.law-details>summary:hover{color:var(--ink)}.library-advanced>summary:hover{background:var(--soft)}}
+@media(max-width:700px){
+  .library-toolbar{gap:9px!important}.library-advanced>summary{padding:12px;min-width:85px;font-size:12px}
+  .library-toolbar .search-field .control{font-size:16px;padding-left:40px;padding-right:10px}
+  .library-filter-fields{grid-template-columns:1fr;gap:15px;padding-top:18px}
+  .library-filter-fields .control{font-size:16px}.library-filter-fields .quiet-link{justify-self:start}
+  #lawGrid .law-card-primary{grid-template-columns:minmax(0,1fr) 44px;gap:6px 12px;align-items:start}
+  #lawGrid .law-heading{grid-column:1;grid-row:1;padding-right:0}
+  #lawGrid .save-law{position:static;grid-column:2;grid-row:1;justify-self:end;margin-top:-6px}
+  #lawGrid .law-card-main-action{grid-column:1;grid-row:2;justify-self:start;padding:7px 0;min-height:44px;min-width:0}
+  #lawGrid .law-summary{font-size:14px;line-height:1.75;max-width:50ch}
+  #lawGrid .law-details{margin-top:0;padding-top:0}
+  #lawGrid .law-details>summary{font-size:12px}
+  .law-reference{gap:13px 22px}.law-details-body{padding-bottom:6px}
+  #practicar .practice-heading h2{font-size:2rem}
+  #practicar .practice-heading p{font-size:14px}
+  .lex-docs-admin{align-items:stretch;flex-direction:column}
+  html[data-design=foro] #practiceFlow,html[data-design=orbita] #practiceFlow{padding:20px 17px}
+  .exam-v6-head h1{font-size:1.75rem}
+}
+/* Keep appearance beside the account control, inside the sticky mobile header. */
+@media(max-width:600px){
+  html[data-design] .brand{width:max-content;max-width:calc(100vw - 140px)}
+  html[data-design] .workspace-topbar,html[data-design] .workspace-tools{display:contents}
+  html[data-design] .workspace-crumb{display:none}
+  html[data-design] .theme-toggle{position:fixed;top:10px;right:70px;z-index:35;width:44px;height:44px;padding:10px;background:var(--nav)}
+  html[data-design=foro] .theme-toggle{border-radius:8px}
+  html[data-design=orbita] .theme-toggle{color:#e5f4e9;border-color:#52785e;background:#142527}
+  html[data-design=orbita] .theme-toggle:hover{background:#203735}
+}

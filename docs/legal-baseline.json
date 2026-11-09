@@ -1,0 +1,47 @@
+{
+  "base": "62f2b01070b8de6371429b480d973a11969b7034",
+  "checks": [
+    {
+      "name": "Materias y fuentes",
+      "start": "const subjectData=",
+      "end": "\n};",
+      "sha256": "6fdb778703066a8afde9dabb11a561197c15ccfc98eccbbbdd64bfd9f2cdfea2"
+    },
+    {
+      "name": "Normas y descripciones jurídicas",
+      "start": "const laws=",
+      "end": "\n];",
+      "sha256": "e52aa528496e6e1551795aae6727774be97a04b7e91468964e1516cfbde3ca14"
+    },
+    {
+      "name": "Referencias, fechas y notas de vigencia",
+      "start": "const lawSources =",
+      "end": "\n];",
+      "sha256": "71c7e31dade1c14dc5438628b554ed6a2e1bbba40e5236c9dae6bb0938a7f685"
+    },
+    {
+      "name": "Preguntas de opción múltiple",
+      "start": "function mkMCQ(",
+      "end": "function mkTF(",
+      "sha256": "1224d4f1c9bef4ee95fc53ded77d19bdb7c07a57b3ff3c45eeb602c89a4c7654"
+    },
+    {
+      "name": "Preguntas verdadero/falso",
+      "start": "function mkTF(",
+      "end": "function mkOpen(",
+      "sha256": "58fbf1e770f95bff95e4aefb52707633cefa8231b63f011a4399d02fc54e44a6"
+    },
+    {
+      "name": "Generación de evaluaciones",
+      "start": "function buildQuizData(",
+      "end": "function encodeExamPayload(",
+      "sha256": "14746eeed10d48b4154e130a41cc5ea15569d45b58753264206cfc6e5b88a1e2"
+    },
+    {
+      "name": "Corrección y registro de resultados",
+      "start": "function checkStandaloneExam(",
+      "end": "function toggleStandaloneAnswers(",
+      "sha256": "b86051b6314bd8e9b2c196e3e5b77b94d8d3fd38c6cb9f44149e9c351f2e1c83"
+    }
+  ]
+}

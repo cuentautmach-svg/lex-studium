@@ -1,0 +1,17 @@
+{
+  "name": "lex-studium-visual",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "build:design": "node scripts/build-designs.mjs",
+    "test:design": "node scripts/review-designs-v2.mjs",
+    "test:content": "node scripts/verify-content.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}
