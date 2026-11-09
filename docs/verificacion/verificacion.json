@@ -1,0 +1,2274 @@
+{
+  "date": "2026-11-09T06:28:02.668Z",
+  "base": "http://127.0.0.1:4174",
+  "screenshots": [
+    {
+      "file": "archivo-biblioteca-escritorio.png",
+      "concept": "archivo",
+      "viewport": {
+        "width": 1280,
+        "height": 1000
+      },
+      "url": "http://127.0.0.1:4174/?design=archivo"
+    },
+    {
+      "file": "archivo-biblioteca-movil.png",
+      "concept": "archivo",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:4174/?design=archivo"
+    },
+    {
+      "file": "archivo-simulador-movil.png",
+      "concept": "archivo",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:4174/?design=archivo"
+    },
+    {
+      "file": "archivo-simulador-escritorio.png",
+      "concept": "archivo",
+      "viewport": {
+        "width": 1280,
+        "height": 1000
+      },
+      "url": "http://127.0.0.1:4174/?design=archivo"
+    },
+    {
+      "file": "archivo-oscuro-escritorio.png",
+      "concept": "archivo",
+      "viewport": {
+        "width": 1280,
+        "height": 1000
+      },
+      "url": "http://127.0.0.1:4174/?design=archivo"
+    },
+    {
+      "file": "archivo-oscuro-movil.png",
+      "concept": "archivo",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:4174/?design=archivo"
+    },
+    {
+      "file": "foro-biblioteca-escritorio.png",
+      "concept": "foro",
+      "viewport": {
+        "width": 1280,
+        "height": 1000
+      },
+      "url": "http://127.0.0.1:4174/?design=foro"
+    },
+    {
+      "file": "foro-biblioteca-movil.png",
+      "concept": "foro",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:4174/?design=foro"
+    },
+    {
+      "file": "foro-simulador-movil.png",
+      "concept": "foro",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:4174/?design=foro"
+    },
+    {
+      "file": "foro-simulador-escritorio.png",
+      "concept": "foro",
+      "viewport": {
+        "width": 1280,
+        "height": 1000
+      },
+      "url": "http://127.0.0.1:4174/?design=foro"
+    },
+    {
+      "file": "foro-oscuro-escritorio.png",
+      "concept": "foro",
+      "viewport": {
+        "width": 1280,
+        "height": 1000
+      },
+      "url": "http://127.0.0.1:4174/?design=foro"
+    },
+    {
+      "file": "foro-oscuro-movil.png",
+      "concept": "foro",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:4174/?design=foro"
+    },
+    {
+      "file": "orbita-biblioteca-escritorio.png",
+      "concept": "orbita",
+      "viewport": {
+        "width": 1280,
+        "height": 1000
+      },
+      "url": "http://127.0.0.1:4174/?design=orbita"
+    },
+    {
+      "file": "orbita-biblioteca-movil.png",
+      "concept": "orbita",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:4174/?design=orbita"
+    },
+    {
+      "file": "orbita-simulador-movil.png",
+      "concept": "orbita",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:4174/?design=orbita"
+    },
+    {
+      "file": "orbita-simulador-escritorio.png",
+      "concept": "orbita",
+      "viewport": {
+        "width": 1280,
+        "height": 1000
+      },
+      "url": "http://127.0.0.1:4174/?design=orbita"
+    },
+    {
+      "file": "orbita-oscuro-escritorio.png",
+      "concept": "orbita",
+      "viewport": {
+        "width": 1280,
+        "height": 1000
+      },
+      "url": "http://127.0.0.1:4174/?design=orbita"
+    },
+    {
+      "file": "orbita-oscuro-movil.png",
+      "concept": "orbita",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:4174/?design=orbita"
+    },
+    {
+      "file": "archivo-simulador-configuracion-escritorio.png",
+      "concept": "archivo",
+      "viewport": {
+        "width": 1280,
+        "height": 1000
+      },
+      "url": "http://127.0.0.1:4174/?design=archivo"
+    },
+    {
+      "file": "archivo-simulador-configuracion-movil.png",
+      "concept": "archivo",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:4174/?design=archivo"
+    },
+    {
+      "file": "archivo-evaluacion-corregida-movil.png",
+      "concept": "archivo",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "url": "http://127.0.0.1:4174/?design=archivo#exam=JTdCJTIydGl0bGUlMjIlM0ElMjJEZXJlY2hvJTIwQ29uc3RpdHVjaW9uYWwlMjIlMkMlMjJzb3VyY2UlMjIlM0ElMjJDb25zdGl0dWNpJUMzJUIzbiUyMGRlJTIwbGElMjBSZXAlQzMlQkFibGljYSUyMiUyQyUyMnJhbmdlJTIyJTNBJTIyQ29udGVuaWRvJTIwZGUlMjBlamVtcGxvJTIwcGFyYSUyMHJldmlzaSVDMyVCM24lMjIlMkMlMjJkaWZmaWN1bHR5JTIyJTNBJTIyTWVkaWElMjIlMkMlMjJpbnN0cnVjdGlvbiUyMiUzQSUyMiUyMiUyQyUyMnF1ZXN0aW9ucyUyMiUzQSU1QiU3QiUyMnR5cGUlMjIlM0ElMjJPcGNpJUMzJUIzbiUyMG0lQzMlQkFsdGlwbGUlMjIlMkMlMjJxJTIyJTNBJTIyQ29tcGxldGElMjBjb3JyZWN0YW1lbnRlJTNBJTIwJUUyJTgwJTlDTGElMjBzZXBhcmFjaSVDMyVCM24lMjBkZSUyMGZ1bmNpb25lcyUyMGJ1c2NhJTIwaW1wZWRpciUyMGxhJTIwY29uY2VudHJhY2klQzMlQjNuJTIwZGVsJTIwX19fX19fX19fXyUyMHklMjBwcm9tb3ZlciUyMGNvbnRyb2xlcyUyMHJlYyVDMyVBRHByb2Nvcy4lRTIlODAlOUQlMjIlMkMlMjJvcHRpb25zJTIyJTNBJTVCJTIycG9kZXIlMjIlMkMlMjJ0ZXh0byUyMiUyQyUyMmF1dG9yaWRhZGVzJTIyJTJDJTIyY29uc3RpdHVjaW9uYWxlcyUyMiU1RCUyQyUyMmFuc3dlciUyMiUzQSUyMnBvZGVyJTIyJTdEJTJDJTdCJTIydHlwZSUyMiUzQSUyMk9wY2klQzMlQjNuJTIwbSVDMyVCQWx0aXBsZSUyMiUyQyUyMnElMjIlM0ElMjJDb21wbGV0YSUyMGNvcnJlY3RhbWVudGUlM0ElMjAlRTIlODAlOUNMYXMlMjBnYXJhbnQlQzMlQURhcyUyMGNvbnN0aXR1Y2lvbmFsZXMlMjBzaXJ2ZW4lMjBwYXJhJTIwcHJvdGVnZXIlMjBkZXJlY2hvcyUyMGN1YW5kbyUyMGhhbiUyMF9fX19fX19fX18lMjB2dWxuZXJhZG9zJTIwbyUyMGFtZW5hemFkb3MuJUUyJTgwJTlEJTIyJTJDJTIyb3B0aW9ucyUyMiUzQSU1QiUyMm9yaWVudGFuJTIyJTJDJTIyc3VwcmVtYWMlQzMlQURhJTIyJTJDJTIyaW1wbGljYSUyMiUyQyUyMnNpZG8lMjIlNUQlMkMlMjJhbnN3ZXIlMjIlM0ElMjJzaWRvJTIyJTdEJTJDJTdCJTIydHlwZSUyMiUzQSUyMk9wY2klQzMlQjNuJTIwbSVDMyVCQWx0aXBsZSUyMiUyQyUyMnElMjIlM0ElMjJDb21wbGV0YSUyMGNvcnJlY3RhbWVudGUlM0ElMjAlRTIlODAlOUNMYSUyMHN1cHJlbWFjJUMzJUFEYSUyMGNvbnN0aXR1Y2lvbmFsJTIwaW1wbGljYSUyMHF1ZSUyMGxhcyUyMG5vcm1hcyUyMGluZmVyaW9yZXMlMjBkZWJlbiUyMGd1YXJkYXIlMjBjb25mb3JtaWRhZCUyMGNvbiUyMGxhJTIwX19fX19fX19fXy4lRTIlODAlOUQlMjIlMkMlMjJvcHRpb25zJTIyJTNBJTVCJTIyY29uc3RpdHVjaSVDMyVCM24lMjIlMkMlMjJjb25zdGl0dWNpb25hbGVzJTIyJTJDJTIyc2VwYXJhY2klQzMlQjNuJTIyJTJDJTIyc2lkbyUyMiU1RCUyQyUyMmFuc3dlciUyMiUzQSUyMmNvbnN0aXR1Y2klQzMlQjNuJTIyJTdEJTJDJTdCJTIydHlwZSUyMiUzQSUyMk9wY2klQzMlQjNuJTIwbSVDMyVCQWx0aXBsZSUyMiUyQyUyMnElMjIlM0ElMjJDb21wbGV0YSUyMGNvcnJlY3RhbWVudGUlM0ElMjAlRTIlODAlOUNMb3MlMjBfX19fX19fX19fJTIwY29uc3RpdHVjaW9uYWxlcyUyMGxpbWl0YW4lMjBlbCUyMGVqZXJjaWNpbyUyMGRlbCUyMHBvZGVyJTIwcCVDMyVCQWJsaWNvJTIweSUyMG9yaWVudGFuJTIwbGElMjBhY3R1YWNpJUMzJUIzbiUyMGVzdGF0YWwuJUUyJTgwJTlEJTIyJTJDJTIyb3B0aW9ucyUyMiUzQSU1QiUyMm5vcm1hJTIyJTJDJTIyZGVyZWNob3MlMjIlMkMlMjJpbXBlZGlyJTIyJTJDJTIyYXRyaWJ1aWRhcyUyMiU1RCUyQyUyMmFuc3dlciUyMiUzQSUyMmRlcmVjaG9zJTIyJTdEJTJDJTdCJTIydHlwZSUyMiUzQSUyMk9wY2klQzMlQjNuJTIwbSVDMyVCQWx0aXBsZSUyMiUyQyUyMnElMjIlM0ElMjJDb21wbGV0YSUyMGNvcnJlY3RhbWVudGUlM0ElMjAlRTIlODAlOUNMYSUyMF9fX19fX19fX18lMjBlcyUyMGxhJTIwbm9ybWElMjBzdXByZW1hJTIwZGVsJTIwb3JkZW5hbWllbnRvJTIwanVyJUMzJUFEZGljbyUyMHklMjBvcmdhbml6YSUyMGxvcyUyMGVsZW1lbnRvcyUyMGVzZW5jaWFsZXMlMjBkZWwlMjBFc3RhZG8uJUUyJTgwJTlEJTIyJTJDJTIyb3B0aW9ucyUyMiUzQSU1QiUyMmxlZ2FsaWRhZCUyMiUyQyUyMm5vcm1hcyUyMiUyQyUyMmJ1c2NhJTIyJTJDJTIyY29uc3RpdHVjaSVDMyVCM24lMjIlNUQlMkMlMjJhbnN3ZXIlMjIlM0ElMjJjb25zdGl0dWNpJUMzJUIzbiUyMiU3RCU1RCU3RA%3D%3D"
+    }
+  ],
+  "checks": [
+    "archivo: biblioteca y simulador capturados en escritorio/móvil; adaptación y temas revisados",
+    "foro: biblioteca y simulador capturados en escritorio/móvil; adaptación y temas revisados",
+    "orbita: biblioteca y simulador capturados en escritorio/móvil; adaptación y temas revisados",
+    "Biblioteca: seis resultados iniciales, carga progresiva, búsqueda, filtros, referencias, estado vacío y favoritos persistentes",
+    "Simulador: validación inline, un paso visible, borrador, opciones avanzadas, evaluación, acierto/error, resultado, respuestas y alternativa sin ventana emergente",
+    "Navegación y pestañas con teclado, Comunidad, archivos existentes, tema y perfil persistentes, movimiento reducido y fuentes",
+    "Mediciones de diseño adaptable y contraste de texto sobre fondos sólidos sin fallos detectados"
+  ],
+  "layouts": [
+    {
+      "concept": "archivo",
+      "width": 360,
+      "theme": "light",
+      "section": "biblioteca",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 360,
+      "theme": "light",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 360,
+      "theme": "light",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 360,
+      "theme": "light",
+      "section": "simulador-1",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 360,
+      "theme": "light",
+      "section": "simulador-2",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 360,
+      "theme": "light",
+      "section": "simulador-3",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 360,
+      "theme": "dark",
+      "section": "biblioteca",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 360,
+      "theme": "dark",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 360,
+      "theme": "dark",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 360,
+      "theme": "dark",
+      "section": "simulador-1",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 360,
+      "theme": "dark",
+      "section": "simulador-2",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 360,
+      "theme": "dark",
+      "section": "simulador-3",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 390,
+      "theme": "light",
+      "section": "biblioteca",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 390,
+      "theme": "light",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 390,
+      "theme": "light",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 390,
+      "theme": "light",
+      "section": "simulador-1",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 390,
+      "theme": "light",
+      "section": "simulador-2",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 390,
+      "theme": "light",
+      "section": "simulador-3",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 390,
+      "theme": "dark",
+      "section": "biblioteca",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 390,
+      "theme": "dark",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 390,
+      "theme": "dark",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 390,
+      "theme": "dark",
+      "section": "simulador-1",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 390,
+      "theme": "dark",
+      "section": "simulador-2",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 390,
+      "theme": "dark",
+      "section": "simulador-3",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 768,
+      "theme": "light",
+      "section": "biblioteca",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 768,
+      "theme": "light",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 768,
+      "theme": "light",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 768,
+      "theme": "light",
+      "section": "simulador-1",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 768,
+      "theme": "light",
+      "section": "simulador-2",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 768,
+      "theme": "light",
+      "section": "simulador-3",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 768,
+      "theme": "dark",
+      "section": "biblioteca",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 768,
+      "theme": "dark",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 768,
+      "theme": "dark",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 768,
+      "theme": "dark",
+      "section": "simulador-1",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 768,
+      "theme": "dark",
+      "section": "simulador-2",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 768,
+      "theme": "dark",
+      "section": "simulador-3",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 1280,
+      "theme": "light",
+      "section": "biblioteca",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 1280,
+      "theme": "light",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 1280,
+      "theme": "light",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 1280,
+      "theme": "light",
+      "section": "simulador-1",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 1280,
+      "theme": "light",
+      "section": "simulador-2",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 1280,
+      "theme": "light",
+      "section": "simulador-3",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 1280,
+      "theme": "dark",
+      "section": "biblioteca",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 1280,
+      "theme": "dark",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 1280,
+      "theme": "dark",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 1280,
+      "theme": "dark",
+      "section": "simulador-1",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 1280,
+      "theme": "dark",
+      "section": "simulador-2",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "archivo",
+      "width": 1280,
+      "theme": "dark",
+      "section": "simulador-3",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 360,
+      "theme": "light",
+      "section": "biblioteca",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 360,
+      "theme": "light",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 360,
+      "theme": "light",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 360,
+      "theme": "light",
+      "section": "simulador-1",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 360,
+      "theme": "light",
+      "section": "simulador-2",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 360,
+      "theme": "light",
+      "section": "simulador-3",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 360,
+      "theme": "dark",
+      "section": "biblioteca",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 360,
+      "theme": "dark",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 360,
+      "theme": "dark",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 360,
+      "theme": "dark",
+      "section": "simulador-1",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 360,
+      "theme": "dark",
+      "section": "simulador-2",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 360,
+      "theme": "dark",
+      "section": "simulador-3",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 390,
+      "theme": "light",
+      "section": "biblioteca",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 390,
+      "theme": "light",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 390,
+      "theme": "light",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 390,
+      "theme": "light",
+      "section": "simulador-1",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 390,
+      "theme": "light",
+      "section": "simulador-2",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 390,
+      "theme": "light",
+      "section": "simulador-3",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 390,
+      "theme": "dark",
+      "section": "biblioteca",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 390,
+      "theme": "dark",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 390,
+      "theme": "dark",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 390,
+      "theme": "dark",
+      "section": "simulador-1",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 390,
+      "theme": "dark",
+      "section": "simulador-2",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 390,
+      "theme": "dark",
+      "section": "simulador-3",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 768,
+      "theme": "light",
+      "section": "biblioteca",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 768,
+      "theme": "light",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 768,
+      "theme": "light",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 768,
+      "theme": "light",
+      "section": "simulador-1",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 768,
+      "theme": "light",
+      "section": "simulador-2",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 768,
+      "theme": "light",
+      "section": "simulador-3",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 768,
+      "theme": "dark",
+      "section": "biblioteca",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 768,
+      "theme": "dark",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 768,
+      "theme": "dark",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 768,
+      "theme": "dark",
+      "section": "simulador-1",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 768,
+      "theme": "dark",
+      "section": "simulador-2",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 768,
+      "theme": "dark",
+      "section": "simulador-3",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 1280,
+      "theme": "light",
+      "section": "biblioteca",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 1280,
+      "theme": "light",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 1280,
+      "theme": "light",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 1280,
+      "theme": "light",
+      "section": "simulador-1",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 1280,
+      "theme": "light",
+      "section": "simulador-2",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 1280,
+      "theme": "light",
+      "section": "simulador-3",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 1280,
+      "theme": "dark",
+      "section": "biblioteca",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 1280,
+      "theme": "dark",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 1280,
+      "theme": "dark",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 1280,
+      "theme": "dark",
+      "section": "simulador-1",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 1280,
+      "theme": "dark",
+      "section": "simulador-2",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "foro",
+      "width": 1280,
+      "theme": "dark",
+      "section": "simulador-3",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 360,
+      "theme": "light",
+      "section": "biblioteca",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 360,
+      "theme": "light",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 360,
+      "theme": "light",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 360,
+      "theme": "light",
+      "section": "simulador-1",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 360,
+      "theme": "light",
+      "section": "simulador-2",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 360,
+      "theme": "light",
+      "section": "simulador-3",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 360,
+      "theme": "dark",
+      "section": "biblioteca",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 360,
+      "theme": "dark",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 360,
+      "theme": "dark",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 360,
+      "theme": "dark",
+      "section": "simulador-1",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 360,
+      "theme": "dark",
+      "section": "simulador-2",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 360,
+      "theme": "dark",
+      "section": "simulador-3",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 390,
+      "theme": "light",
+      "section": "biblioteca",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 390,
+      "theme": "light",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 390,
+      "theme": "light",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 390,
+      "theme": "light",
+      "section": "simulador-1",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 390,
+      "theme": "light",
+      "section": "simulador-2",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 390,
+      "theme": "light",
+      "section": "simulador-3",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 390,
+      "theme": "dark",
+      "section": "biblioteca",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 390,
+      "theme": "dark",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 390,
+      "theme": "dark",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 390,
+      "theme": "dark",
+      "section": "simulador-1",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 390,
+      "theme": "dark",
+      "section": "simulador-2",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 390,
+      "theme": "dark",
+      "section": "simulador-3",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 768,
+      "theme": "light",
+      "section": "biblioteca",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 768,
+      "theme": "light",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 768,
+      "theme": "light",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 768,
+      "theme": "light",
+      "section": "simulador-1",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 768,
+      "theme": "light",
+      "section": "simulador-2",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 768,
+      "theme": "light",
+      "section": "simulador-3",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 768,
+      "theme": "dark",
+      "section": "biblioteca",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 768,
+      "theme": "dark",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 768,
+      "theme": "dark",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 768,
+      "theme": "dark",
+      "section": "simulador-1",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 768,
+      "theme": "dark",
+      "section": "simulador-2",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 768,
+      "theme": "dark",
+      "section": "simulador-3",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 1280,
+      "theme": "light",
+      "section": "biblioteca",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 1280,
+      "theme": "light",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 1280,
+      "theme": "light",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 1280,
+      "theme": "light",
+      "section": "simulador-1",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 1280,
+      "theme": "light",
+      "section": "simulador-2",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 1280,
+      "theme": "light",
+      "section": "simulador-3",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 1280,
+      "theme": "dark",
+      "section": "biblioteca",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 1280,
+      "theme": "dark",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 1280,
+      "theme": "dark",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 1280,
+      "theme": "dark",
+      "section": "simulador-1",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 1280,
+      "theme": "dark",
+      "section": "simulador-2",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "concept": "orbita",
+      "width": 1280,
+      "theme": "dark",
+      "section": "simulador-3",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    }
+  ],
+  "contrast": [
+    {
+      "concept": "archivo",
+      "width": 390,
+      "theme": "light",
+      "section": "biblioteca",
+      "checked": 95,
+      "minimum": 4.56,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "archivo",
+      "width": 390,
+      "theme": "light",
+      "section": "comunidad",
+      "checked": 9,
+      "minimum": 4.85,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "archivo",
+      "width": 390,
+      "theme": "light",
+      "section": "perfil",
+      "checked": 34,
+      "minimum": 4.85,
+      "skipped": {
+        "fondo con imagen o degradado": 1
+      },
+      "failures": []
+    },
+    {
+      "concept": "archivo",
+      "width": 390,
+      "theme": "light",
+      "section": "simulador-1",
+      "checked": 21,
+      "minimum": 4.56,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "archivo",
+      "width": 390,
+      "theme": "light",
+      "section": "simulador-2",
+      "checked": 25,
+      "minimum": 4.56,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "archivo",
+      "width": 390,
+      "theme": "light",
+      "section": "simulador-3",
+      "checked": 34,
+      "minimum": 4.56,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "archivo",
+      "width": 390,
+      "theme": "dark",
+      "section": "biblioteca",
+      "checked": 95,
+      "minimum": 6.98,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "archivo",
+      "width": 390,
+      "theme": "dark",
+      "section": "comunidad",
+      "checked": 9,
+      "minimum": 6.98,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "archivo",
+      "width": 390,
+      "theme": "dark",
+      "section": "perfil",
+      "checked": 34,
+      "minimum": 6.98,
+      "skipped": {
+        "fondo con imagen o degradado": 1
+      },
+      "failures": []
+    },
+    {
+      "concept": "archivo",
+      "width": 390,
+      "theme": "dark",
+      "section": "simulador-1",
+      "checked": 21,
+      "minimum": 7.33,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "archivo",
+      "width": 390,
+      "theme": "dark",
+      "section": "simulador-2",
+      "checked": 25,
+      "minimum": 7.33,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "archivo",
+      "width": 390,
+      "theme": "dark",
+      "section": "simulador-3",
+      "checked": 34,
+      "minimum": 6.98,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "archivo",
+      "width": 1280,
+      "theme": "light",
+      "section": "biblioteca",
+      "checked": 98,
+      "minimum": 4.56,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "archivo",
+      "width": 1280,
+      "theme": "light",
+      "section": "comunidad",
+      "checked": 15,
+      "minimum": 4.85,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "archivo",
+      "width": 1280,
+      "theme": "light",
+      "section": "perfil",
+      "checked": 40,
+      "minimum": 4.85,
+      "skipped": {
+        "fondo con imagen o degradado": 1
+      },
+      "failures": []
+    },
+    {
+      "concept": "archivo",
+      "width": 1280,
+      "theme": "light",
+      "section": "simulador-1",
+      "checked": 27,
+      "minimum": 4.56,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "archivo",
+      "width": 1280,
+      "theme": "light",
+      "section": "simulador-2",
+      "checked": 31,
+      "minimum": 4.56,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "archivo",
+      "width": 1280,
+      "theme": "light",
+      "section": "simulador-3",
+      "checked": 40,
+      "minimum": 4.56,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "archivo",
+      "width": 1280,
+      "theme": "dark",
+      "section": "biblioteca",
+      "checked": 98,
+      "minimum": 6.98,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "archivo",
+      "width": 1280,
+      "theme": "dark",
+      "section": "comunidad",
+      "checked": 15,
+      "minimum": 6.98,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "archivo",
+      "width": 1280,
+      "theme": "dark",
+      "section": "perfil",
+      "checked": 40,
+      "minimum": 6.98,
+      "skipped": {
+        "fondo con imagen o degradado": 1
+      },
+      "failures": []
+    },
+    {
+      "concept": "archivo",
+      "width": 1280,
+      "theme": "dark",
+      "section": "simulador-1",
+      "checked": 27,
+      "minimum": 7.33,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "archivo",
+      "width": 1280,
+      "theme": "dark",
+      "section": "simulador-2",
+      "checked": 31,
+      "minimum": 7.33,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "archivo",
+      "width": 1280,
+      "theme": "dark",
+      "section": "simulador-3",
+      "checked": 40,
+      "minimum": 6.98,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "foro",
+      "width": 390,
+      "theme": "light",
+      "section": "biblioteca",
+      "checked": 95,
+      "minimum": 5.02,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "foro",
+      "width": 390,
+      "theme": "light",
+      "section": "comunidad",
+      "checked": 9,
+      "minimum": 5.29,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "foro",
+      "width": 390,
+      "theme": "light",
+      "section": "perfil",
+      "checked": 34,
+      "minimum": 5.29,
+      "skipped": {
+        "fondo con imagen o degradado": 1
+      },
+      "failures": []
+    },
+    {
+      "concept": "foro",
+      "width": 390,
+      "theme": "light",
+      "section": "simulador-1",
+      "checked": 21,
+      "minimum": 5.02,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "foro",
+      "width": 390,
+      "theme": "light",
+      "section": "simulador-2",
+      "checked": 25,
+      "minimum": 5.02,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "foro",
+      "width": 390,
+      "theme": "light",
+      "section": "simulador-3",
+      "checked": 34,
+      "minimum": 5.02,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "foro",
+      "width": 390,
+      "theme": "dark",
+      "section": "biblioteca",
+      "checked": 95,
+      "minimum": 7.7,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "foro",
+      "width": 390,
+      "theme": "dark",
+      "section": "comunidad",
+      "checked": 9,
+      "minimum": 7.7,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "foro",
+      "width": 390,
+      "theme": "dark",
+      "section": "perfil",
+      "checked": 34,
+      "minimum": 7.7,
+      "skipped": {
+        "fondo con imagen o degradado": 1
+      },
+      "failures": []
+    },
+    {
+      "concept": "foro",
+      "width": 390,
+      "theme": "dark",
+      "section": "simulador-1",
+      "checked": 21,
+      "minimum": 5.95,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "foro",
+      "width": 390,
+      "theme": "dark",
+      "section": "simulador-2",
+      "checked": 25,
+      "minimum": 5.95,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "foro",
+      "width": 390,
+      "theme": "dark",
+      "section": "simulador-3",
+      "checked": 34,
+      "minimum": 5.95,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "foro",
+      "width": 1280,
+      "theme": "light",
+      "section": "biblioteca",
+      "checked": 96,
+      "minimum": 5.02,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "foro",
+      "width": 1280,
+      "theme": "light",
+      "section": "comunidad",
+      "checked": 13,
+      "minimum": 5.29,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "foro",
+      "width": 1280,
+      "theme": "light",
+      "section": "perfil",
+      "checked": 38,
+      "minimum": 5.29,
+      "skipped": {
+        "fondo con imagen o degradado": 1
+      },
+      "failures": []
+    },
+    {
+      "concept": "foro",
+      "width": 1280,
+      "theme": "light",
+      "section": "simulador-1",
+      "checked": 25,
+      "minimum": 5.02,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "foro",
+      "width": 1280,
+      "theme": "light",
+      "section": "simulador-2",
+      "checked": 29,
+      "minimum": 5.02,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "foro",
+      "width": 1280,
+      "theme": "light",
+      "section": "simulador-3",
+      "checked": 38,
+      "minimum": 5.02,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "foro",
+      "width": 1280,
+      "theme": "dark",
+      "section": "biblioteca",
+      "checked": 96,
+      "minimum": 5.95,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "foro",
+      "width": 1280,
+      "theme": "dark",
+      "section": "comunidad",
+      "checked": 13,
+      "minimum": 5.95,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "foro",
+      "width": 1280,
+      "theme": "dark",
+      "section": "perfil",
+      "checked": 38,
+      "minimum": 5.95,
+      "skipped": {
+        "fondo con imagen o degradado": 1
+      },
+      "failures": []
+    },
+    {
+      "concept": "foro",
+      "width": 1280,
+      "theme": "dark",
+      "section": "simulador-1",
+      "checked": 25,
+      "minimum": 5.95,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "foro",
+      "width": 1280,
+      "theme": "dark",
+      "section": "simulador-2",
+      "checked": 29,
+      "minimum": 5.95,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "foro",
+      "width": 1280,
+      "theme": "dark",
+      "section": "simulador-3",
+      "checked": 38,
+      "minimum": 5.95,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "orbita",
+      "width": 390,
+      "theme": "light",
+      "section": "biblioteca",
+      "checked": 95,
+      "minimum": 4.8,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "orbita",
+      "width": 390,
+      "theme": "light",
+      "section": "comunidad",
+      "checked": 9,
+      "minimum": 5.26,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "orbita",
+      "width": 390,
+      "theme": "light",
+      "section": "perfil",
+      "checked": 34,
+      "minimum": 5.26,
+      "skipped": {
+        "fondo con imagen o degradado": 1
+      },
+      "failures": []
+    },
+    {
+      "concept": "orbita",
+      "width": 390,
+      "theme": "light",
+      "section": "simulador-1",
+      "checked": 21,
+      "minimum": 4.8,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "orbita",
+      "width": 390,
+      "theme": "light",
+      "section": "simulador-2",
+      "checked": 25,
+      "minimum": 4.8,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "orbita",
+      "width": 390,
+      "theme": "light",
+      "section": "simulador-3",
+      "checked": 34,
+      "minimum": 4.8,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "orbita",
+      "width": 390,
+      "theme": "dark",
+      "section": "biblioteca",
+      "checked": 95,
+      "minimum": 7.86,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "orbita",
+      "width": 390,
+      "theme": "dark",
+      "section": "comunidad",
+      "checked": 9,
+      "minimum": 7.86,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "orbita",
+      "width": 390,
+      "theme": "dark",
+      "section": "perfil",
+      "checked": 34,
+      "minimum": 7.86,
+      "skipped": {
+        "fondo con imagen o degradado": 1
+      },
+      "failures": []
+    },
+    {
+      "concept": "orbita",
+      "width": 390,
+      "theme": "dark",
+      "section": "simulador-1",
+      "checked": 21,
+      "minimum": 7.86,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "orbita",
+      "width": 390,
+      "theme": "dark",
+      "section": "simulador-2",
+      "checked": 25,
+      "minimum": 7.86,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "orbita",
+      "width": 390,
+      "theme": "dark",
+      "section": "simulador-3",
+      "checked": 34,
+      "minimum": 7.86,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "orbita",
+      "width": 1280,
+      "theme": "light",
+      "section": "biblioteca",
+      "checked": 94,
+      "minimum": 4.8,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "orbita",
+      "width": 1280,
+      "theme": "light",
+      "section": "comunidad",
+      "checked": 11,
+      "minimum": 5.26,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "orbita",
+      "width": 1280,
+      "theme": "light",
+      "section": "perfil",
+      "checked": 36,
+      "minimum": 5.26,
+      "skipped": {
+        "fondo con imagen o degradado": 1
+      },
+      "failures": []
+    },
+    {
+      "concept": "orbita",
+      "width": 1280,
+      "theme": "light",
+      "section": "simulador-1",
+      "checked": 23,
+      "minimum": 4.8,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "orbita",
+      "width": 1280,
+      "theme": "light",
+      "section": "simulador-2",
+      "checked": 27,
+      "minimum": 4.8,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "orbita",
+      "width": 1280,
+      "theme": "light",
+      "section": "simulador-3",
+      "checked": 36,
+      "minimum": 4.8,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "orbita",
+      "width": 1280,
+      "theme": "dark",
+      "section": "biblioteca",
+      "checked": 94,
+      "minimum": 7.86,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "orbita",
+      "width": 1280,
+      "theme": "dark",
+      "section": "comunidad",
+      "checked": 11,
+      "minimum": 7.86,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "orbita",
+      "width": 1280,
+      "theme": "dark",
+      "section": "perfil",
+      "checked": 36,
+      "minimum": 7.86,
+      "skipped": {
+        "fondo con imagen o degradado": 1
+      },
+      "failures": []
+    },
+    {
+      "concept": "orbita",
+      "width": 1280,
+      "theme": "dark",
+      "section": "simulador-1",
+      "checked": 23,
+      "minimum": 7.86,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "orbita",
+      "width": 1280,
+      "theme": "dark",
+      "section": "simulador-2",
+      "checked": 27,
+      "minimum": 7.86,
+      "skipped": {},
+      "failures": []
+    },
+    {
+      "concept": "orbita",
+      "width": 1280,
+      "theme": "dark",
+      "section": "simulador-3",
+      "checked": 36,
+      "minimum": 7.86,
+      "skipped": {},
+      "failures": []
+    }
+  ],
+  "errors": [],
+  "assetErrors": [],
+  "scope": "Interfaz estática; listado público de GitHub simulado. No se prueba ni se requiere el backend.",
+  "fonts": [
+    {
+      "family": "Manrope",
+      "status": "loaded"
+    },
+    {
+      "family": "Fraunces",
+      "status": "loaded"
+    },
+    {
+      "family": "Fraunces",
+      "status": "loaded"
+    }
+  ],
+  "summary": {
+    "captures": 21,
+    "layoutMeasurements": 144,
+    "overflowFailures": 0,
+    "contrastSamples": 2742,
+    "contrastFailures": 0,
+    "javascriptErrors": 0,
+    "assetErrors": 0
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "mode": "manual-original-guidance-no-runtime",
+  "checkedAt": "2026-11-09",
+  "files": [
+    {
+      "repository": "pbakaus/impeccable",
+      "source": ".agents/skills/impeccable/SKILL.md",
+      "path": ".agents/skills/impeccable/SKILL.md",
+      "git_blob_sha": "4e30d4c63c648012e46002ec15507ba37e52b65d",
+      "commit": "613fbf88e0ef08709eaf238653285f430250c0ea"
+    },
+    {
+      "repository": "pbakaus/impeccable",
+      "source": ".agents/skills/impeccable/reference/craft-floor.md",
+      "path": ".agents/skills/impeccable/reference/craft-floor.md",
+      "git_blob_sha": "fd7280103f7ef4b009b38ce58f594c44c0f04caa",
+      "commit": "613fbf88e0ef08709eaf238653285f430250c0ea"
+    },
+    {
+      "repository": "pbakaus/impeccable",
+      "source": ".agents/skills/impeccable/reference/new-work.md",
+      "path": ".agents/skills/impeccable/reference/new-work.md",
+      "git_blob_sha": "54619a178ab4c80131f277f8a8525a52f7b318bb",
+      "commit": "613fbf88e0ef08709eaf238653285f430250c0ea"
+    },
+    {
+      "repository": "pbakaus/impeccable",
+      "source": ".agents/skills/impeccable/reference/distill.md",
+      "path": ".agents/skills/impeccable/reference/distill.md",
+      "git_blob_sha": "2537473ced43e94d5081b61fdced2a4ff602c885",
+      "commit": "613fbf88e0ef08709eaf238653285f430250c0ea"
+    },
+    {
+      "repository": "pbakaus/impeccable",
+      "source": ".agents/skills/impeccable/reference/quieter.md",
+      "path": ".agents/skills/impeccable/reference/quieter.md",
+      "git_blob_sha": "61ea5c7027b54ef7354f55d591b6df8e1fc11dd8",
+      "commit": "613fbf88e0ef08709eaf238653285f430250c0ea"
+    },
+    {
+      "repository": "pbakaus/impeccable",
+      "source": ".agents/skills/impeccable/reference/audit.md",
+      "path": ".agents/skills/impeccable/reference/audit.md",
+      "git_blob_sha": "13bf0d7c71802a48af4863c08ee3ed898f72c4b2",
+      "commit": "613fbf88e0ef08709eaf238653285f430250c0ea"
+    },
+    {
+      "repository": "pbakaus/impeccable",
+      "source": ".agents/skills/impeccable/reference/adapt.md",
+      "path": ".agents/skills/impeccable/reference/adapt.md",
+      "git_blob_sha": "de4631d7e8f14b3c193175b87302b6ccc814e34c",
+      "commit": "613fbf88e0ef08709eaf238653285f430250c0ea"
+    },
+    {
+      "repository": "pbakaus/impeccable",
+      "source": ".agents/skills/impeccable/reference/animate.md",
+      "path": ".agents/skills/impeccable/reference/animate.md",
+      "git_blob_sha": "c8fb9e038bb74a125646b64c49bc39711f63e8f4",
+      "commit": "613fbf88e0ef08709eaf238653285f430250c0ea"
+    },
+    {
+      "repository": "pbakaus/impeccable",
+      "source": ".agents/skills/impeccable/reference/typeset.md",
+      "path": ".agents/skills/impeccable/reference/typeset.md",
+      "git_blob_sha": "683175632928ab5566e517ad6128a07166e095e8",
+      "commit": "613fbf88e0ef08709eaf238653285f430250c0ea"
+    },
+    {
+      "repository": "pbakaus/impeccable",
+      "source": ".agents/skills/impeccable/reference/layout.md",
+      "path": ".agents/skills/impeccable/reference/layout.md",
+      "git_blob_sha": "aa547c742fc373bc459bdbb7977683441aa48ec0",
+      "commit": "613fbf88e0ef08709eaf238653285f430250c0ea"
+    },
+    {
+      "repository": "pbakaus/impeccable",
+      "source": ".agents/skills/impeccable/reference/operate.md",
+      "path": ".agents/skills/impeccable/reference/operate.md",
+      "git_blob_sha": "524f2c3ae9fa497284e9699f3ca5320cce5d05cf",
+      "commit": "613fbf88e0ef08709eaf238653285f430250c0ea"
+    },
+    {
+      "repository": "pbakaus/impeccable",
+      "source": ".agents/skills/impeccable/reference/mode-operate.md",
+      "path": ".agents/skills/impeccable/reference/mode-operate.md",
+      "git_blob_sha": "833775ba85f03bf65a4c1b23e39192f7653414e6",
+      "commit": "613fbf88e0ef08709eaf238653285f430250c0ea"
+    },
+    {
+      "repository": "pbakaus/impeccable",
+      "source": ".agents/skills/impeccable/reference/mode-read.md",
+      "path": ".agents/skills/impeccable/reference/mode-read.md",
+      "git_blob_sha": "b30c4c9139e3094bd35c60738decb6109326153f",
+      "commit": "613fbf88e0ef08709eaf238653285f430250c0ea"
+    },
+    {
+      "repository": "pbakaus/impeccable",
+      "source": "LICENSE",
+      "path": ".agents/skills/impeccable/LICENSE",
+      "git_blob_sha": "bb3f6d23b1f8025514a62a12b51b47d73e3c9aa9",
+      "commit": "613fbf88e0ef08709eaf238653285f430250c0ea"
+    },
+    {
+      "repository": "emilkowalski/skills",
+      "source": "skills/emil-design-eng/SKILL.md",
+      "path": ".agents/skills/emil-design-eng/SKILL.md",
+      "git_blob_sha": "dc063c2a861922c1c9f2412b824b0862746304f5",
+      "commit": "5206a950b715e0cabe7043ea0b2304332b91494e"
+    },
+    {
+      "repository": "emilkowalski/skills",
+      "source": "LICENSE",
+      "path": ".agents/skills/emil-design-eng/LICENSE",
+      "git_blob_sha": "57b46f1fd11dc62351ea548104a88aa3f659c11b",
+      "commit": "5206a950b715e0cabe7043ea0b2304332b91494e"
+    }
+  ]
+}
