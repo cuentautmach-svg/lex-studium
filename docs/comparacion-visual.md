@@ -38,9 +38,11 @@ La nueva estructura muestra un propósito principal por pantalla. La biblioteca 
 
 **Limitaciones:** la navegación lateral muestra menos identidad de marca que la versión editorial. La sensación es más técnica y menos cálida.
 
-## Recomendación profesional
+## Selección del usuario
 
-Archivo Vivo es la dirección más equilibrada para un producto jurídico orientado a sesiones largas. La recomendación se fundamenta en la jerarquía, el espacio de lectura y la continuidad entre biblioteca y simulador. Foro ofrece una alternativa más educativa y dinámica; Órbita, una más compacta y técnica. Las otras dos se conservan completas para que la selección final se realice con sus capturas reales.
+El usuario eligió **Foro, la versión azul**, después de revisar las propuestas. Es la dirección predeterminada de Lex Studium: navegación superior, jerarquía sans, cobalto y una biblioteca educativa de tarjetas ligeras. Su identidad más dinámica responde a la preferencia expresada, conservando la divulgación progresiva y la comodidad de estudio.
+
+Archivo Vivo fue la recomendación profesional inicial por su lectura editorial y serenidad; esa recomendación quedó sustituida por la elección del usuario. Archivo Vivo y Órbita permanecen completas para comparación. La aprobación se refiere al diseño: no autoriza una fusión ni un despliegue.
 
 Los CSS evitan tamaños de portada que bloqueen el buscador, espaciado tipográfico por debajo de `-.04em`, sombras repetidas y rótulos decorativos diminutos. Los libros y nodos son formas CSS propias, no imágenes de terceros. Las fuentes se conservan con las licencias OFL ya incluidas en el proyecto.
 

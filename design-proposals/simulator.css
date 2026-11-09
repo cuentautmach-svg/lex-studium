@@ -62,6 +62,7 @@
 #practiceFlow .step-title { margin-bottom: 21px; }
 #practiceFlow .step-title h3 { font-size: 26px; margin: 0 0 9px; letter-spacing: -.025em; }
 #practiceFlow .step-title p { max-width: 640px; font-size: 13px; line-height: 1.8; }
+#practiceFlow .control { min-height: 48px; font-size: 14px; }
 #practiceFlow .study-editor {
   min-height: 260px; padding: 20px; font-size: 15px; line-height: 1.9;
   background: var(--paper); border-color: var(--line); border-radius: var(--radius, 8px);
@@ -72,7 +73,6 @@
 #practiceFlow .practice-fields { gap: 20px; }
 #practiceFlow .practice-fields.four { grid-template-columns: 1fr 1fr; }
 #practiceFlow .lbl { font-size: 12px; margin-bottom: 9px; }
-#practiceFlow .control { min-height: 48px; font-size: 14px; }
 #practiceFlow :is(.practice-advanced, .advanced-settings) {
   margin-top: 22px; padding: 0; background: transparent; border: 0;
   border-top: 1px solid var(--line); border-radius: 0;

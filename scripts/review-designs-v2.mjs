@@ -66,6 +66,7 @@ async function measureLayout(page, concept, width, theme, section) {
   });
   report.layouts.push({ concept, width, theme, section, ...measured });
   assert.equal(measured.headerOverlaps.length, 0, 'Los controles de cabecera móvil no se superponen');
+  if (section === 'simulador-1') assert.ok(await page.locator('#studyText').evaluate(element => element.getBoundingClientRect().height >= 230), 'El editor conserva espacio suficiente para leer los apuntes');
 }
 async function measureContrast(page, concept, width, theme, section) {
   const measured = await page.evaluate(() => {
@@ -160,7 +161,8 @@ try {
   }
 
   const session = await context(); const page = activePage = await session.newPage();
-  await page.goto(`${base}/?design=archivo`); await ready(page);
+  await page.goto(`${base}/`); await ready(page);
+  assert.equal(await page.evaluate(() => document.documentElement.dataset.design), 'foro', 'Foro es la versión elegida y predeterminada');
   await page.locator('#lawLoadMore').click(); assert.equal(await page.locator('#lawGrid .law-card:visible').count(), 12);
   await page.locator('#lawSearch').fill('Código Civil'); assert.equal(await page.locator('#lawGrid .law-card:visible').count(), 1);
   assert.ok((await page.locator('#libraryResultStatus').textContent()).trim());
@@ -196,8 +198,8 @@ try {
   assert.equal(await page.locator('#practiceAdvanced').getAttribute('open'), null);
   await page.locator('#practiceAdvanced > summary').focus(); await page.keyboard.press('Enter');
   await page.locator('#difficulty').selectOption('Media'); await page.locator('#practiceAdvanced > summary').click();
-  await capture(page, 'archivo', 'simulador-configuracion-escritorio');
-  await page.setViewportSize({ width: 390, height: 844 }); await capture(page, 'archivo', 'simulador-configuracion-movil');
+  await capture(page, 'foro', 'simulador-configuracion-escritorio');
+  await page.setViewportSize({ width: 390, height: 844 }); await capture(page, 'foro', 'simulador-configuracion-movil');
   const popup = page.waitForEvent('popup'); await page.getByRole('button', { name: /Generar evaluación/ }).click();
   const exam = activePage = await popup; await exam.waitForSelector('.exam-question');
   assert.equal(await exam.locator('.exam-question').count(), 5);
@@ -211,11 +213,12 @@ try {
   assert.equal(await exam.locator('#standaloneScore').textContent(), '5 / 5'); assert.equal(await exam.locator('.exam-question.right').count(), 5);
   assert.equal(await exam.evaluate(() => JSON.parse(localStorage.getItem('lexData')).results[0].pct), 100);
   await exam.getByRole('button', { name: 'Mostrar respuestas' }).click(); assert.equal(await exam.locator('.exam-answer.show').count(), 5);
-  await exam.setViewportSize({ width: 390, height: 844 }); await capture(exam, 'archivo', 'evaluacion-corregida-movil');
+  await exam.setViewportSize({ width: 390, height: 844 }); await capture(exam, 'foro', 'evaluacion-corregida-movil');
   await exam.close(); activePage = page;
   await page.evaluate(() => { window.open = () => null; }); await page.getByRole('button', { name: /Generar evaluación/ }).click();
   await page.locator('#standaloneExam').waitFor(); assert.equal(await page.locator('.exam-question').count(), 5);
-  await page.goto(`${base}/?design=archivo`); await ready(page);
+  await page.goto(`${base}/`); await ready(page);
+  assert.equal(await page.evaluate(() => document.documentElement.dataset.design), 'foro', 'Foro es la versión elegida y predeterminada');
   pass('Simulador: validación inline, un paso visible, borrador, opciones avanzadas, evaluación, acierto/error, resultado, respuestas y alternativa sin ventana emergente');
 
   await page.locator('.nav button[data-page="comunidad"]').focus(); await page.keyboard.press('Enter');

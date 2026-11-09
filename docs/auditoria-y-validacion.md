@@ -1,6 +1,6 @@
 # Auditoría visual y validación de Lex Studium
 
-Revisión del 9 de noviembre de 2026. Trabajo exclusivamente de interfaz en `diseno/estudio-sin-saturacion`, rama creada desde `main` en `62f2b01070b8de6371429b480d973a11969b7034`. No se modificó el backend de documentos de la otra rama, no se contrataron servicios y no se fusionó ni desplegó este rediseño. Las tres direcciones permanecen disponibles para revisión; Archivo Vivo es una recomendación profesional, pendiente de elección por el propietario.
+Revisión del 9 de noviembre de 2026. Trabajo exclusivamente de interfaz en `diseno/estudio-sin-saturacion`, rama creada desde `main` en `62f2b01070b8de6371429b480d973a11969b7034`. No se modificó el backend de documentos de la otra rama, no se contrataron servicios y no se fusionó ni desplegó este rediseño. El usuario eligió **Foro, la dirección azul**, como diseño predeterminado. Archivo Vivo y Órbita permanecen disponibles para comparación. La selección estética no autoriza fusionar ni desplegar.
 
 ## Problemas y cambios
 
@@ -57,11 +57,11 @@ La comparación de contenido cubre materias y fuentes; normas y descripciones; r
 
 ## Capturas e informes
 
-La revisión genera `artifacts/diseno-v2/verificacion.json` y `artifacts/diseno-v2/contenido.json`, con resultados, mediciones, hashes y nombres de capturas. Se produjeron 21 PNG reales: biblioteca, simulador y modo oscuro, en escritorio y móvil, para las tres direcciones; además, configuración de práctica en ambas pantallas y evaluación corregida en móvil para Archivo Vivo.
+La revisión genera `artifacts/diseno-v2/verificacion.json` y `artifacts/diseno-v2/contenido.json`, con resultados, mediciones, hashes y nombres de capturas. La revisión anterior completada conserva 21 PNG reales: biblioteca, simulador y modo oscuro, en escritorio y móvil, para las tres direcciones; además, configuración de práctica en ambas pantallas y evaluación corregida en móvil para Archivo Vivo. La selección posterior de Foro no cambia qué vistas se capturaron en aquella ejecución.
 
 Los nombres permiten localizar cada vista: `{archivo|foro|orbita}-{biblioteca|simulador|oscuro}-{escritorio|movil}.png`. Las capturas estándar usan 1280 × 1000 y 390 × 844. Se capturaron las propuestas antes de introducir los datos de prueba de perfil y favoritos. La revisión visual de las imágenes complementa las aserciones automatizadas; compilar el CSS por sí solo no acredita el resultado visual.
 
-La carpeta de salida `artifacts/` está excluida de Git. Esta ejecución se conserva también en [docs/capturas](capturas/README.md) y en los informes [de interfaz](verificacion/verificacion.json) y [de contenido](verificacion/contenido.json), para revisar las evidencias desde la rama de GitHub. La [comparación visual](comparacion-visual.md) explica las ventajas y limitaciones de cada dirección y recomienda Archivo Vivo por el equilibrio entre identidad jurídica y comodidad de lectura.
+La carpeta de salida `artifacts/` está excluida de Git. La ejecución completada antes de la elección se conserva también en [docs/capturas](capturas/README.md) y en los informes [de interfaz](verificacion/verificacion.json) y [de contenido](verificacion/contenido.json), para revisar las evidencias desde la rama de GitHub. La [comparación visual](comparacion-visual.md) explica las ventajas y limitaciones y registra la elección de Foro por el usuario, que sustituyó la recomendación inicial de Archivo Vivo.
 
 ## Alcance y límites
 
@@ -71,3 +71,7 @@ La carpeta de salida `artifacts/` está excluida de Git. Esta ejecución se cons
 - El listado público de GitHub se simula vacío durante la prueba para aislar la interfaz. Se comprueban pestañas, estado vacío y enlace de subida existente; no se valida una carga o descarga real de documentos externos.
 - No se prueban ni se requieren backend, autenticación administrativa, almacenamiento persistente o contratación de servicios. No forman parte de este trabajo.
 - La integridad de los bloques originales conserva sus contenidos; no sustituye una revisión jurídica actualizada de la legislación o la vigencia de cada enlace institucional.
+
+## Guardado de la elección azul
+
+El usuario eligió Foro después de la comparación. Se cambió la vista predeterminada a Foro, se eliminó la precarga de Fraunces que no usa esta dirección y se corrigió la altura mínima del editor en escritorio. Las comprobaciones de integridad y sintaxis se ejecutaron de nuevo. La última ejecución de navegador se interrumpió; los resultados y capturas anteriores no se presentan como una nueva validación de estos ajustes. El script actualizado comprueba Foro como vista predeterminada y la altura del editor cuando se vuelva a ejecutar. No se fusionó ni desplegó el cambio.

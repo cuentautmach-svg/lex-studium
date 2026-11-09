@@ -1,14 +1,14 @@
 # Tres direcciones para Lex Studium
 
-Fuentes visuales de la rama de trabajo `diseno/estudio-sin-saturacion`, basada en `main`. No constituyen una elección aprobada ni un despliegue. Las tres propuestas mantienen las mismas funciones y pueden revisarse con `?design=archivo`, `?design=foro` y `?design=orbita`.
+Fuentes visuales de la rama de trabajo `diseno/estudio-sin-saturacion`, basada en `main`. El usuario eligió **Foro, la dirección azul**, que se muestra por defecto. No se ha fusionado ni desplegado el rediseño. Las tres propuestas mantienen las mismas funciones y pueden revisarse con `?design=archivo`, `?design=foro` y `?design=orbita`.
 
 | Dirección | Identidad y composición | Ventaja y límite principal |
 | --- | --- | --- |
-| Archivo Vivo · recomendada | Marfil, bosque y lima moderada; Fraunces y Manrope. Navegación lateral, filas editoriales y barra inferior móvil. | La lectura más tranquila y una identidad jurídica cercana; ofrece menos fichas por fila. |
-| Foro | Cobalto con acento cálido limitado; Manrope. Navegación superior y tarjetas ligeras de dos columnas. | Exploración familiar y dinámica; las tarjetas y la cabecera ocupan más espacio. |
+| Archivo Vivo · alternativa | Marfil, bosque y lima moderada; Fraunces y Manrope. Navegación lateral, filas editoriales y barra inferior móvil. | La lectura más tranquila y una identidad jurídica cercana; ofrece menos fichas por fila. |
+| Foro · seleccionada por el usuario | Cobalto con acento cálido limitado; Manrope. Navegación superior y tarjetas ligeras de dos columnas. | Exploración familiar y dinámica; las tarjetas y la cabecera ocupan más espacio. |
 | Órbita | Grafito, hielo y menta; Manrope. Rail compacto, portada oscura y lista por divisores. | Consulta directa y carácter digital; transmite menos calidez. |
 
-La recomendación completa y sus razones están en [comparacion-visual.md](../docs/comparacion-visual.md). Las alternativas se conservan completas para la decisión del propietario.
+La comparación completa está en [comparacion-visual.md](../docs/comparacion-visual.md). La recomendación inicial de Archivo Vivo quedó sustituida por la elección del usuario; las alternativas se conservan completas para comparación.
 
 ## Composición y divulgación progresiva
 
@@ -16,7 +16,7 @@ La biblioteca muestra seis normas de las 41 conservadas, un buscador y una acci�
 
 El simulador presenta un único paso activo: material, materia y práctica. Las opciones avanzadas se abren a petición. Se conserva el contenido local, la generación de preguntas y su corrección; la presentación añade progreso discreto y estados textuales de acierto y error. Comunidad sigue mostrando «Próximamente».
 
-No se usan imágenes de terceros. La firma visual combina SVG y formas CSS propias; las fuentes se incluyen con sus licencias OFL en `materiales/identidad/`. Los modos oscuros tienen superficies y contrastes específicos para cada dirección.
+No se usan imágenes de terceros. La firma visual combina SVG y formas CSS propias; las fuentes se incluyen con sus licencias OFL en `materiales/identidad/`. Foro utiliza Manrope; Fraunces se carga solo para la alternativa Archivo Vivo. Los modos oscuros tienen superficies y contrastes específicos para cada dirección.
 
 ## Archivos editables
 
