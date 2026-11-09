@@ -1,0 +1,26 @@
+/* Controles de documentos; comparten la paleta de la biblioteca. */
+.lex-admin-panel{margin-top:24px;border:1px solid var(--line);border-radius:18px;background:var(--paper)}
+.lex-admin-panel summary{padding:18px 20px;cursor:pointer;font-weight:750;min-height:56px;color:var(--ink)}
+.lex-admin-panel summary span{display:block;margin:5px 0 0 18px;color:var(--muted);font-size:12px;font-weight:400}
+.lex-admin-panel summary::marker{color:var(--blue)}
+.lex-admin-content{padding:0 20px 22px}
+.lex-admin-message{font-size:13px;line-height:1.65;color:var(--ink);overflow-wrap:anywhere}
+.lex-admin-message:empty{display:none}
+.lex-admin-login{display:flex;align-items:end;gap:14px;max-width:640px;margin-top:18px}
+.lex-admin-login>div{flex:1;min-width:0}
+.lex-admin-login button{min-height:46px}
+.lex-upload-form{display:grid;gap:20px;max-width:740px;margin-top:18px}
+.lex-admin-session{display:flex;align-items:center;justify-content:space-between;gap:15px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.lex-admin-session strong{font-size:13px}
+.lex-upload-picker{padding:18px;background:var(--paper-2);border:1px dashed var(--line);border-radius:14px;min-width:0}
+.lex-upload-picker input{padding:9px;min-height:50px;max-width:100%;font-size:13px}
+.lex-upload-picker input::file-selector-button{border:0;border-radius:8px;padding:9px 12px;margin-right:12px;background:var(--teal-soft);color:var(--blue);font:inherit;cursor:pointer}
+.lex-upload-picker p{margin:9px 0 0;font-size:12px;color:var(--muted);overflow-wrap:anywhere}
+.lex-upload-consent{display:flex;align-items:center;gap:12px;min-height:44px;font-size:13px;cursor:pointer;line-height:1.6}
+.lex-upload-consent input{width:20px;height:20px;flex:none;accent-color:var(--blue)}
+.lex-upload-form>.btn{justify-self:start;min-height:46px}
+.lex-doc-description{margin:0;color:var(--muted);font-size:13px;line-height:1.65;overflow-wrap:anywhere;white-space:pre-line}
+.lex-admin-panel .lbl{font-size:12px}
+.lex-admin-panel .lbl span{font-weight:400;color:var(--muted)}
+button:disabled,.lex-admin-panel input:disabled,.lex-admin-panel textarea:disabled{cursor:wait;opacity:.65}
+@media(max-width:600px){.lex-admin-login,.lex-admin-session{align-items:stretch;flex-direction:column}.lex-admin-content{padding:0 16px 18px}.lex-admin-panel summary{padding:16px}.lex-upload-form>.btn{width:100%;justify-self:stretch}}
