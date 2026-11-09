@@ -2,7 +2,7 @@
 
 Plataforma de estudio de Derecho ecuatoriano: biblioteca de 41 normas y fuentes institucionales, favoritos locales, simulador de evaluaciones y Comunidad como «Próximamente».
 
-Esta revisión desarrolla tres propuestas visuales sobre el proyecto existente en la rama `diseno/estudio-sin-saturacion`, creada desde `main` (`62f2b01070b8de6371429b480d973a11969b7034`). Se mantienen separadas de las funciones de documentos de la otra rama. La elección definitiva requiere revisión del propietario; no se ha fusionado ni desplegado este rediseño.
+Esta revisión desarrolla tres propuestas visuales sobre el proyecto existente en la rama `diseno/estudio-sin-saturacion`, creada desde `main` (`62f2b01070b8de6371429b480d973a11969b7034`). Se mantienen separadas de las funciones de documentos de la otra rama. El propietario eligió **Foro, la dirección azul**; esta selección de diseño no autoriza una fusión ni un despliegue, y no se ha realizado ninguno.
 
 ## Revisar las tres propuestas
 
@@ -18,7 +18,7 @@ Abrir una de estas direcciones:
 - [Foro](http://127.0.0.1:4174/?design=foro): navegación superior, identidad educativa y tarjetas de dos columnas.
 - [Órbita](http://127.0.0.1:4174/?design=orbita): navegación compacta, grafito y menta, lista de consulta.
 
-Archivo Vivo es la recomendación de diseño y la vista predeterminada para revisión. Las tres incluyen biblioteca, simulador, móvil y modo oscuro. La biblioteca presenta seis normas inicialmente y permite mostrar las restantes; los filtros y las referencias ampliadas se abren a petición. El simulador organiza la configuración en tres pasos y conserva el motor original.
+**Foro es el diseño seleccionado por el usuario y la vista predeterminada.** Archivo Vivo y Órbita se conservan para comparación. Las tres incluyen biblioteca, simulador, móvil y modo oscuro. La biblioteca presenta seis normas inicialmente y permite mostrar las restantes; los filtros y las referencias ampliadas se abren a petición. El simulador organiza la configuración en tres pasos y conserva el motor original.
 
 ## Desarrollo y comprobación
 
@@ -33,7 +33,7 @@ BASE_URL=http://127.0.0.1:4174 npm run test:design
 
 La revisión usa Chromium en `/usr/bin/chromium`; puede indicarse otra instalación con `CHROMIUM_PATH`. El servidor estático debe estar activo antes de ejecutar `test:design`. Las capturas y los informes JSON se generan en `artifacts/diseno-v2/`, excluido de Git. No se necesitan credenciales, cuentas ni documentos privados para estas pruebas.
 
-Los estilos editables están en `design-proposals/`; `experience.css` se genera con `build:design`. Las fuentes se sirven desde `materiales/identidad/` con sus licencias OFL. El progreso, los favoritos y el perfil se guardan en el navegador del visitante.
+Los estilos editables están en `design-proposals/`; `experience.css` se genera con `build:design`. Foro utiliza Manrope, servida desde `materiales/identidad/` con su licencia OFL. Fraunces se carga únicamente al revisar la alternativa Archivo Vivo. El progreso, los favoritos y el perfil se guardan en el navegador del visitante.
 
 ## Resultados y decisiones
 
