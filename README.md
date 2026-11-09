@@ -31,3 +31,5 @@ En GitHub Pages sigue funcionando el sitio estático y la carga anterior desde G
 Este repositorio está preparado para GitHub Pages. Seleccionar `Deploy from a branch` → `main` → `/ (root)` en Settings → Pages.
 
 Esta propuesta se prepara para revisión mediante Pull Request. No publicar cambios importantes antes de revisar la vista previa y acordar el alojamiento de los documentos.
+
+La comparación de proveedores, el presupuesto inicial y la configuración pendiente están en [docs/publicacion.md](docs/publicacion.md).
