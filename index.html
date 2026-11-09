@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lex Studium — Biblioteca y Simulador | V10</title>
+<title>Lex Studium — Tu estudio jurídico</title>
 <style>
 /* Lex Studium V10 — diseño profesional, sin dependencias externas */
 :root{
@@ -603,6 +603,7 @@ body{
 
 </style>
   <link rel="stylesheet" href="design-polish.css">
+<link rel="stylesheet" href="studio-redesign.css">
 </head>
 <body>
 
@@ -627,7 +628,7 @@ body{
 
   <main class="main">
     <header class="workspace-topbar">
-      <div class="workspace-crumb"><span class="crumb-dot"></span> UN ESPACIO SIMPLE PARA APRENDER DERECHO</div>
+      <div class="workspace-crumb"><span class="crumb-dot"></span> TU ESTUDIO JURÍDICO · ECUADOR</div>
       <div class="workspace-tools"><span class="top-status">Acceso libre · sin registro</span>
         <button type="button" class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Cambiar apariencia" aria-label="Cambiar apariencia"><span id="themeIcon">☾</span><span id="themeText">Modo oscuro</span></button>
       </div>
@@ -636,10 +637,11 @@ body{
     <section id="biblioteca" class="page active">
       <div class="library-hero">
         <div class="hero-copy">
-          <div class="eyebrow">LEX STUDIUM / ECUADOR</div>
-          <h2>Aprende Derecho<br><em>sin perderte.</em></h2>
-          <p>Consulta legislación ecuatoriana, practica con simuladores y organiza tus normas favoritas en una interfaz más amable, clara y moderna.</p>
-          <div class="hero-highlights"><span>Normas y códigos</span><span>Estudio más claro</span></div>
+          <div class="eyebrow">TU LUGAR PARA COMPRENDER EL DERECHO</div>
+          <h2>El Derecho, <br><em>más cerca de ti.</em></h2>
+          <p>Explora las leyes del Ecuador, convierte tus apuntes en evaluaciones y aprende a tu manera, desde un solo lugar.</p>
+          <div class="hero-highlights"><span>Legislación ecuatoriana</span><span>Evaluaciones interactivas</span></div>
+<div class="hero-actions"><button class="hero-action primary" type="button" onclick="goById('practicar')">Empezar a practicar ↗</button><button class="hero-action secondary" type="button" onclick="document.getElementById('lawSearch').scrollIntoView({behavior:'smooth',block:'center'});document.getElementById('lawSearch').focus()">Explorar biblioteca ↓</button></div>
         </div>
         <div class="hero-side" aria-hidden="true">
           <div class="hero-seal">
@@ -653,6 +655,11 @@ body{
         </div>
         <div class="library-count mobile-count"><span>Documentos disponibles</span><b id="mobileLawCount">0</b></div>
       </div>
+<div class="study-shortcuts" aria-label="Accesos directos">
+<button class="study-shortcut" type="button" onclick="goById('practicar')"><span class="shortcut-icon" aria-hidden="true">✎</span><span class="shortcut-foot"><span><span class="shortcut-title">Practica a tu ritmo</span><span class="shortcut-copy">Crea una prueba con tus apuntes</span></span><span class="shortcut-arrow" aria-hidden="true">↗</span></span></button>
+<button class="study-shortcut coral" type="button" onclick="document.getElementById('lawSearch').scrollIntoView({behavior:'smooth',block:'center'});document.getElementById('lawSearch').focus()"><span class="shortcut-icon" aria-hidden="true">⌕</span><span class="shortcut-foot"><span><span class="shortcut-title">Busca una norma</span><span class="shortcut-copy">Encuentra códigos y documentos</span></span><span class="shortcut-arrow" aria-hidden="true">↗</span></span></button>
+<button class="study-shortcut lavender" type="button" onclick="document.getElementById('lawSaved').value='saved';renderLibrary();document.getElementById('lawGrid').scrollIntoView({behavior:'smooth',block:'start'})"><span class="shortcut-icon" aria-hidden="true">☆</span><span class="shortcut-foot"><span><span class="shortcut-title">Tus guardados</span><span class="shortcut-copy">Regresa a tus normas favoritas</span></span><span class="shortcut-arrow" aria-hidden="true">↗</span></span></button>
+</div>
       <div class="card catalog-card">
         <div class="catalog-header">
           <div><h3>Explorar legislación</h3><p>Filtra por área, tipo de documento o tus favoritos.</p></div>
@@ -675,8 +682,8 @@ body{
         <header class="practice-heading">
           <div>
             <span class="practice-kicker">Evaluaciones</span>
-            <h2>Crea tu práctica ideal.</h2>
-            <p>Configura tu práctica con el tema, el tipo de preguntas y el contenido que deseas repasar, de una forma visualmente más cómoda.</p>
+            <h2>Convierte tus apuntes en una prueba.</h2>
+            <p>Elige la materia, ajusta la dificultad y practica con lo que realmente estás estudiando.</p>
           </div>
           <div class="practice-summary">
             <span>Promedio registrado</span>
