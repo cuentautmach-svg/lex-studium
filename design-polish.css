@@ -1,0 +1,94 @@
+/* Lex Studium · refinamiento UX inspirado en la skill emil-design-eng
+   Mejora incremental de V12. Sin dependencias, sin cambios a la logica JS. */
+:root{
+ --ease-out:cubic-bezier(.23,1,.32,1);
+ --ease-ui:cubic-bezier(.32,.72,0,1);
+ --bg:#f7f8fe;--ink:#202c44;--muted:#5f6e88;
+ --line:#e6eaf4;--shadow:0 8px 28px rgba(39,54,110,.065);
+ --shadow-soft:0 3px 14px rgba(39,54,110,.055);
+}
+body{background:radial-gradient(ellipse 880px 430px at 0 0,rgba(114,104,248,.075),transparent 76%),#f7f8fe;line-height:1.6}
+.sidebar{background:rgba(255,255,255,.93);box-shadow:0 1px 0 rgba(39,54,110,.035);padding-block:13px}
+.brandmark{border-radius:13px;box-shadow:0 5px 14px rgba(77,82,210,.18)}
+.nav button{transition:color 150ms ease,background-color 150ms ease,transform 150ms var(--ease-out);border-radius:11px}
+.nav button.active{background:#eef0ff;border-color:#e5e8ff;box-shadow:none;color:#4a50cf}
+.nav button:hover{background:#f0f1fb}
+.main{max-width:1200px}
+.workspace-topbar{margin-bottom:21px}
+.workspace-crumb{font-size:10px;letter-spacing:.1em}
+.card,.catalog-card{box-shadow:var(--shadow-soft);border-color:var(--line)}
+.library-hero{background:linear-gradient(125deg,#334fce 0%,#655dd9 62%,#836bd7 100%);box-shadow:0 14px 36px rgba(64,68,166,.15);border-radius:24px}
+.library-hero:before{background:#d2c8ff;opacity:.16;filter:blur(30px)}
+.library-hero:after{background:#ffd4c7;opacity:.22;filter:blur(28px)}
+.library-hero h2{font-size:clamp(30px,3.8vw,49px);line-height:1.11;letter-spacing:-.035em}
+.library-hero p{font-size:14px;line-height:1.68}
+.hero-highlights span{font-size:11px;padding:7px 11px;background:rgba(255,255,255,.095);backdrop-filter:none}
+.hero-seal{background:rgba(255,255,255,.075);border-color:rgba(255,255,255,.16)}
+.library-count{background:rgba(255,255,255,.12);backdrop-filter:blur(8px)}
+.catalog-header h3{font-size:clamp(21px,2vw,25px)}
+.law-grid{gap:14px}
+.law-card{background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:0 2px 12px rgba(39,54,110,.04);transition:transform 180ms var(--ease-out),box-shadow 180ms ease,border-color 180ms ease}
+@media(hover:hover){.law-card:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(39,54,110,.09);border-color:#cbd2ee}}
+.law-visual{background:#f0f0ff;border-color:#e7e7fd;border-radius:14px}
+.badge,.catalog-chip{background:#eeefff;color:#5051a8;border:1px solid #e5e7fd}
+.law-note{background:#fffbf3;border:1px solid #f4e6c9;color:#7e652e}
+.btn,.theme-toggle,.save-law,.account-shortcut{transition:transform 140ms var(--ease-out),background-color 150ms ease,border-color 150ms ease,box-shadow 150ms ease}
+.btn:active,.theme-toggle:active,.save-law:active,.account-shortcut:active,.nav button:active{transform:scale(.97)}
+.btn-primary,.btn-wine{background:#5359d7;box-shadow:0 3px 10px rgba(67,73,174,.14)}
+.btn-primary:hover,.btn-wine:hover{background:#484ebf;filter:none}
+.control{background:var(--paper);border-radius:12px;box-shadow:none}
+.control:focus-visible{outline:2px solid #8b91ec;outline-offset:1px;box-shadow:0 0 0 4px rgba(99,105,221,.1)}
+.practice-heading{background:linear-gradient(115deg,#fff 0%,#f4f4ff 100%);box-shadow:var(--shadow-soft);border-radius:22px}
+.practice-summary{background:linear-gradient(130deg,#4d58ca,#7966d7);box-shadow:0 10px 26px rgba(80,80,165,.12)}
+.practice-paper,.profile-hero,.coming-shell{box-shadow:var(--shadow-soft);border-radius:22px}
+.step-body{background:var(--paper)}
+.exam-v6-head{background:linear-gradient(115deg,var(--paper),var(--paper-2));border-radius:22px}
+.exam-question,.exam-essay{background:var(--paper);border-color:var(--line);border-radius:18px;box-shadow:var(--shadow-soft)}
+.exam-option{background:var(--paper-2);border-color:var(--line);transition:background-color 140ms ease,border-color 140ms ease,transform 140ms var(--ease-out)}
+.exam-option:active{transform:scale(.995)}
+.exam-option:has(input:checked){background:#f0f0ff;border-color:#898ade}
+.page.active{animation:lex-page-in 190ms var(--ease-out) both}
+@keyframes lex-page-in{from{opacity:.65;transform:translateY(4px)}to{opacity:1;transform:none}}
+:root[data-theme="dark"]{
+ --bg:#101725;--paper:#192337;--paper-2:#1c2940;--ink:#edf2fb;--muted:#b8c5db;
+ --line:#30405a;--soft:#1d2a41;--control:#1e2b41;--badge-bg:#283756;
+ --teal-soft:#2b335d;--blue:#aeb4ff;--shadow:0 8px 26px rgba(0,0,0,.1);
+ --shadow-soft:0 5px 15px rgba(0,0,0,.13);--nav:#172136;--note:#c3cee0;
+}
+:root[data-theme="dark"] body{background:radial-gradient(ellipse 900px 460px at 0 0,rgba(105,95,212,.11),transparent 75%),var(--bg);color:var(--ink)}
+:root[data-theme="dark"] .sidebar{background:rgba(22,31,50,.95);border-color:var(--line);box-shadow:0 2px 15px rgba(0,0,0,.12)}
+:root[data-theme="dark"] .brandtext,:root[data-theme="dark"] .side-profile strong{color:var(--ink)}
+:root[data-theme="dark"] .nav button{color:var(--muted)}
+:root[data-theme="dark"] .nav button.active{background:#303b69;color:#e1e3ff;border-color:#455187}
+:root[data-theme="dark"] .nav button:hover{background:#26334e;color:#eff2ff}
+:root[data-theme="dark"] .side-profile,:root[data-theme="dark"] .theme-toggle,:root[data-theme="dark"] .account-shortcut{background:var(--paper);color:var(--ink);border-color:var(--line);box-shadow:none}
+:root[data-theme="dark"] .card,:root[data-theme="dark"] .catalog-card,:root[data-theme="dark"] .law-card,:root[data-theme="dark"] .practice-paper,:root[data-theme="dark"] .profile-hero,:root[data-theme="dark"] .exam-question,:root[data-theme="dark"] .exam-essay,:root[data-theme="dark"] .coming-shell{background:var(--paper);border-color:var(--line);box-shadow:var(--shadow-soft)}
+:root[data-theme="dark"] .law-visual,:root[data-theme="dark"] .badge,:root[data-theme="dark"] .catalog-chip,:root[data-theme="dark"] .coming-overline,:root[data-theme="dark"] .exam-qmeta span{background:#29365a;border-color:#3b4b7c;color:#c7ccff}
+:root[data-theme="dark"] .law-note,:root[data-theme="dark"] .catalog-note{background:#273047;border-color:#46506a;color:#e4d6b6}
+:root[data-theme="dark"] .practice-heading,:root[data-theme="dark"] .exam-v6-head{background:linear-gradient(115deg,#1a263d,#252c4c);border-color:var(--line)}
+:root[data-theme="dark"] .practice-step{border-color:var(--line)}
+:root[data-theme="dark"] .step-body,:root[data-theme="dark"] .step-index{background:var(--paper);color:var(--ink);border-color:var(--line)}
+:root[data-theme="dark"] .practice-submit{background:var(--paper-2)}
+:root[data-theme="dark"] .exam-option,:root[data-theme="dark"] .control{background:var(--paper-2);border-color:var(--line);color:var(--ink)}
+:root[data-theme="dark"] .exam-option:has(input:checked){background:#333c68;border-color:#8996f2}
+:root[data-theme="dark"] .btn-soft,:root[data-theme="dark"] .btn-outline,:root[data-theme="dark"] .save-law{background:var(--paper-2);color:var(--ink);border-color:var(--line)}
+:root[data-theme="dark"] .profile-stat{background:var(--paper-2);border-color:var(--line)}
+:root[data-theme="dark"] .coming-shell h2,:root[data-theme="dark"] .practice-heading h2,:root[data-theme="dark"] .catalog-header h3,:root[data-theme="dark"] .profile-title h2{color:var(--ink)}
+@media(max-width:700px){
+ .sidebar{padding:10px 12px;gap:8px}
+ .nav{scrollbar-width:none;overscroll-behavior-x:contain}
+ .nav::-webkit-scrollbar{display:none}
+ .nav button{min-height:43px;padding:9px 11px}
+ .main{padding:17px 14px 50px}
+ .workspace-topbar{flex-wrap:wrap;row-gap:10px}
+ .library-hero{padding:26px 22px;border-radius:20px}
+ .library-hero h2{font-size:clamp(29px,8vw,37px)}
+ .law-card{border-radius:17px}
+ .catalog-card{padding:20px 17px}
+ .practice-heading{border-radius:19px}
+ .practice-summary{width:auto}
+ .control,select,input,textarea{font-size:16px}
+ .exam-v6-actions{bottom:env(safe-area-inset-bottom,0px)}
+}
+@media(hover:none){.law-card:hover,.btn:hover,.nav button:hover{transform:none}}
+@media(prefers-reduced-motion:reduce){.page.active{animation:none}.btn,.nav button,.law-card,.exam-option,.save-law{transition:none!important}}
