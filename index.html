@@ -11,6 +11,14 @@
 </script>
 <link rel="preload" href="materiales/identidad/manrope.woff" as="font" type="font/woff" crossorigin>
 <link rel="stylesheet" href="experience.css">
+<!-- Pausa temporal del simulador: conservamos su código para reactivarlo. -->
+<style>
+.nav button[data-page="practicar"], #practicar { display:none !important; }
+@media (max-width: 900px) {
+  html[data-design="archivo"] .nav,
+  html[data-design="orbita"] .nav { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#mainContent">Ir al contenido</a>
@@ -575,7 +583,12 @@ function avatarHTML(name,img,cls="avatar-img"){
 }
 
 /* NAV */
+const SIMULATOR_ENABLED = false; // Cambiar a true y retirar el estilo de pausa al reactivarlo.
 function go(id,btn){
+  if (!SIMULATOR_ENABLED && id === "practicar") {
+    id = "biblioteca";
+    btn = document.querySelector('.nav button[data-page="biblioteca"]');
+  }
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
   document.getElementById(id).classList.add("active");
   document.querySelectorAll(".nav button").forEach(b=>{b.classList.remove("active");b.removeAttribute("aria-current")});
@@ -699,6 +712,7 @@ function decodeExamPayload(raw){
   return JSON.parse(decodeURIComponent(atob(raw)));
 }
 function openExam(){
+  if (!SIMULATOR_ENABLED) return;
   const data=buildQuizData();if(!data)return;
   savePracticeDraft();
   const hash="#exam="+encodeURIComponent(encodeExamPayload(data));
@@ -710,6 +724,7 @@ function openExam(){
   }
 }
 function renderStandaloneExam(data){
+  if (!SIMULATOR_ENABLED) return;
   document.getElementById("authScreen")?.classList.add("hidden");
   document.getElementById("app")?.classList.add("hidden");
   document.body.insertAdjacentHTML("beforeend",`
@@ -843,7 +858,9 @@ function toggleTheme(){
 }
 try{applyTheme(localStorage.getItem("lexAppearance")==="dark"?"dark":"light")}catch(e){applyTheme("light")}
 renderSubjects();renderLibraryFilters();refreshAll();restorePracticeDraft();
-if(location.hash.startsWith("#exam=")){
+if (!SIMULATOR_ENABLED && location.hash.startsWith("#exam=")) {
+  history.replaceState(null, "", location.pathname + location.search);
+} else if (SIMULATOR_ENABLED && location.hash.startsWith("#exam=")){
   try{renderStandaloneExam(decodeExamPayload(decodeURIComponent(location.hash.slice(6))))}
   catch(e){location.hash="";alert("La evaluación no se pudo abrir. Genera una nueva desde Simulador.")}
 }
