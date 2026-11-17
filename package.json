@@ -8,9 +8,9 @@
   },
   "scripts": {
     "build:design": "node scripts/build-designs.mjs",
-    "test:design": "node scripts/review-designs-v2.mjs",
-    "test:editorial": "node scripts/review-editorial.mjs",
-    "test:content": "node scripts/verify-content.mjs"
+    "test:design": "node scripts/review-campus.mjs",
+    "test:content": "node scripts/verify-content.mjs",
+    "test:campus": "node scripts/review-campus.mjs"
   },
   "devDependencies": {
     "playwright": "1.62.1"

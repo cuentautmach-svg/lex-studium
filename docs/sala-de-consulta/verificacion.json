@@ -1,0 +1,865 @@
+{
+  "date": "2026-11-17T05:12:01.896Z",
+  "base": "http://127.0.0.1:4174",
+  "scope": "Capturas reales de Chromium con contenido local y archivos consultados en GitHub, sin datos simulados. Pruebas funcionales en contextos desechables. Móvil emulado, sin dispositivo físico.",
+  "screenshots": [
+    {
+      "file": "despues-biblioteca-escritorio.png",
+      "url": "http://127.0.0.1:4174/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "fullPage": false,
+      "scrollY": 0
+    },
+    {
+      "file": "despues-ficha-coip-escritorio.png",
+      "url": "http://127.0.0.1:4174/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "fullPage": false,
+      "scrollY": 0
+    },
+    {
+      "file": "despues-biblioteca-movil.png",
+      "url": "http://127.0.0.1:4174/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "scrollY": 0
+    },
+    {
+      "file": "despues-biblioteca-movil-completa.png",
+      "url": "http://127.0.0.1:4174/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true,
+      "scrollY": 0
+    },
+    {
+      "file": "despues-ficha-coip-movil.png",
+      "url": "http://127.0.0.1:4174/#norma-2",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "scrollY": 0
+    },
+    {
+      "file": "despues-menu-movil.png",
+      "url": "http://127.0.0.1:4174/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "scrollY": 0
+    },
+    {
+      "file": "despues-oscuro-movil.png",
+      "url": "http://127.0.0.1:4174/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "scrollY": 0
+    },
+    {
+      "file": "despues-oscuro-escritorio.png",
+      "url": "http://127.0.0.1:4174/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "fullPage": false,
+      "scrollY": 0
+    },
+    {
+      "file": "despues-archivos-escritorio.png",
+      "url": "http://127.0.0.1:4174/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "fullPage": false,
+      "scrollY": 0
+    },
+    {
+      "file": "despues-archivos-movil.png",
+      "url": "http://127.0.0.1:4174/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "scrollY": 0
+    },
+    {
+      "file": "despues-perfil-movil.png",
+      "url": "http://127.0.0.1:4174/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false,
+      "scrollY": 0
+    },
+    {
+      "file": "despues-perfil-escritorio.png",
+      "url": "http://127.0.0.1:4174/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "fullPage": false,
+      "scrollY": 0
+    },
+    {
+      "file": "despues-lecturas-vacias-escritorio.png",
+      "url": "http://127.0.0.1:4174/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "fullPage": false,
+      "scrollY": 0
+    }
+  ],
+  "checks": [
+    "Capturas reales de nueva biblioteca, ficha COIP, menú móvil, archivos, modo oscuro, perfil y lecturas vacías",
+    "Catálogo, ficha, filtros, archivos, perfil, comunidad y menú medidos a 360, 390, 768, 1024 y 1440 px en ambos temas",
+    "41 normas y referencias preservadas; selección por índice original, materias y conteos, búsqueda sin tildes, filtros, PDF y estados vacíos",
+    "Guardar desde catálogo, persistencia, Mis lecturas y retirada de la última lectura actualizan ficha, conteo, foco y estado vacío",
+    "Ficha móvil con teclado/Escape/atrás y retorno de foco; menú con foco contenido, cierre al navegar y cambios de ancho sin bloqueos",
+    "Archivos reales, navegación, tema/perfil persistentes y simulador todavía pausado",
+    "Un fallo de red en materiales conserva reintento y acceso alternativo a GitHub",
+    "Sin errores JavaScript, recursos fallidos, desbordamientos ni fallos de contraste medidos"
+  ],
+  "layouts": [
+    {
+      "width": 360,
+      "theme": "light",
+      "section": "catalogo",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 360,
+      "theme": "light",
+      "section": "filtros",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 360,
+      "theme": "light",
+      "section": "ficha",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 360,
+      "theme": "light",
+      "section": "archivos",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 360,
+      "theme": "light",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 360,
+      "theme": "light",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 360,
+      "theme": "light",
+      "section": "menu",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 360,
+      "theme": "dark",
+      "section": "catalogo",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 360,
+      "theme": "dark",
+      "section": "filtros",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 360,
+      "theme": "dark",
+      "section": "ficha",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 360,
+      "theme": "dark",
+      "section": "archivos",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 360,
+      "theme": "dark",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 360,
+      "theme": "dark",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 360,
+      "theme": "dark",
+      "section": "menu",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "section": "catalogo",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "section": "filtros",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "section": "ficha",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "section": "archivos",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "section": "menu",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "section": "catalogo",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "section": "filtros",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "section": "ficha",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "section": "archivos",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "section": "menu",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "section": "catalogo",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "section": "filtros",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "section": "ficha",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "section": "archivos",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "section": "menu",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "section": "catalogo",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "section": "filtros",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "section": "ficha",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "section": "archivos",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "section": "menu",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 1024,
+      "theme": "light",
+      "section": "catalogo",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 1024,
+      "theme": "light",
+      "section": "filtros",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 1024,
+      "theme": "light",
+      "section": "ficha",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 1024,
+      "theme": "light",
+      "section": "archivos",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 1024,
+      "theme": "light",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 1024,
+      "theme": "light",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 1024,
+      "theme": "light",
+      "section": "menu",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 1024,
+      "theme": "dark",
+      "section": "catalogo",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 1024,
+      "theme": "dark",
+      "section": "filtros",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 1024,
+      "theme": "dark",
+      "section": "ficha",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 1024,
+      "theme": "dark",
+      "section": "archivos",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 1024,
+      "theme": "dark",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 1024,
+      "theme": "dark",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 1024,
+      "theme": "dark",
+      "section": "menu",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "section": "catalogo",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "section": "filtros",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "section": "ficha",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "section": "archivos",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "section": "catalogo",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "section": "filtros",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "section": "ficha",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "section": "archivos",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "section": "perfil",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "section": "comunidad",
+      "overflow": 0,
+      "clipped": [],
+      "headerOverlaps": []
+    }
+  ],
+  "contrast": [
+    {
+      "width": 390,
+      "theme": "light",
+      "section": "catalogo",
+      "checked": 35,
+      "failures": []
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "section": "ficha",
+      "checked": 22,
+      "failures": []
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "section": "archivos",
+      "checked": 19,
+      "failures": []
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "section": "perfil",
+      "checked": 35,
+      "failures": []
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "section": "comunidad",
+      "checked": 9,
+      "failures": []
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "section": "menu",
+      "checked": 27,
+      "failures": []
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "section": "catalogo",
+      "checked": 35,
+      "failures": []
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "section": "ficha",
+      "checked": 22,
+      "failures": []
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "section": "archivos",
+      "checked": 19,
+      "failures": []
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "section": "perfil",
+      "checked": 35,
+      "failures": []
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "section": "comunidad",
+      "checked": 9,
+      "failures": []
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "section": "menu",
+      "checked": 27,
+      "failures": []
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "section": "catalogo",
+      "checked": 77,
+      "failures": []
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "section": "ficha",
+      "checked": 77,
+      "failures": []
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "section": "archivos",
+      "checked": 48,
+      "failures": []
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "section": "perfil",
+      "checked": 64,
+      "failures": []
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "section": "comunidad",
+      "checked": 38,
+      "failures": []
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "section": "catalogo",
+      "checked": 77,
+      "failures": []
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "section": "ficha",
+      "checked": 77,
+      "failures": []
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "section": "archivos",
+      "checked": 48,
+      "failures": []
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "section": "perfil",
+      "checked": 64,
+      "failures": []
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "section": "comunidad",
+      "checked": 38,
+      "failures": []
+    }
+  ],
+  "errors": [],
+  "assetErrors": [],
+  "documents": {
+    "status": "0 archivos disponibles para ver y descargar.",
+    "count": 0,
+    "fallback": "Todavía no hay archivos compartidos.La administración puede cargar el primer documento desde el botón de GitHub que aparece abajo."
+  },
+  "summary": {
+    "screenshots": 13,
+    "layoutMeasurements": 68,
+    "layoutFailures": 0,
+    "contrastSamples": 902,
+    "contrastFailures": 0,
+    "javascriptErrors": 0,
+    "assetErrors": 0
+  }
+}
