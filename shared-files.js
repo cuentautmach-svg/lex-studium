@@ -4,15 +4,7 @@ const LEX_MATERIALS_REPO='lex-studium';
 let lexMaterials=[];
 let lexMaterialsLoaded=false;
 const lexMaterialTypes=/\.(pdf|docx?|pptx?|xlsx?|odt|ods|txt|md|png|jpe?g|webp|zip|epub)$/i;
-function lexSwitchShelf(which){
-  const showFiles=which==='archivos';
-  document.getElementById('lexShelfLaws').classList.toggle('hidden',showFiles);
-  document.getElementById('lexShelfFiles').classList.toggle('hidden',!showFiles);
-  const a=document.getElementById('lexTabLaws'),b=document.getElementById('lexTabFiles');
-  a.classList.toggle('active',!showFiles);b.classList.toggle('active',showFiles);
-  a.setAttribute('aria-selected',String(!showFiles));b.setAttribute('aria-selected',String(showFiles));a.tabIndex=showFiles?-1:0;b.tabIndex=showFiles?0:-1;
-  if(showFiles)lexLoadDocuments(false);
-}
+function lexSwitchShelf(which){ openLibrary(which); }
 function lexNiceFileName(path){
   return path.split('/').pop().replace(/\.[^.]+$/,'').replace(/[_-]+/g,' ').trim();
 }
@@ -71,11 +63,3 @@ async function lexLoadDocuments(force){
     box.innerHTML='<div class="lex-docs-empty">También puedes consultar los documentos directamente en <a href="https://github.com/'+LEX_MATERIALS_OWNER+'/'+LEX_MATERIALS_REPO+'/tree/main/materiales" target="_blank" rel="noopener noreferrer">GitHub <svg class="icon-arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M5 19 19 5M5 5h14v14"/></svg></a>.</div>';
   }
 }
-
-document.querySelector('.lex-library-tabs').addEventListener('keydown',event=>{
-  if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;
-  event.preventDefault();
-  const showFiles=event.key==='End'||(event.key!=='Home'&&document.activeElement.id==='lexTabLaws');
-  lexSwitchShelf(showFiles?'archivos':'leyes');
-  document.getElementById(showFiles?'lexTabFiles':'lexTabLaws').focus();
-});

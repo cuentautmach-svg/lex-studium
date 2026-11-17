@@ -2,14 +2,15 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Lex Studium — El Derecho, más claro</title>
-<meta name="theme-color" content="#2449cc">
+<meta name="theme-color" content="#f3f0e8">
 <meta name="description" content="Tu espacio para estudiar Derecho ecuatoriano. Consulta fuentes oficiales, guarda tus normas y practica con tus propios apuntes.">
 <script>
-(()=>{const d=new URLSearchParams(location.search).get('design');document.documentElement.dataset.design=['archivo','foro','orbita'].includes(d)?d:'foro';try{document.documentElement.dataset.theme=localStorage.getItem('lexAppearance')==='dark'?'dark':'light'}catch{}})();
+(()=>{document.documentElement.dataset.design='campus';try{document.documentElement.dataset.theme=localStorage.getItem('lexAppearance')==='dark'?'dark':'light'}catch{}})();
 </script>
 <link rel="preload" href="materiales/identidad/manrope.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="materiales/identidad/fraunces.woff" as="font" type="font/woff" crossorigin>
 <link rel="stylesheet" href="experience.css">
 <!-- Pausa temporal del simulador: conservamos su código para reactivarlo. -->
 <style>
@@ -20,83 +21,58 @@
 }
 </style>
 </head>
-<body>
+<body class="campus">
 <a class="skip-link" href="#mainContent">Ir al contenido</a>
 
-<div id="app" class="app">
-  <aside class="sidebar" aria-label="Navegación principal">
-    <button class="brand" type="button" onclick="goById('biblioteca')" aria-label="Lex Studium, volver a Biblioteca">
-      <span class="brandmark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M8 8v24h24M15 8v17h17M22 8v10h10" stroke="currentColor" stroke-width="2.7"/><path d="m8 32 24-24" stroke="currentColor" stroke-width="1.2" opacity=".45"/></svg></span>
-      <span class="brandtext">Lex Studium<small>El Derecho, más claro.</small></span>
-    </button>
-    <nav class="nav" aria-label="Tu espacio de estudio">
-      <button class="active" data-page="biblioteca" aria-current="page" onclick="go('biblioteca',this)"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h6a3 3 0 0 1 3 3v13a4 4 0 0 0-4-3H4zm16 0h-4a3 3 0 0 0-3 3v13a4 4 0 0 1 4-3h3z"/></svg></span><span>Biblioteca</span></button>
-      <button data-page="practicar" onclick="go('practicar',this)"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m15 4 5 5M4 20l5-1L21 7a2 2 0 0 0-5-5L4 14zm0 0 1-6"/></svg></span><span>Simulador</span></button>
-      <button data-page="comunidad" onclick="go('comunidad',this)"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 16H4l-2 4V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3M11 10h9a2 2 0 0 1 2 2v10l-4-3h-7a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2Z"/></svg></span><span>Comunidad</span></button>
+<div id="app" class="campus-app">
+  <header class="mobile-masthead">
+    <button class="mobile-brand" type="button" onclick="openLibrary('leyes')">Lex Studium<span>Biblioteca jurídica</span></button>
+    <button id="menuToggle" class="menu-toggle" type="button" aria-label="Abrir navegación" aria-controls="campusNavigation" aria-expanded="false" onclick="setCampusMenu(true)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span>Menú</span></button>
+  </header>
+  <div id="menuBackdrop" class="menu-backdrop" hidden onclick="setCampusMenu(false)"></div>
+  <aside class="campus-sidebar" id="campusNavigation" aria-label="Navegación principal">
+    <button id="menuClose" class="menu-close" type="button" aria-label="Cerrar navegación" onclick="setCampusMenu(false)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+    <button class="campus-brand" type="button" onclick="openLibrary('leyes')" aria-label="Lex Studium, volver a Biblioteca"><span class="campus-wordmark">Lex<span>Studium</span></span><span class="campus-brand-note">El Derecho, más claro.</span></button>
+    <nav class="nav campus-nav" aria-label="Tu espacio de estudio">
+      <button class="active" aria-current="page" data-page="biblioteca" data-section="leyes" onclick="openLibrary('leyes')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6a3 3 0 0 1 2 1 3 3 0 0 1 2-1h6v15h-6a3 3 0 0 0-2 1 3 3 0 0 0-2-1H4Z"/><path d="M12 5v15"/></svg><span>Biblioteca</span></button>
+      <button data-page="biblioteca" data-section="guardadas" onclick="openLibrary('guardadas')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4Z"/></svg><span>Mis lecturas</span><span class="saved-total" id="savedNavCount" aria-label="normas guardadas">0</span></button>
+      <button data-page="biblioteca" data-section="archivos" onclick="openLibrary('archivos')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h7l2 3h9v12H3Z"/><path d="M3 6V3h7l2 3h8v3"/></svg><span>Material compartido</span></button>
+      <button data-page="comunidad" data-section="comunidad" onclick="goById('comunidad')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v12H9l-5 4Z"/><path d="M8 8h8M8 12h5"/></svg><span>Comunidad</span></button>
+      <button data-page="perfil" data-section="perfil" onclick="goById('perfil')"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg><span>Mi espacio</span></button>
     </nav>
-    <button class="account-shortcut" onclick="goById('perfil')" title="Mi espacio local" aria-label="Mi espacio local"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 22v-3a8 8 0 0 1 16 0v3"/></svg></button>
-    <div class="sidebar-spacer"></div>
-    <button class="side-profile" type="button" onclick="goById('perfil')" aria-label="Abrir mi espacio local">
-      <span id="sideAvatar"></span>
-      <span><strong id="sideName">Estudiante</strong><small>Tu espacio personal <span aria-hidden="true"><svg class="icon-arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M5 19 19 5M5 5h14v14"/></svg></span></small></span>
-    </button>
+    <section class="sidebar-areas" aria-labelledby="areaIndexHeading"><h2 id="areaIndexHeading">Materias</h2><div id="areaIndex"></div><button id="areaIndexMore" class="area-more" type="button" aria-expanded="false" onclick="toggleAreaIndex()">Ver todas las materias <span aria-hidden="true">+</span></button></section>
+    <div class="sidebar-bottom">
+      <figure class="sidebar-photo"><img src="assets/photography/library.jpg" alt="Estanterías con libros en una biblioteca" width="1800" height="1200"><figcaption>Un espacio para leer con criterio.</figcaption></figure>
+      <button type="button" class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Cambiar apariencia"><span id="themeIcon"></span><span id="themeText">Modo oscuro</span></button>
+      <button class="side-profile" type="button" onclick="goById('perfil')" aria-label="Abrir mi espacio local"><span id="sideAvatar"></span><span><strong id="sideName">Estudiante</strong><small>Tu espacio personal</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
+      <p class="local-note">Tus favoritos se guardan en este dispositivo.</p>
+    </div>
   </aside>
-
-  <main class="main" id="mainContent">
-    <header class="workspace-topbar">
-      <div class="workspace-crumb"><span id="workspaceSection">Biblioteca</span></div>
-      <div class="workspace-tools">
-        <button type="button" class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Cambiar apariencia" aria-label="Cambiar apariencia"><span id="themeIcon">☾</span><span id="themeText">Modo oscuro</span></button>
-      </div>
-    </header>
-    <!-- BIBLIOTECA -->
+  <main class="campus-main" id="mainContent">
+    <header class="campus-topbar"><span>Lex Studium <span aria-hidden="true">/</span> <strong id="workspaceSection">Biblioteca</strong></span><div><span class="source-location">Fuentes de Ecuador</span><button class="top-profile" type="button" onclick="goById('perfil')">Mi espacio <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg></button></div></header>
     <section id="biblioteca" class="page active">
-      <div class="library-hero">
-        <div class="hero-copy">
-          <h1 class="hero-title">El Derecho,<br><em>más claro.</em></h1>
-          <p class="hero-description">Fuentes oficiales y práctica con tus apuntes. Un espacio para entender, a tu ritmo.</p>
+      <header class="library-heading"><h1 id="libraryHeading">Biblioteca jurídica</h1><p id="libraryIntro">Encuentra una norma. Abre su ficha. Consulta la fuente.</p></header>
+      <div class="library-toolbar" id="catalogToolbar">
+        <div class="filter-field search-field"><label for="lawSearch" class="sr-only">Buscar norma o tema</label><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg><input id="lawSearch" class="control" type="search" placeholder="¿Qué necesitas consultar?" oninput="renderLibrary()" aria-controls="lawGrid" aria-describedby="libraryResultStatus" enterkeyhint="search"></div>
+        <details class="library-advanced" id="libraryAdvanced"><summary>Filtros <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg></summary><div class="library-filter-fields">
+          <div class="filter-field"><label for="lawArea">Área jurídica</label><select id="lawArea" class="control" onchange="renderLibrary()"></select></div>
+          <div class="filter-field"><label for="lawType">Tipo de fuente</label><select id="lawType" class="control" onchange="renderLibrary()"></select></div>
+          <div class="filter-field"><label for="lawSaved">Colección</label><select id="lawSaved" class="control" onchange="renderLibrary()"><option value="all">Todas las normas</option><option value="saved">Mis lecturas guardadas</option></select></div>
+          <button class="quiet-link" id="libraryReset" onclick="resetLibraryFilters()">Limpiar filtros</button>
+        </div></details>
+      </div>
+      <div id="lexShelfLaws">
+        <div class="library-workspace" id="catalog">
+          <section class="catalog-index" aria-labelledby="catalogIndexTitle"><div class="catalog-index-head"><h2 class="catalog-index-title" id="catalogIndexTitle">Catálogo</h2><p id="libraryResultStatus" class="library-result-status" role="status" aria-live="polite"></p></div><span class="sr-only" id="visibleLawCount">41</span><span class="sr-only" id="mobileLawCount">41</span><div id="lawGrid" class="catalog-list"></div><div class="library-more"><button id="lawLoadMore" class="btn btn-outline" type="button" onclick="loadMoreLaws()">Ver más normas</button></div></section>
+          <article id="lawDetail" class="record-pane" aria-labelledby="recordTitle"></article>
         </div>
-        <div class="hero-side" aria-hidden="true">
-          <div class="lex-art">
-            <div class="art-orbit"></div>
-            <div class="art-index">§</div>
-            <div class="art-book book-one"><span class="book-label">LEX / ECUADOR</span><span class="book-glyph">§</span><span class="book-rule"></span><span class="book-label">LEER</span></div>
-            <div class="art-book book-two"><span class="book-label">IDEAS EN ORDEN</span><span class="book-glyph">¶</span><span class="book-rule"></span><span class="book-label">ENTENDER</span></div>
-            <div class="art-book book-three"><span class="book-label">TU PROPIO CRITERIO</span><span class="book-glyph">∴</span><span class="book-rule"></span><span class="book-label">ARGUMENTAR</span></div>
-          </div>
-        </div>
       </div>
-      <div class="lex-library-tabs" role="tablist" aria-label="Secciones de la biblioteca">
-        <button id="lexTabLaws" class="active" role="tab" aria-selected="true" aria-controls="lexShelfLaws" onclick="lexSwitchShelf('leyes')">Normativa oficial</button>
-        <button id="lexTabFiles" role="tab" aria-selected="false" aria-controls="lexShelfFiles" tabindex="-1" onclick="lexSwitchShelf('archivos')">Archivos compartidos</button>
-      </div>
-      <div id="lexShelfLaws" role="tabpanel" aria-labelledby="lexTabLaws">
-      <div class="card catalog-card" id="catalog">
-        <div class="catalog-header"><h2>Encuentra tu norma.</h2><span class="sr-only" id="visibleLawCount">41</span><span class="sr-only" id="mobileLawCount">41</span></div>
-        <div class="library-toolbar">
-          <div class="filter-field search-field"><label for="lawSearch" class="sr-only">Buscar norma o tema</label><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg><input id="lawSearch" class="control" type="search" placeholder="Buscar norma o tema" oninput="renderLibrary()" aria-controls="lawGrid" aria-describedby="libraryResultStatus"></div>
-          <details class="library-advanced" id="libraryAdvanced"><summary>Filtrar <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg></summary>
-            <div class="library-filter-fields">
-              <div class="filter-field"><label for="lawArea">Área jurídica</label><select id="lawArea" class="control" onchange="renderLibrary()"></select></div>
-              <div class="filter-field"><label for="lawType">Tipo</label><select id="lawType" class="control" onchange="renderLibrary()"></select></div>
-              <div class="filter-field"><label for="lawSaved">Mostrar</label><select id="lawSaved" class="control" onchange="renderLibrary()"><option value="all">Todas las normas</option><option value="saved">Mis favoritos</option></select></div>
-              <button class="quiet-link" id="libraryReset" onclick="resetLibraryFilters()">Limpiar filtros</button>
-            </div>
-          </details>
-        </div>
-        <p id="libraryResultStatus" class="library-result-status" role="status" aria-live="polite"></p>
-        <details class="catalog-note"><summary>Fuentes oficiales · contrasta siempre las reformas vigentes <span aria-hidden="true">+</span></summary><p>Fuentes oficiales e institucionales de Ecuador. Enlaces revisados el 08/11/2026. La fecha de publicación de una edición <strong>no garantiza</strong> que incluya las reformas más recientes; confirma siempre el texto vigente en el Registro Oficial. Algunas fichas corresponden a portales temáticos.</p></details>
-        <div id="lawGrid" class="law-grid"></div>
-        <div class="library-more"><button id="lawLoadMore" class="btn btn-outline" type="button" onclick="loadMoreLaws()">Mostrar más normas</button></div>
-      </div>
-      </div>
-      <section id="lexShelfFiles" class="lex-docs-shell hidden" role="tabpanel" aria-labelledby="lexTabFiles">
+      <section id="lexShelfFiles" class="lex-docs-shell hidden" aria-label="Material compartido">
         <div class="lex-docs-head">
           <div>
-            <h3>Material para estudiar y compartir</h3>
+
             <p>Apuntes, guías y documentos subidos por la administración. Puedes consultarlos y descargarlos gratuitamente.</p>
           </div>
-          <div class="lex-docs-illustration" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 6h7l2 3h9v11H3Z"/><path d="M3 9V4h7l2 3h9v2"/></svg></div>
         </div>
         <div class="lex-docs-tools">
           <label class="lex-docs-search-label" for="lexDocsSearch">Buscar archivo
@@ -160,11 +136,10 @@
 
     <!-- COMUNIDAD: sin simulación de usuarios ni publicaciones -->
     <section id="comunidad" class="page">
-      <div class="coming-shell">
-        <div class="coming-symbol" aria-hidden="true">§</div>
-        <h2>Las mejores ideas se construyen en comunidad.</h2>
+      <div class="community-page">
+        <h1>El Derecho también se aprende conversando.</h1>
         <p>Un lugar para compartir preguntas, contrastar ideas y aprender con otros estudiantes. Estamos preparando ese próximo capítulo.</p>
-        <div class="coming-state"><span class="coming-dot"></span> Próximamente</div>
+        <p class="availability-label">Comunidad · Próximamente</p>
         <button class="btn btn-primary" onclick="goById('biblioteca')">Explorar la biblioteca</button>
       </div>
     </section>
@@ -218,6 +193,7 @@
         </div>
       </div>
     </section>
+    <footer class="campus-footer"><span>Lex Studium · Un espacio para estudiar Derecho ecuatoriano.</span><a href="https://unsplash.com/photos/bookshelves-filled-with-old-books-in-a-library-cJukAhcqqLE" target="_blank" rel="noopener noreferrer">Fotografía: Ilya Semenov / Unsplash</a></footer>
   </main>
 </div>
 
@@ -585,16 +561,21 @@ function avatarHTML(name,img,cls="avatar-img"){
 /* NAV */
 const SIMULATOR_ENABLED = false; // Cambiar a true y retirar el estilo de pausa al reactivarlo.
 function go(id,btn){
+  const menuWasOpen=document.body.classList.contains('menu-open');
+  if(history.state?.lexRecord)history.replaceState(null,'',location.pathname+location.search);
   if (!SIMULATOR_ENABLED && id === "practicar") {
     id = "biblioteca";
     btn = document.querySelector('.nav button[data-page="biblioteca"]');
   }
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
   document.getElementById(id).classList.add("active");
-  document.querySelectorAll(".nav button").forEach(b=>{b.classList.remove("active");b.removeAttribute("aria-current")});
-  (btn||document.querySelector(`.nav button[data-page="${id}"]`))?.classList.add("active");
-  document.querySelector('.nav button.active')?.setAttribute('aria-current','page');
+  syncCampusNavigation(id);
+  setCampusMenu(false, false);
+  document.getElementById('catalog').classList.remove('reading');
+  document.querySelector('.library-heading').hidden=false;
+  document.getElementById('catalogToolbar').hidden=lexShelf==='archivos';
   document.getElementById('workspaceSection').textContent=({biblioteca:'Biblioteca',practicar:'Simulador',comunidad:'Comunidad',perfil:'Mi espacio'})[id]||'Lex Studium';
+  if(menuWasOpen){const heading=document.querySelector('#'+id+' h1, #'+id+' h2');if(heading){heading.tabIndex=-1;heading.focus({preventScroll:true});}}
   window.scrollTo({top:0,behavior:(matchMedia("(prefers-reduced-motion: reduce)").matches||document.documentElement.dataset.input==="keyboard")?"auto":"smooth"});
 }
 function goById(id){go(id,document.querySelector(`.nav button[data-page="${id}"]`))}
@@ -847,6 +828,7 @@ function refreshAll(){renderProfile();refreshStats();renderLibrary()}
 function applyTheme(theme){
   document.documentElement.dataset.theme=theme;
   const isDark=theme==="dark";
+  document.querySelector('meta[name="theme-color"]').setAttribute('content',isDark?'#18211f':'#f3f0e8');
   document.getElementById("themeIcon").innerHTML=isDark?'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1 1m12 12 1 1M5 19l1-1M18 6l1-1"/></svg>':'<svg viewBox="0 0 24 24"><path d="M20 15A9 9 0 0 1 9 4 9 9 0 1 0 20 15Z"/></svg>';
   document.getElementById('themeToggle').setAttribute('aria-pressed',String(isDark));
   document.getElementById("themeText").textContent=isDark?"Modo claro":"Modo oscuro";
@@ -870,5 +852,6 @@ if (!SIMULATOR_ENABLED && location.hash.startsWith("#exam=")) {
 <script src="shared-files.js"></script>
 <script src="simulator-flow.js"></script>
 <script src="learning-feedback.js"></script>
+<script src="campus.js"></script>
 </body>
 </html>
