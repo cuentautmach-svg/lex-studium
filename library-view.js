@@ -82,13 +82,27 @@ function renderLawDetail() {
     <p class="record-footer">Contrasta siempre las reformas vigentes en el Registro Oficial.</p>
   </div>`;
 }
+/* Hoja de lectura (≥761 px): diálogo modal; el fondo queda inerte mientras está abierta. */
+function setRecordSheet(open) {
+  const pane = document.getElementById('lawDetail');
+  const sheet = Boolean(open) && !matchMedia('(max-width:760px)').matches;
+  const targets = ['.campus-topbar','.library-heading','#catalogToolbar','.catalog-index','.campus-footer'];
+  if (!matchMedia('(max-width:1100px)').matches) targets.push('.campus-sidebar');
+  targets.forEach(selector => document.querySelectorAll(selector).forEach(element => { element.inert = sheet; }));
+  if (sheet) { pane.setAttribute('role', 'dialog'); pane.setAttribute('aria-modal', 'true'); }
+  else { pane.removeAttribute('role'); pane.removeAttribute('aria-modal'); }
+}
 function openLaw(index, trigger) {
   if (!laws[index]) return;
   lexSelectedLaw = index;
   lexRecordTrigger = trigger || document.querySelector(`.catalog-select[data-law-index="${index}"]`);
   renderLibrary();
-  if (matchMedia('(max-width:760px)').matches) {
-    lexCatalogScroll = scrollY;
+  lexCatalogScroll = scrollY;
+  if (!matchMedia('(max-width:760px)').matches) {
+    document.getElementById('catalog').classList.add('reading');
+    setRecordSheet(true);
+    document.getElementById('recordTitle')?.focus({preventScroll:true});
+  } else {
     document.getElementById('catalog').classList.add('reading');
     document.getElementById('catalogToolbar').hidden = true;
     document.querySelector('.library-heading').hidden = true;
@@ -99,6 +113,7 @@ function openLaw(index, trigger) {
 }
 function returnToCatalog(fromHistory = false) {
   const catalog = document.getElementById('catalog');
+  setRecordSheet(false);
   catalog.classList.remove('reading');
   document.getElementById('catalogToolbar').hidden = lexShelf === 'archivos';
   document.querySelector('.library-heading').hidden = false;
@@ -123,13 +138,15 @@ function resetLibraryFilters() {
   document.getElementById('lawSearch').focus({ preventScroll: true });
 }
 function updateLibraryHeading() {
-  const headings = {leyes:['Biblioteca jurídica','Encuentra una norma. Abre su ficha. Consulta la fuente.'],guardadas:['Mis lecturas','Las normas que quieres tener a mano.'],archivos:['Material compartido','Apuntes, guías y documentos para acompañar tu estudio.']};
+  const headings = {leyes:['Biblioteca jurídica','Encuentra una norma. Abre su ficha. Consulta la fuente.'],guardadas:['Mis lecturas','Las normas que quieres tener a mano.'],archivos:['Material compartido','Apuntes, guías y documentos subidos por la administración. Consúltalos y descárgalos gratis.']};
   const copy = headings[lexShelf] || headings.leyes;
   document.getElementById('libraryHeading').textContent = copy[0];
   document.getElementById('libraryIntro').textContent = copy[1];
 }
 function openLibrary(which = 'leyes', reset = true) {
   if (history.state?.lexRecord) history.replaceState(null,'',location.pathname+location.search);
+  if (!matchMedia('(max-width:760px)').matches) document.getElementById('catalog').classList.remove('reading');
+  setRecordSheet(false);
   lexShelf = ['leyes','guardadas','archivos'].includes(which) ? which : 'leyes';
   document.querySelector('.library-heading').hidden = false;
   document.getElementById('catalogToolbar').hidden = lexShelf === 'archivos';
@@ -154,7 +171,8 @@ function renderAreaIndex() {
   const ordered = [...preferred.filter(area=>areas.includes(area)),...areas.filter(area=>!preferred.includes(area))];
   const shown = lexExpandedAreas ? ordered : ordered.slice(0,5);
   const selected = document.getElementById('lawArea').value;
-  box.innerHTML = shown.map(area=>`<button class="area-link${selected===area && lexShelf!=='archivos'?' active':''}" type="button" data-area="${esc(area)}" onclick="selectLibraryArea(this.dataset.area)"><span>${esc(area)}</span><span>${laws.filter(law=>law[1]===area).length}</span></button>`).join('');
+  const allActive = selected==='Todas las áreas' && lexShelf!=='archivos';
+  box.innerHTML = `<button class="area-link${allActive?' active':''}" type="button" data-area="Todas las áreas"${allActive?' aria-current="true"':''} onclick="selectLibraryArea(this.dataset.area)"><span>Todas</span><span>${laws.length}</span></button>` + shown.map(area=>`<button class="area-link${selected===area && lexShelf!=='archivos'?' active':''}" type="button" data-area="${esc(area)}"${selected===area && lexShelf!=='archivos'?' aria-current="true"':''} onclick="selectLibraryArea(this.dataset.area)"><span>${esc(area)}</span><span>${laws.filter(law=>law[1]===area).length}</span></button>`).join('');
   const more = document.getElementById('areaIndexMore');
   more.setAttribute('aria-expanded',String(lexExpandedAreas));
   more.innerHTML = `${lexExpandedAreas?'Ver menos materias':'Ver todas las materias'} <span aria-hidden="true">${lexExpandedAreas?'−':'+'}</span>`;

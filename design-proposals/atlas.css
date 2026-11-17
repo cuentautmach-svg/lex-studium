@@ -1,0 +1,118 @@
+/* Atlas · fase 2: Registro. Cabecera superior, libro de registro y hoja de lectura. */
+:root[data-design="campus"]{
+  --ease-out:cubic-bezier(.23,1,.32,1);
+  --bg:#f4f1ea;--paper:#fbf9f4;--paper-2:#ebe7dc;--ink:#16181d;--muted:#5b5e66;--line:#d9d4c7;
+  --blue:#1b2a41;--teal:#1b2a41;--teal-soft:#e4e7ee;--soft:#efebe1;--control:#fbf9f4;--note:#5b5e66;
+  --accent:#f0e0d9;--accent-ink:#6f2416;--seal:#8c2f1f;
+  --hero-bg:#ebe7dc;--hero-ink:#16181d;--hero-muted:#5b5e66;
+  --nav:#efebe1;--nav-ink:#16181d;--nav-muted:#5b5e66;--nav-line:#d9d4c7;--nav-selection:#e4dfd1;
+  --selection:#f0e8dd;--selected-muted:#5b5e66;--radius:2px;
+}
+:root[data-design="campus"][data-theme="dark"]{
+  --bg:#111316;--paper:#171a1e;--paper-2:#1f2328;--ink:#ece8df;--muted:#a4a59f;--line:#2b2f36;
+  --blue:#b9c5de;--teal:#b9c5de;--teal-soft:#242b38;--soft:#1c2026;--control:#171a1e;--note:#a4a59f;
+  --accent:#3a2520;--accent-ink:#f1d4c8;--seal:#e5917a;
+  --hero-bg:#1f2328;--hero-ink:#ece8df;--hero-muted:#a4a59f;
+  --nav:#14171a;--nav-ink:#ece8df;--nav-muted:#a4a59f;--nav-line:#2b2f36;--nav-selection:#20242a;
+  --selection:#22262c;--selected-muted:#a4a59f;
+}
+:root[data-design="campus"] body{background:var(--bg);color:var(--ink);font-feature-settings:"kern","liga","tnum" 0}
+:root[data-design="campus"] ::selection{background:var(--seal);color:var(--paper)}
+
+
+:root[data-design="campus"]{--ease-drawer:cubic-bezier(.32,.72,0,1)}
+:root[data-design="campus"] body{font-size:16px}
+:root[data-design="campus"] :is(a,button,summary,select,input):focus-visible{outline:2px solid var(--seal);outline-offset:2px}
+:root[data-design="campus"] .sidebar-photo{display:none}
+:root[data-design="campus"] .campus-sidebar{background:var(--nav);color:var(--nav-ink)}
+:root[data-design="campus"] .campus-wordmark{font-family:var(--display);font-size:30px;font-weight:500;letter-spacing:-.02em;line-height:1;color:var(--ink);white-space:nowrap}
+:root[data-design="campus"] .campus-wordmark span{display:inline;font-style:italic;font-weight:400;color:var(--seal);margin-left:.2em}
+:root[data-design="campus"] .control{background:var(--control);border:0;border-bottom:1px solid var(--ink);border-radius:0;transition:border-color 150ms var(--ease-out),box-shadow 150ms var(--ease-out)}
+:root[data-design="campus"] .control:focus-visible{outline:none;border-bottom-color:var(--seal);box-shadow:0 1px 0 var(--seal)}
+:root[data-design="campus"] .btn{border-radius:2px;transition:transform 140ms var(--ease-out),background-color 150ms var(--ease-out),color 150ms var(--ease-out)}
+:root[data-design="campus"] :is(.btn,.record-save,.save-law,.campus-nav button,.theme-toggle):active{transform:scale(.97)}
+:root[data-design="campus"] .btn-primary{background:var(--blue);border-color:var(--blue)}
+:root[data-design="campus"] .btn-outline{border-color:var(--ink);color:var(--ink);background:transparent}
+:root[data-design="campus"] :is(.record-save,.save-law){transition:transform 140ms var(--ease-out),color 150ms var(--ease-out)}
+:root[data-design="campus"] :is(.record-save,.save-law).saved{color:var(--seal)}
+:root[data-design="campus"] .quiet-link{color:var(--ink);text-decoration-color:var(--seal);text-underline-offset:3px}
+@media (hover:hover) and (pointer:fine){
+  :root[data-design="campus"] .btn-primary:hover{background:var(--seal);border-color:var(--seal)}
+  :root[data-design="campus"] .btn-outline:hover{background:var(--ink);color:var(--paper)}
+}
+
+/* Cabecera superior editorial (escritorio): sustituye al índice lateral sin cambiar el DOM. */
+@media (min-width:1101px){
+  :root[data-design="campus"] .campus-app{display:grid;grid-template-columns:auto minmax(0,1fr) auto;grid-template-rows:auto auto 1fr;column-gap:40px;max-width:1360px;margin:0 auto;padding:0 clamp(32px,4vw,72px);min-height:100vh;background:transparent}
+  :root[data-design="campus"] .campus-sidebar{display:contents}
+  :root[data-design="campus"] .campus-brand{grid-area:1/1;align-self:center;padding:30px 0;text-align:left}
+  :root[data-design="campus"] .campus-brand-note,:root[data-design="campus"] .local-note,:root[data-design="campus"] .campus-topbar,:root[data-design="campus"] .side-profile small,:root[data-design="campus"] .side-profile>svg,:root[data-design="campus"] #themeText{display:none}
+  :root[data-design="campus"] .campus-nav{grid-area:1/2;display:flex;flex-direction:row;gap:4px;justify-content:center;align-self:center;padding:0;margin:0;border:0}
+  :root[data-design="campus"] .campus-nav button{position:relative;display:inline-flex;align-items:center;gap:8px;width:auto;min-height:44px;padding:0 16px;border:0;border-radius:0;background:transparent;color:var(--muted);font:600 14px/1 var(--ui);transition:color 150ms var(--ease-out),transform 140ms var(--ease-out)}
+  :root[data-design="campus"] .campus-nav button>svg{display:none}
+  :root[data-design="campus"] .campus-nav button.active{color:var(--ink)}
+  :root[data-design="campus"] .campus-nav button.active::after{content:"";position:absolute;inset:auto 16px 4px;height:2px;background:var(--seal)}
+  :root[data-design="campus"] .sidebar-bottom{grid-area:1/3;align-self:center;display:flex;align-items:center;gap:6px;margin:0;padding:0}
+  :root[data-design="campus"] .sidebar-bottom :is(.theme-toggle,.side-profile){width:auto;min-width:44px;min-height:44px;padding:0 8px;border:0;background:transparent;color:var(--ink)}
+  :root[data-design="campus"] .sidebar-areas{grid-area:2/1/3/4;display:flex;align-items:center;gap:8px 28px;flex-wrap:wrap;margin:0;padding:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--line)}
+  :root[data-design="campus"] .sidebar-areas h2{margin:0;font:700 11px/1 var(--ui);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  :root[data-design="campus"] #areaIndex{display:flex;flex-wrap:wrap;gap:0 24px}
+  :root[data-design="campus"] .area-link{width:auto;min-height:48px;gap:8px;padding:0;color:var(--muted);font:600 14px/1 var(--ui);text-decoration:none;box-shadow:inset 0 -2px 0 transparent;transition:color 150ms var(--ease-out),box-shadow 200ms var(--ease-out)}
+  :root[data-design="campus"] .area-link>span:last-child{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+  :root[data-design="campus"] .area-link.active{color:var(--ink);box-shadow:inset 0 -2px 0 var(--seal);text-decoration:none}
+  :root[data-design="campus"] .area-more{width:auto;min-height:48px;gap:8px;padding:0;color:var(--muted);font-size:13px}
+  :root[data-design="campus"] .campus-main{grid-area:3/1/4/4;padding:56px 0 40px}
+}
+@media (hover:hover) and (pointer:fine){
+  :root[data-design="campus"] :is(.campus-nav button,.area-link):not(.active):hover{color:var(--ink)}
+}
+
+/* Encabezado y libro de registro. */
+:root[data-design="campus"] .library-heading h1{font:400 clamp(40px,6.4vw,88px)/.98 var(--display);letter-spacing:-.035em;color:var(--ink);text-wrap:balance}
+:root[data-design="campus"] .library-heading p{margin-top:16px;font-size:18px;line-height:1.6;color:var(--muted);max-width:42ch}
+:root[data-design="campus"] .library-heading{margin-bottom:40px}
+:root[data-design="campus"] .library-toolbar .control{font-size:20px;min-height:56px}
+:root[data-design="campus"] .library-workspace{display:block}
+:root[data-design="campus"] .catalog-index-head{margin-top:24px;border-bottom:1px solid var(--ink)}
+:root[data-design="campus"] .catalog-index-title{font:700 11px/1 var(--ui);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+:root[data-design="campus"] .library-result-status{font-size:12px}
+:root[data-design="campus"] .catalog-list{counter-reset:reg}
+:root[data-design="campus"] .catalog-entry{counter-increment:reg;grid-template-columns:56px minmax(0,1fr) 52px;align-items:center;border-left:0;background:transparent;transition:background-color 150ms var(--ease-out)}
+:root[data-design="campus"] .catalog-entry::before{content:counter(reg,decimal-leading-zero);padding-left:4px;font:600 12px/1 var(--ui);letter-spacing:.06em;color:var(--muted);font-variant-numeric:tabular-nums}
+:root[data-design="campus"] .catalog-entry.selected{background:transparent}
+:root[data-design="campus"] .catalog-select{min-height:104px;padding:26px 8px 26px 0}
+:root[data-design="campus"] .catalog-title{font:400 clamp(21px,2.4vw,28px)/1.2 var(--display);letter-spacing:-.015em;color:var(--ink);transition:color 150ms var(--ease-out)}
+:root[data-design="campus"] .catalog-meta{margin-top:8px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+:root[data-design="campus"] .save-law{justify-self:center}
+@media (hover:hover) and (pointer:fine){:root[data-design="campus"] .catalog-entry:hover .catalog-title{color:var(--seal)}}
+:root[data-design="campus"] .campus-footer{border-top:1px solid var(--ink)}
+
+/* Hoja de lectura: la ficha entra desde la derecha sobre el libro de registro (≥761 px). */
+@media (min-width:761px){
+  :root[data-design="campus"] .record-pane{position:fixed;inset:0 0 0 auto;z-index:40;width:min(820px,calc(100vw - 48px));overflow-y:auto;overscroll-behavior:contain;padding:36px clamp(28px,5vw,72px) 56px;background:var(--paper);border-left:1px solid var(--ink);opacity:0;visibility:hidden;transform:translateX(32px);transition:opacity 200ms var(--ease-out),transform 320ms var(--ease-drawer),visibility 0s linear 320ms}
+  :root[data-design="campus"] .library-workspace.reading .record-pane{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+  :root[data-design="campus"] .library-workspace.reading::after{content:"";position:fixed;inset:0;z-index:30;background:color-mix(in srgb,var(--ink) 30%,transparent);animation:atlas-fade 200ms var(--ease-out) both}
+  :root[data-design="campus"] body:has(.library-workspace.reading){overflow:hidden}
+  :root[data-design="campus"] .record-back{display:inline-flex;align-items:center;gap:10px;min-height:44px;margin:0 0 28px;padding:0;border:0;background:transparent;color:var(--ink);font:700 12px/1 var(--ui);letter-spacing:.1em;text-transform:uppercase}
+  :root[data-design="campus"] .record-back svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6}
+  :root[data-design="campus"] .library-workspace.reading .catalog-entry.selected .catalog-title{color:var(--seal)}
+}
+@keyframes atlas-fade{from{opacity:0}to{opacity:1}}
+:root[data-design="campus"] .record-content{animation:atlas-in 240ms var(--ease-out) both}
+@keyframes atlas-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+:root[data-design="campus"] .record-kind{font:700 11px/1 var(--ui);letter-spacing:.14em;text-transform:uppercase;color:var(--seal)}
+:root[data-design="campus"] .record-title{font:400 clamp(34px,4.4vw,58px)/1.02 var(--display);letter-spacing:-.03em;text-wrap:balance;color:var(--ink)}
+:root[data-design="campus"] .record-summary{font-size:18px;line-height:1.65;max-width:60ch;color:var(--ink)}
+:root[data-design="campus"] .record-facts{border-top:1px solid var(--ink);border-bottom:1px solid var(--line);font-size:14px;font-variant-numeric:tabular-nums}
+:root[data-design="campus"] .record-facts dt{color:var(--muted);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+:root[data-design="campus"] .record-pane,:root[data-design="campus"] .record-pane *{color-scheme:inherit}
+
+/* Pantallas secundarias y ajustes de la revisión visual. */
+@media (min-width:1101px){:root[data-design="campus"] body:not([data-section="leyes"]) .sidebar-areas{display:none}}
+@media (max-width:760px){:root[data-design="campus"] .catalog-entry{grid-template-columns:34px minmax(0,1fr) 44px}}
+:root[data-design="campus"] .lex-docs-head{display:none}
+:root[data-design="campus"] .catalog-empty h3{font:400 clamp(26px,3vw,34px)/1.2 var(--display)}
+:root[data-design="campus"] .catalog-empty p{font-size:16px;max-width:52ch}
+:root[data-design="campus"] .campus-footer{font-size:12px}
+:root[data-design="campus"] :is(.lex-docs-status,.lex-docs-footnote,.lex-docs-admin p){font-size:14px;line-height:1.7}
+:root[data-design="campus"] .mobile-brand{font-family:var(--display);font-weight:500;letter-spacing:-.02em}
