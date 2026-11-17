@@ -2,6 +2,12 @@
 
 Plataforma de estudio de Derecho ecuatoriano: biblioteca de 41 normas y fuentes institucionales, favoritos locales, simulador de evaluaciones y Comunidad como «Próximamente».
 
+## Borrador del rediseño editorial
+
+La rama `diseno/editorial-juridico` presenta una revisión más sobria de Foro: portada breve, tipografía serif y biblioteca en filas. No se ha publicado ni fusionado. [Ver capturas reales del antes y el después, decisiones y comprobaciones](docs/revision-editorial/README.md). El simulador conserva la pausa temporal de `main`.
+
+Los apartados siguientes documentan la revisión anterior de tres propuestas, conservada como referencia.
+
 Esta revisión desarrolla tres propuestas visuales sobre el proyecto existente en la rama `diseno/estudio-sin-saturacion`, creada desde `main` (`62f2b01070b8de6371429b480d973a11969b7034`). Se mantienen separadas de las funciones de documentos de la otra rama. El propietario eligió **Foro, la dirección azul**; esta selección de diseño no autoriza una fusión ni un despliegue, y no se ha realizado ninguno.
 
 ## Revisar las tres propuestas

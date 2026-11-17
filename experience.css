@@ -840,3 +840,272 @@ html[data-design=orbita] #practicar .practice-heading p{color:var(--hero-muted)}
   html[data-design=orbita] .theme-toggle{color:#e5f4e9;border-color:#52785e;background:#142527}
   html[data-design=orbita] .theme-toggle:hover{background:#203735}
 }
+
+
+/* Lex Studium · an editorial reading surface for the selected Foro direction.
+   Append after progressive.css; the comparison directions retain their styles. */
+html[data-design=foro]{
+  color-scheme:light;
+  --bg:#f7f6f2;--paper:#fcfbf8;--paper-2:#eeede7;--ink:#292d2e;
+  --muted:#626970;--line:#d9dcd9;--blue:#283f51;--teal:#283f51;
+  --teal-soft:#e5ebee;--soft:#eeefec;--control:#fcfbf8;--note:#626970;
+  --accent:#dce5eb;--accent-ink:#253d4f;--hero-bg:#f7f6f2;
+  --hero-ink:#292d2e;--hero-muted:#626970;--nav:#f7f6f2;
+  --ui:Manrope,'Segoe UI',Arial,sans-serif;--display:Fraunces,Georgia,serif;
+  --radius:4px;--shadow-soft:none;
+  scroll-padding-top:104px;scrollbar-color:var(--line) var(--bg);
+}
+html[data-design=foro] body{font-size:16px;line-height:1.65;color:var(--ink);background:var(--bg)}
+html[data-design=foro] :is(h1,h2,h3,h4){text-wrap:balance}
+html[data-design=foro] :is(button,a,summary){touch-action:manipulation}
+html[data-design=foro] :is(button,input,select,textarea){accent-color:var(--blue)}
+html[data-design=foro] :is(.card,.law-card,.profile-hero,.coming-shell,.lex-docs-shell,.lex-doc-card){box-shadow:none}
+html[data-design=foro] :is(.eyebrow,.section-kicker,.practice-kicker,.lex-docs-kicker){display:none}
+
+/* The header carries navigation, appearance and the local account in one line. */
+html[data-design=foro] .sidebar{
+  position:sticky;top:0;inset-inline:0;display:grid;grid-template-columns:auto 1fr auto;
+  width:100%;height:auto;min-height:80px;padding:16px max(32px,calc((100vw - 1120px)/2));
+  align-items:center;gap:32px;background:var(--nav);border:0;border-bottom:1px solid var(--line);
+}
+html[data-design=foro] .brand{width:max-content;max-width:none;min-height:44px;gap:10px;padding:0}
+html[data-design=foro] .brandmark{width:34px;height:34px;background:transparent;color:var(--blue);border:0;border-radius:0}
+html[data-design=foro] .brandmark svg{width:34px;height:34px}
+html[data-design=foro] .brandtext{font:450 25px/1.15 var(--display);letter-spacing:-.035em;color:var(--ink)}
+html[data-design=foro] .brandtext small{display:none}
+html[data-design=foro] .nav{justify-self:center;display:flex;align-items:center;gap:30px;width:auto;margin:0;padding:0 80px 0 0}
+html[data-design=foro] .nav button{min-height:44px;padding:10px 0;gap:8px;font-size:13px;font-weight:500;color:var(--muted);border:0;border-radius:0}
+html[data-design=foro] .nav button.active{border:0;color:var(--blue);background:transparent;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:8px}
+html[data-design=foro] .nav .ico{width:18px;height:18px}
+html[data-design=foro] .side-profile{display:flex;align-items:center;min-height:44px;gap:10px;width:auto;margin:0;padding:0;background:transparent;border:0}
+html[data-design=foro] .side-profile strong{max-width:88px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;font-weight:500}
+html[data-design=foro] :is(.avatar-fallback,.avatar-img){width:32px;height:32px;background:var(--teal-soft);color:var(--blue)}
+html[data-design=foro] .account-shortcut{display:none}
+html[data-design=foro] :is(.workspace-topbar,.workspace-tools){display:contents}
+html[data-design=foro] .workspace-crumb{display:none}
+html[data-design=foro] .theme-toggle{position:fixed;top:18px;right:max(180px,calc((100vw - 1120px)/2 + 150px));z-index:35;display:grid;place-items:center;width:44px;height:44px;min-height:44px;padding:10px;background:transparent;border:0;border-radius:4px;color:var(--blue)}
+html[data-design=foro] .theme-toggle #themeText{display:none}
+html[data-design=foro] .theme-toggle #themeIcon{display:grid;place-items:center}
+html[data-design=foro] .theme-toggle svg{width:20px;height:20px}
+
+html[data-design=foro] .main{width:100%;max-width:1184px;margin:0 auto;padding:0 32px 32px}
+html[data-design=foro] .main>.page{max-width:none}
+html[data-design=foro] .library-hero{display:grid;grid-template-columns:minmax(0,1.16fr) minmax(0,1fr);align-items:center;gap:76px;min-height:0;padding:48px 0 40px;margin:0;border:0;border-radius:0;background:transparent;overflow:visible}
+html[data-design=foro] .hero-copy{display:block;max-width:none;padding:0}
+html[data-design=foro] :is(.hero-title,.library-hero h1){font:400 clamp(40px,4vw,51px)/1.14 var(--display);letter-spacing:-.035em;color:var(--ink);margin:0}
+html[data-design=foro] .hero-title em{font-family:inherit;font-style:normal;font-weight:400;color:inherit}
+html[data-design=foro] .hero-description{max-width:39ch;margin:0;font-size:15px;line-height:1.85;color:var(--muted)}
+html[data-design=foro] .hero-side{display:none}
+html[data-design=foro] .lex-library-tabs{gap:32px;margin:0 0 34px;border:0;border-bottom:1px solid var(--line)}
+html[data-design=foro] .lex-library-tabs button{min-height:48px;padding:12px 0;font-size:13px;font-weight:500;color:var(--muted);border-bottom-width:2px}
+html[data-design=foro] .lex-library-tabs button.active{color:var(--blue);border-bottom-color:var(--blue)}
+
+html[data-design=foro] .catalog-card{padding:0;border:0;background:transparent;scroll-margin-top:100px}
+html[data-design=foro] .catalog-header{align-items:center;margin:0 0 24px;gap:20px}
+html[data-design=foro] .catalog-header h2{font:400 30px/1.22 var(--display);letter-spacing:-.025em;color:var(--ink)}
+html[data-design=foro] .catalog-heading-copy p{font-size:13px;line-height:1.75;margin:8px 0 0;color:var(--muted)}
+html[data-design=foro] .catalog-total{flex:none;color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
+html[data-design=foro] .library-toolbar{gap:12px!important;margin-bottom:12px!important}
+html[data-design=foro] .control{min-height:48px;border:1px solid var(--line);border-radius:4px;background:var(--control);font-size:14px;box-shadow:none}
+html[data-design=foro] .control:focus{border-color:var(--blue);box-shadow:none}
+html[data-design=foro] .control::placeholder{color:var(--muted);opacity:1}
+html[data-design=foro] .library-toolbar .search-field .control{min-height:52px;font-size:15px;border-radius:4px}
+html[data-design=foro] .search-field>svg{color:var(--muted)}
+html[data-design=foro] .library-advanced>summary{font-size:13px;font-weight:500;border-radius:4px;background:transparent}
+html[data-design=foro] .library-advanced[open]>summary{background:var(--soft)}
+html[data-design=foro] .library-advanced[open]{display:contents}
+html[data-design=foro] .library-advanced[open]>summary{grid-column:2;grid-row:1;margin-top:0}
+html[data-design=foro] .library-advanced[open] .library-filter-fields{grid-column:1/-1;grid-row:2}
+html[data-design=foro] .library-filter-fields{padding:22px 0 12px;gap:18px}
+html[data-design=foro] .library-filter-fields :is(label,.quiet-link){font-size:12px}
+html[data-design=foro] .library-result-status{font-size:12px;margin:0 0 5px;min-height:22px;color:var(--muted)}
+html[data-design=foro] .catalog-note{padding:0;margin:0;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent}
+html[data-design=foro] .catalog-note summary{font-size:12px;min-height:48px;padding:10px 0;color:var(--muted)}
+html[data-design=foro] .catalog-note p{max-width:78ch;font-size:13px;line-height:1.85;padding-bottom:18px}
+
+/* A catalogue, with a title and provenance rather than a grid of tiles. */
+html[data-design=foro] #lawGrid{display:grid;grid-template-columns:1fr;gap:0}
+html[data-design=foro] #lawGrid .law-card{display:flex;flex-direction:column;min-width:0;padding:24px 0 15px;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;box-shadow:none}
+html[data-design=foro] #lawGrid .law-card:hover{transform:none;border-color:var(--line);box-shadow:none}
+html[data-design=foro] #lawGrid .law-card-primary{display:grid;grid-template-columns:minmax(0,1fr) 44px 104px;align-items:center;gap:20px}
+html[data-design=foro] #lawGrid .law-heading{grid-column:1;grid-row:1;min-width:0;padding:0}
+html[data-design=foro] .law-classification{margin:0 0 5px;color:var(--muted);font-size:11px;line-height:1.7;font-weight:400;letter-spacing:.01em}
+html[data-design=foro] #lawGrid h3{font:400 23px/1.36 var(--display);letter-spacing:-.015em;max-width:none;margin:0;color:var(--ink);overflow-wrap:normal;text-wrap:pretty}
+html[data-design=foro] #lawGrid .law-summary{max-width:76ch;margin:7px 0 0;font-size:14px;line-height:1.8;color:var(--muted)}
+html[data-design=foro] #lawGrid .save-law{position:static;grid-column:2;grid-row:1;align-self:center;justify-self:center;width:44px;height:44px;min-width:44px;min-height:44px;padding:11px;border:0;border-radius:4px;background:transparent;color:var(--muted)}
+html[data-design=foro] #lawGrid .save-law.saved{background:var(--teal-soft);color:var(--blue)}
+html[data-design=foro] #lawGrid .law-card-main-action{grid-column:3;grid-row:1;justify-self:end;min-width:0;min-height:44px;padding:10px 0;font-size:13px;font-weight:500;line-height:1.5;background:transparent;border:0;border-radius:0;color:var(--blue);text-decoration:none;white-space:nowrap}
+html[data-design=foro] #lawGrid .law-source-unavailable{grid-column:3;grid-row:1;font-size:12px}
+html[data-design=foro] #lawGrid .law-details{margin:3px 0 0;padding:0}
+html[data-design=foro] #lawGrid .law-details>summary{min-height:44px;padding:7px 0;font-size:12px;font-weight:400;color:var(--muted)}
+html[data-design=foro] #lawGrid .law-details-body{max-width:78ch;padding:9px 0 18px;font-size:13px}
+html[data-design=foro] #lawGrid .law-reference{gap:16px 36px;margin-bottom:16px;font-size:12px}
+html[data-design=foro] #lawGrid .law-note{font-size:13px;line-height:1.85;color:var(--muted)}
+html[data-design=foro] .library-more{margin:26px 0 0;padding:0;justify-content:flex-start}
+html[data-design=foro] .btn{min-height:44px;border-radius:4px;font-size:13px;font-weight:500;box-shadow:none}
+html[data-design=foro] :is(.btn-primary,.btn-wine){background:var(--blue);border-color:var(--blue);color:var(--bg)}
+html[data-design=foro] .btn-soft{background:var(--soft);border-color:var(--line);color:var(--ink)}
+html[data-design=foro] .btn-outline{border-color:var(--line);background:transparent;color:var(--blue)}
+html[data-design=foro] .empty{padding:38px 0;text-align:left;border:0;border-bottom:1px solid var(--line);border-radius:0;font-size:14px}
+html[data-design=foro] .quiet-link{min-height:44px;color:var(--blue)}
+
+/* Shared material follows the same library structure. */
+html[data-design=foro] .lex-docs-shell{padding:0;background:transparent;border:0;border-radius:0}
+html[data-design=foro] .lex-docs-head{display:block;padding:0;margin:0 0 26px;background:transparent;border-radius:0}
+html[data-design=foro] .lex-docs-head h3{font:400 30px/1.3 var(--display);letter-spacing:-.025em;margin:0 0 10px}
+html[data-design=foro] .lex-docs-head p{max-width:76ch;font-size:14px;line-height:1.85}
+html[data-design=foro] .lex-docs-illustration{display:none}
+html[data-design=foro] .lex-docs-tools{gap:18px;margin-bottom:15px}
+html[data-design=foro] .lex-docs-search-label{gap:9px;font-size:12px;font-weight:500}
+html[data-design=foro] .lex-docs-status{font-size:12px;margin:15px 0 18px}
+html[data-design=foro] .lex-docs-grid{grid-template-columns:1fr;gap:0;border-top:1px solid var(--line)}
+html[data-design=foro] .lex-doc-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:7px 28px;padding:23px 0;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent}
+html[data-design=foro] .lex-doc-badge{grid-column:1;grid-row:1;justify-content:flex-start}
+html[data-design=foro] .lex-doc-icon{display:none}
+html[data-design=foro] .lex-doc-format{padding:0;background:transparent;color:var(--muted);font-size:11px}
+html[data-design=foro] .lex-doc-name{grid-column:1;grid-row:2;font:400 22px/1.4 var(--display);letter-spacing:-.015em}
+html[data-design=foro] .lex-doc-context{grid-column:1;grid-row:3;font-size:12px}
+html[data-design=foro] .lex-doc-actions{grid-column:2;grid-row:1/4;align-self:center;gap:14px;margin:0}
+html[data-design=foro] .lex-doc-actions .btn{flex:none;padding:10px 0;background:transparent;border:0;border-radius:0;color:var(--blue);font-size:12px}
+html[data-design=foro] .lex-docs-empty{padding:30px 0;border:0;border-bottom:1px solid var(--line);text-align:left;font-size:13px;line-height:1.85}
+html[data-design=foro] .lex-docs-empty strong{font:400 23px/1.4 var(--display);margin-bottom:8px}
+html[data-design=foro] .lex-docs-admin{margin-top:32px;padding-top:24px}
+html[data-design=foro] .lex-docs-footnote{max-width:94ch;font-size:11px;line-height:1.85;margin-top:22px}
+
+/* Local profile and community remain functional, without dashboard decoration. */
+html[data-design=foro] .coming-shell{min-height:440px;max-width:none;align-items:flex-start;text-align:left;justify-content:center;padding:58px 0;background:transparent;border:0;border-radius:0;overflow:visible}
+html[data-design=foro] .coming-shell:before{display:none}
+html[data-design=foro] .coming-symbol{display:none}
+html[data-design=foro] .coming-shell h2{font:400 43px/1.22 var(--display);letter-spacing:-.03em;max-width:660px;margin:0 0 22px}
+html[data-design=foro] .coming-shell p{font-size:15px;line-height:1.9;max-width:66ch;margin:0 0 24px}
+html[data-design=foro] .coming-state{font-size:12px;margin:0 0 27px;color:var(--muted)}
+html[data-design=foro] .profile-wrap{padding-top:40px;max-width:none}
+html[data-design=foro] .profile-hero{margin:0 0 38px;background:transparent;border:0;border-radius:0;overflow:visible}
+html[data-design=foro] .profile-cover{height:126px;background-color:var(--paper-2);background-image:none;border-radius:4px}
+html[data-design=foro] .upload-cover{top:16px;right:16px;background:var(--paper);font-size:12px}
+html[data-design=foro] .profile-body{padding:0 0 28px;border-bottom:1px solid var(--line)}
+html[data-design=foro] .profile-avatar-wrap{width:88px;height:88px;margin-top:-44px;margin-left:24px}
+html[data-design=foro] :is(.profile-avatar,.profile-avatar-fallback){width:88px;height:88px;background:var(--blue);color:var(--bg);border-color:var(--bg);font:400 31px var(--display)}
+html[data-design=foro] .upload-avatar{width:32px;height:32px;border-color:var(--bg);background:var(--blue);color:var(--bg)}
+html[data-design=foro] .profile-title-row{margin-top:20px}
+html[data-design=foro] .profile-title h2{font:400 34px/1.3 var(--display);letter-spacing:-.025em}
+html[data-design=foro] :is(.profile-title p,.profile-bio){font-size:13px;line-height:1.8}
+html[data-design=foro] .profile-stats{gap:30px;margin-top:24px}
+html[data-design=foro] .profile-stat{display:flex;align-items:baseline;gap:7px;background:transparent;border:0;padding:0}
+html[data-design=foro] .profile-stat b{font:500 16px/1.5 var(--ui);margin:0}
+html[data-design=foro] .profile-stat span{font-size:12px}
+html[data-design=foro] .profile-grid{grid-template-columns:.8fr 1.2fr;gap:50px}
+html[data-design=foro] .profile-grid>.card{padding:0;background:transparent;border:0;border-radius:0}
+html[data-design=foro] .section-heading h3{font:400 25px/1.35 var(--display);letter-spacing:-.02em}
+html[data-design=foro] .section-heading p{font-size:13px;line-height:1.8}
+html[data-design=foro] :is(.form-grid .lbl,.practice-fields .lbl){font-size:12px;font-weight:500}
+html[data-design=foro] .activity-list{gap:0}
+html[data-design=foro] .activity{padding:16px 0;background:transparent;border:0;border-bottom:1px solid var(--line);border-radius:0}
+html[data-design=foro] .activity strong{font-size:13px;font-weight:500}
+html[data-design=foro] .activity span{font-size:12px;line-height:1.75}
+html[data-design=foro] .score{background:transparent;color:var(--blue);font-size:13px}
+html[data-design=foro] .editorial-footer{display:flex;justify-content:space-between;align-items:baseline;gap:24px;margin-top:64px;padding:25px 0 0;border-top:1px solid var(--line);color:var(--muted);font-size:12px;line-height:1.8}
+html[data-design=foro] .editorial-footer>span:first-child{font:400 21px/1.4 var(--display);letter-spacing:-.025em;color:var(--ink)}
+
+html[data-design=foro][data-theme=dark]{
+  color-scheme:dark;--bg:#182126;--paper:#202b31;--paper-2:#28353b;--ink:#ecece6;
+  --muted:#b0bdc3;--line:#3c4a50;--blue:#b8cfdf;--teal:#b8cfdf;
+  --teal-soft:#2c414d;--soft:#26343c;--control:#202b31;--note:#b0bdc3;
+  --accent:#3c596d;--accent-ink:#f1f3ee;--hero-bg:#182126;
+  --hero-ink:#ecece6;--hero-muted:#b0bdc3;--nav:#182126;
+}
+html[data-design=foro][data-theme=dark] :is(.brandmark,.theme-toggle){background:transparent;color:var(--blue);border:0}
+html[data-design=foro][data-theme=dark] :is(.btn-primary,.btn-wine){background:var(--blue);border-color:var(--blue);color:var(--bg)}
+html[data-design=foro][data-theme=dark] .lex-doc-actions .btn{background:transparent;color:var(--blue)}
+
+@media(hover:hover) and (pointer:fine){
+  html[data-design=foro] :is(.theme-toggle,.account-shortcut):hover{background:var(--soft)}
+  html[data-design=foro] .nav button:hover{color:var(--blue);background:transparent}
+  html[data-design=foro] #lawGrid .save-law:hover{background:var(--teal-soft);color:var(--blue)}
+  html[data-design=foro] :is(.law-card-main-action,.lex-doc-actions .btn):hover{text-decoration:underline;text-underline-offset:5px}
+}
+@media(max-width:1000px){
+  html[data-design=foro] .sidebar{padding-inline:28px;gap:24px}
+  html[data-design=foro] .nav{gap:24px;padding-right:54px}
+  html[data-design=foro] .side-profile>span:last-child{display:none}
+  html[data-design=foro] .theme-toggle{right:86px}
+  html[data-design=foro] .main{padding-inline:28px}
+  html[data-design=foro] .library-hero{gap:40px;grid-template-columns:1.1fr 1fr}
+  html[data-design=foro] .hero-title{font-size:44px}
+  html[data-design=foro] .profile-grid{grid-template-columns:1fr;gap:38px}
+}
+@media(max-width:760px){
+  html[data-design=foro]{scroll-padding-top:130px}
+  html[data-design=foro] .sidebar{grid-template-columns:1fr auto;min-height:0;padding:12px 24px 0;gap:8px 12px}
+  html[data-design=foro] .brand{grid-column:1;grid-row:1;min-height:44px;max-width:calc(100vw - 144px)}
+  html[data-design=foro] .brandmark,html[data-design=foro] .brandmark svg{width:30px;height:30px}
+  html[data-design=foro] .brandtext{font-size:22px;letter-spacing:-.035em}
+  html[data-design=foro] .side-profile{display:none}
+  html[data-design=foro] .account-shortcut{grid-column:2;grid-row:1;display:grid;width:44px;height:44px;min-height:44px;border:0;border-radius:4px;background:transparent;color:var(--blue)}
+  html[data-design=foro] .theme-toggle{top:12px;right:74px;background:transparent;border:0;border-radius:4px}
+  html[data-design=foro] .nav{grid-column:1/-1;grid-row:2;justify-self:start;justify-content:flex-start;gap:30px;padding:0;width:100%}
+  html[data-design=foro] .nav button{min-height:46px;padding:10px 0;font-size:12px;gap:8px}
+  html[data-design=foro] .nav button.active{text-underline-offset:7px}
+  html[data-design=foro] .main{padding:0 24px 25px}
+  html[data-design=foro] .library-hero{grid-template-columns:1fr;gap:10px;padding:26px 0 18px}
+  html[data-design=foro] :is(.hero-title,.library-hero h1){font-size:39px;line-height:1.16}
+  html[data-design=foro] .hero-description{max-width:50ch;font-size:14px;line-height:1.75}
+  html[data-design=foro] .lex-library-tabs{gap:27px;margin-bottom:28px}
+  html[data-design=foro] .lex-library-tabs button{font-size:12px;min-height:47px}
+  html[data-design=foro] .catalog-header{gap:15px;margin-bottom:20px}
+  html[data-design=foro] .catalog-header h2{font-size:27px}
+  html[data-design=foro] .catalog-heading-copy p{max-width:40ch;font-size:12px;margin-top:7px}
+  html[data-design=foro] .catalog-total{font-size:11px;align-self:flex-start;margin-top:8px}
+  html[data-design=foro] .library-filter-fields{grid-template-columns:1fr;gap:16px}
+  html[data-design=foro] .control,html[data-design=foro] .library-filter-fields .control,html[data-design=foro] .library-toolbar .search-field .control{font-size:16px}
+  html[data-design=foro] .library-advanced>summary{font-size:12px;min-width:84px;padding-inline:12px}
+  html[data-design=foro] .catalog-note summary{font-size:11px;line-height:1.8;padding-block:12px}
+  html[data-design=foro] #lawGrid .law-card{padding:21px 0 14px}
+  html[data-design=foro] #lawGrid .law-card-primary{grid-template-columns:minmax(0,1fr) 44px;gap:5px 9px;align-items:start}
+  html[data-design=foro] #lawGrid .law-heading{grid-column:1;grid-row:1;padding:0}
+  html[data-design=foro] .law-classification{font-size:11px;margin-bottom:5px}
+  html[data-design=foro] #lawGrid h3{font-size:22px;line-height:1.35;overflow-wrap:anywhere}
+  html[data-design=foro] #lawGrid .law-summary{font-size:14px;line-height:1.75;max-width:54ch;margin-top:8px}
+  html[data-design=foro] #lawGrid .save-law{grid-column:2;grid-row:1;align-self:start;margin-top:-4px}
+  html[data-design=foro] #lawGrid .law-card-main-action{grid-column:1;grid-row:2;justify-self:start;min-height:44px;padding:8px 0;margin-top:2px;font-size:12px}
+  html[data-design=foro] #lawGrid .law-source-unavailable{grid-column:1;grid-row:2;padding-block:10px}
+  html[data-design=foro] #lawGrid .law-details{margin:0;padding:0}
+  html[data-design=foro] #lawGrid .law-details>summary{font-size:11px;min-height:44px}
+  html[data-design=foro] .library-more{margin-top:23px}
+  html[data-design=foro] .lex-docs-head h3{font-size:27px}
+  html[data-design=foro] .lex-docs-head p{font-size:13px}
+  html[data-design=foro] .lex-docs-tools{align-items:stretch;flex-direction:column;gap:12px}
+  html[data-design=foro] .lex-docs-tools>.btn{align-self:flex-start}
+  html[data-design=foro] .lex-doc-card{grid-template-columns:1fr;gap:7px;padding-block:22px}
+  html[data-design=foro] .lex-doc-name{font-size:22px}
+  html[data-design=foro] .lex-doc-actions{grid-column:1;grid-row:4;gap:22px;margin-top:6px}
+  html[data-design=foro] .lex-docs-admin{align-items:flex-start;flex-direction:column;gap:16px}
+  html[data-design=foro] .lex-docs-admin>.btn{white-space:normal;text-align:left;justify-content:flex-start}
+  html[data-design=foro] .coming-shell{min-height:410px;padding:40px 0}
+  html[data-design=foro] .coming-shell h2{font-size:34px;line-height:1.25}
+  html[data-design=foro] .coming-shell p{font-size:14px}
+  html[data-design=foro] .profile-wrap{padding-top:27px}
+  html[data-design=foro] .profile-cover{height:114px}
+  html[data-design=foro] .upload-cover{top:12px;right:12px;font-size:11px}
+  html[data-design=foro] .profile-avatar-wrap{margin-left:14px}
+  html[data-design=foro] .profile-title-row{display:block}
+  html[data-design=foro] .profile-title h2{font-size:31px}
+  html[data-design=foro] .profile-stats{gap:13px 24px;flex-wrap:wrap}
+  html[data-design=foro] .profile-stat span{font-size:11px}
+  html[data-design=foro] .profile-grid{grid-template-columns:1fr;gap:34px}
+  html[data-design=foro] .form-grid{grid-template-columns:1fr;gap:16px}
+  html[data-design=foro] .editorial-footer{flex-direction:column;gap:5px;margin-top:46px;padding-top:21px;font-size:11px}
+}
+@media(max-width:390px){
+  html[data-design=foro] .sidebar{padding-inline:20px}
+  html[data-design=foro] .theme-toggle{right:68px}
+  html[data-design=foro] .brand{gap:8px}
+  html[data-design=foro] .main{padding-inline:20px}
+  html[data-design=foro] :is(.hero-title,.library-hero h1){font-size:36px}
+  html[data-design=foro] .catalog-header{align-items:flex-start}
+  html[data-design=foro] .catalog-header h2{font-size:25px}
+  html[data-design=foro] .catalog-heading-copy p{max-width:25ch}
+  html[data-design=foro] .catalog-total{white-space:nowrap;font-size:10px}
+  html[data-design=foro] .lex-library-tabs{gap:24px}
+  html[data-design=foro] .lex-library-tabs button{font-size:12px}
+}

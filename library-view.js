@@ -30,7 +30,7 @@ function renderLibrary() {
     const sourceURL = /^https?:\/\//.test(reference.url) ? reference.url : '';
     return `<article class="law-card" data-law-index="${index}">
       <div class="law-card-primary">
-        <div class="law-heading"><h3 id="lawTitle${index}" tabindex="-1">${esc(law[0])}</h3><p class="law-summary">${esc(law[3])}</p></div>
+        <div class="law-heading"><p class="law-classification">${esc(law[1])} <span aria-hidden="true">·</span> ${esc(law[2])}</p><h3 id="lawTitle${index}" tabindex="-1">${esc(law[0])}</h3><p class="law-summary">${esc(law[3])}</p></div>
         <button class="save-law ${saved ? 'saved' : ''}" type="button" data-law-index="${index}" aria-label="${saved ? 'Quitar de favoritos' : 'Guardar en favoritos'}: ${esc(law[0])}" aria-pressed="${saved}" onclick="toggleSavedByIndex(${index})">${lexBookmark(saved)}</button>
         ${sourceURL ? `<a class="law-card-main-action law-title-link" href="${esc(sourceURL)}" target="_blank" rel="noopener noreferrer" aria-label="Consultar ${esc(law[0])} en la fuente oficial">Consultar ${lexArrow}</a>` : '<span class="law-source-unavailable">Fuente no disponible</span>'}
       </div>

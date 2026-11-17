@@ -2,14 +2,15 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Lex Studium — El Derecho, más claro</title>
-<meta name="theme-color" content="#2449cc">
+<meta name="theme-color" content="#f7f6f2">
 <meta name="description" content="Tu espacio para estudiar Derecho ecuatoriano. Consulta fuentes oficiales, guarda tus normas y practica con tus propios apuntes.">
 <script>
 (()=>{const d=new URLSearchParams(location.search).get('design');document.documentElement.dataset.design=['archivo','foro','orbita'].includes(d)?d:'foro';try{document.documentElement.dataset.theme=localStorage.getItem('lexAppearance')==='dark'?'dark':'light'}catch{}})();
 </script>
 <link rel="preload" href="materiales/identidad/manrope.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="materiales/identidad/fraunces.woff" as="font" type="font/woff" crossorigin>
 <link rel="stylesheet" href="experience.css">
 <!-- Pausa temporal del simulador: conservamos su código para reactivarlo. -->
 <style>
@@ -53,18 +54,9 @@
     <section id="biblioteca" class="page active">
       <div class="library-hero">
         <div class="hero-copy">
-          <h1 class="hero-title">El Derecho,<br><em>más claro.</em></h1>
-          <p class="hero-description">Fuentes oficiales y práctica con tus apuntes. Un espacio para entender, a tu ritmo.</p>
+          <h1 class="hero-title">Biblioteca jurídica.</h1>
         </div>
-        <div class="hero-side" aria-hidden="true">
-          <div class="lex-art">
-            <div class="art-orbit"></div>
-            <div class="art-index">§</div>
-            <div class="art-book book-one"><span class="book-label">LEX / ECUADOR</span><span class="book-glyph">§</span><span class="book-rule"></span><span class="book-label">LEER</span></div>
-            <div class="art-book book-two"><span class="book-label">IDEAS EN ORDEN</span><span class="book-glyph">¶</span><span class="book-rule"></span><span class="book-label">ENTENDER</span></div>
-            <div class="art-book book-three"><span class="book-label">TU PROPIO CRITERIO</span><span class="book-glyph">∴</span><span class="book-rule"></span><span class="book-label">ARGUMENTAR</span></div>
-          </div>
-        </div>
+        <p class="hero-description">Normativa ecuatoriana y materiales de estudio, reunidos para consultar con criterio.</p>
       </div>
       <div class="lex-library-tabs" role="tablist" aria-label="Secciones de la biblioteca">
         <button id="lexTabLaws" class="active" role="tab" aria-selected="true" aria-controls="lexShelfLaws" onclick="lexSwitchShelf('leyes')">Normativa oficial</button>
@@ -72,7 +64,7 @@
       </div>
       <div id="lexShelfLaws" role="tabpanel" aria-labelledby="lexTabLaws">
       <div class="card catalog-card" id="catalog">
-        <div class="catalog-header"><h2>Encuentra tu norma.</h2><span class="sr-only" id="visibleLawCount">41</span><span class="sr-only" id="mobileLawCount">41</span></div>
+        <div class="catalog-header"><h2>Normativa ecuatoriana</h2><span class="sr-only" id="visibleLawCount">41</span><span class="sr-only" id="mobileLawCount">41</span></div>
         <div class="library-toolbar">
           <div class="filter-field search-field"><label for="lawSearch" class="sr-only">Buscar norma o tema</label><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg><input id="lawSearch" class="control" type="search" placeholder="Buscar norma o tema" oninput="renderLibrary()" aria-controls="lawGrid" aria-describedby="libraryResultStatus"></div>
           <details class="library-advanced" id="libraryAdvanced"><summary>Filtrar <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg></summary>
@@ -96,7 +88,6 @@
             <h3>Material para estudiar y compartir</h3>
             <p>Apuntes, guías y documentos subidos por la administración. Puedes consultarlos y descargarlos gratuitamente.</p>
           </div>
-          <div class="lex-docs-illustration" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 6h7l2 3h9v11H3Z"/><path d="M3 9V4h7l2 3h9v2"/></svg></div>
         </div>
         <div class="lex-docs-tools">
           <label class="lex-docs-search-label" for="lexDocsSearch">Buscar archivo
@@ -218,6 +209,7 @@
         </div>
       </div>
     </section>
+    <footer class="editorial-footer"><span>Lex Studium</span><p>Un espacio para estudiar Derecho ecuatoriano.</p></footer>
   </main>
 </div>
 
@@ -847,6 +839,7 @@ function refreshAll(){renderProfile();refreshStats();renderLibrary()}
 function applyTheme(theme){
   document.documentElement.dataset.theme=theme;
   const isDark=theme==="dark";
+  document.querySelector('meta[name="theme-color"]').setAttribute('content',isDark?'#171f24':'#f7f6f2');
   document.getElementById("themeIcon").innerHTML=isDark?'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1 1m12 12 1 1M5 19l1-1M18 6l1-1"/></svg>':'<svg viewBox="0 0 24 24"><path d="M20 15A9 9 0 0 1 9 4 9 9 0 1 0 20 15Z"/></svg>';
   document.getElementById('themeToggle').setAttribute('aria-pressed',String(isDark));
   document.getElementById("themeText").textContent=isDark?"Modo claro":"Modo oscuro";

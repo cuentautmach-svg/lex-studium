@@ -9,6 +9,7 @@
   "scripts": {
     "build:design": "node scripts/build-designs.mjs",
     "test:design": "node scripts/review-designs-v2.mjs",
+    "test:editorial": "node scripts/review-editorial.mjs",
     "test:content": "node scripts/verify-content.mjs"
   },
   "devDependencies": {
