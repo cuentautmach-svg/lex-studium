@@ -2,11 +2,11 @@
 
 Biblioteca de estudio de Derecho ecuatoriano: 41 normas y fuentes institucionales, búsqueda, filtros, favoritos locales y materiales públicos. El perfil se guarda en el navegador. Comunidad permanece como «Próximamente» y el simulador conserva su pausa temporal en `main`.
 
-## Borrador: sala de consulta
+## Sala de consulta
 
 La rama `diseno/editorial-juridico` reemplaza la interfaz anterior por una sala de consulta: índice institucional lateral, catálogo de títulos y ficha bibliográfica de la norma seleccionada. En móvil, el catálogo y la ficha son vistas separadas con regreso y posición de lectura conservados.
 
-**Esta revisión no está fusionada ni publicada.**
+La publicación se realiza desde `main` mediante GitHub Pages, con autorización del propietario.
 
 [Ver capturas reales del antes, la propuesta anterior y la nueva interfaz](docs/sala-de-consulta/README.md).
 

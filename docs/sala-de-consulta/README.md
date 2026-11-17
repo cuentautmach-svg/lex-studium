@@ -1,6 +1,6 @@
 # Lex Studium · sala de consulta
 
-Borrador de una interfaz completamente reorganizada. La web publicada y `main` permanecen intactos. Esta versión utiliza los mismos registros, referencias y almacenamiento local, con un recorrido de consulta nuevo.
+Interfaz completamente reorganizada como sala de consulta. Su publicación desde `main` mediante GitHub Pages está autorizada por el propietario. Esta versión utiliza los mismos registros, referencias y almacenamiento local, con un recorrido de consulta nuevo. Las capturas documentan el antes publicado y la versión validada antes del despliegue.
 
 ## Capturas reales
 
